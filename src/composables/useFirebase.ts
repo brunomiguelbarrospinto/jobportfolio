@@ -18,6 +18,7 @@ const firebaseConfig = {
 const currentAuthUser: Ref<AuthUserInterface | null> = ref(null);
 
 export const useFirebase = (): {
+  // eslint-disable-next-line
   firebase: any;
   initializeApp: () => void;
   setCurrentAuthUser: (authUser: AuthUserInterface) => void;
