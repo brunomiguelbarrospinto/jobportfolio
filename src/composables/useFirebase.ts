@@ -1,6 +1,9 @@
 import firebase from "firebase/app";
+import { User as AuthUserInterface } from "@firebase/auth-types";
 import "firebase/auth";
-import { ref } from "vue";
+import "firebase/database";
+import { ref, Ref } from "vue";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAGGMUdvTxSKzq_jQoBeSmPhbYsW53Wpf4",
   authDomain: "full-vue-project.firebaseapp.com",
@@ -12,33 +15,38 @@ const firebaseConfig = {
   measurementId: "G-501JKMCMYB",
 };
 
-const currentAuthUser: any = ref(null);
+const currentAuthUser: Ref<AuthUserInterface | null> = ref(null);
 
 export const useFirebase = (): {
-  initializeApp: any;
-  currentAuthUser: any;
-  signInWithPopup: any;
-  signOut: any;
+  firebase: any;
+  initializeApp: () => void;
+  setCurrentAuthUser: (authUser: AuthUserInterface) => void;
+  currentAuthUser: Ref<AuthUserInterface | null>;
+  signInWithPopup: (platform: string) => void;
+  signOut: () => void;
 } => {
   function initializeApp() {
     firebase.initializeApp(firebaseConfig);
-    firebase.auth().onAuthStateChanged((authUser) => {
-      currentAuthUser.value = authUser;
-    });
   }
 
-  async function signInWithPopup(platform: string) {
-    await firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  function setCurrentAuthUser(authUser: AuthUserInterface): void {
+    currentAuthUser.value = authUser;
   }
 
-  async function signOut() {
-    await firebase.auth().signOut();
+  function signInWithPopup(platform: string): void {
+    if (platform === "google") {
+      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    }
+  }
+
+  function signOut(): void {
+    firebase.auth().signOut();
   }
 
   return {
+    firebase,
     initializeApp,
+    setCurrentAuthUser,
     currentAuthUser,
     signInWithPopup,
     signOut,

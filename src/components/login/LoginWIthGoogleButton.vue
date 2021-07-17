@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="signInWithPopup('google')"
+    @click="$emit('login', 'google')"
     class="
       border border-gray-200
       pl-2
@@ -23,11 +23,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useFirebase } from "@/composables/useFirebase";
 export default defineComponent({
   setup() {
-    const { signInWithPopup } = useFirebase();
-    return { signInWithPopup };
+    return {};
   },
 });
 </script>

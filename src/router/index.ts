@@ -7,16 +7,16 @@ const { currentAuthUser } = useFirebase();
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
   },
-  DashboardRoutes,
+  ...DashboardRoutes,
   {
     path: "/profile/:email",
     name: "profile",

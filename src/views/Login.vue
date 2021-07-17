@@ -1,7 +1,7 @@
 <template>
   <div>
     <img class="w-48" :src="require('@/assets/logo.png')" />
-    <LoginWithGoogleButton />
+    <LoginWithGoogleButton @login="login" />
   </div>
 </template>
 <script lang="ts">
@@ -14,14 +14,20 @@ export default defineComponent({
     LoginWithGoogleButton,
   },
   setup() {
-    const { currentAuthUser } = useFirebase();
+    const { currentAuthUser, signInWithPopup } = useFirebase();
     const router = useRouter();
+
     watch(currentAuthUser, (value) => {
       if (value) {
-        //router.push({ name: "dashboard" });
+        router.push({ name: "dashboard" });
       }
     });
-    return {};
+    async function login(platform: string) {
+      await signInWithPopup(platform);
+    }
+    return {
+      login,
+    };
   },
 });
 </script>
