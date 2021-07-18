@@ -12,9 +12,6 @@ let app: Application;
 
 firebase.auth().onAuthStateChanged((authUser: AuthUserInterface) => {
   setCurrentAuthUser(authUser);
-  if (!authUser) {
-    router.push({ name: "login" });
-  }
   if (!app) {
     app = createApp(App);
     app.use(store).use(router).mount("#app");
