@@ -1,5 +1,5 @@
 import { Ref, ref } from "vue";
-import UserInterface from "@/definitions/entities/userInterface";
+import UserInterface from "@/definitions/entities/UserInterface";
 import { useFirebase } from "./useFirebase";
 import { DataSnapshot } from "@firebase/database-types";
 
