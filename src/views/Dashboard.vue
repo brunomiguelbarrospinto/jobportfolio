@@ -1,7 +1,10 @@
 <template>
   <div>
-    <Summary v-if="user" :user="user" />
-    <button v-if="currentAuthUser" @click="logout">Sign out</button>
+    <Loading v-if="!user" />
+    <div v-else>
+      <Summary :user="user" />
+      <button @click="logout">Sign out</button>
+    </div>
   </div>
 </template>
 
@@ -10,10 +13,12 @@ import { defineComponent, onMounted } from "vue";
 import { useFirebase } from "@/composables/useFirebase";
 import { useUser } from "@/composables/useUser";
 import { useRouter } from "vue-router";
+import Loading from "@/components/loading/Loading.vue";
 import Summary from "@/components/summary/Summary.vue";
 
 export default defineComponent({
   components: {
+    Loading,
     Summary,
   },
   setup() {
