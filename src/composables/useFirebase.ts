@@ -40,8 +40,8 @@ export const useFirebase = (): {
     }
   }
 
-  function signOut(): void {
-    firebase.auth().signOut();
+  async function signOut(): Promise<void> {
+    await firebase.auth().signOut();
   }
 
   return {

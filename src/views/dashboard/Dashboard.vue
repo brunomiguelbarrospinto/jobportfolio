@@ -1,40 +1,39 @@
 <template>
-  <div>
+  <TransitionComponent>
     <Loading v-if="!user" />
     <div v-else>
+      <Navbar />
+      <router-view />
       <Summary :user="user" />
-      <button @click="logout">Sign out</button>
     </div>
-  </div>
+  </TransitionComponent>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import { useFirebase } from "@/composables/useFirebase";
 import { useUser } from "@/composables/useUser";
-import { useRouter } from "vue-router";
+import TransitionComponent from "@/components/transition/Transition.vue";
 import Loading from "@/components/loading/Loading.vue";
 import Summary from "@/components/summary/Summary.vue";
+import Navbar from "@/components/navbar/Navbar.vue";
 
 export default defineComponent({
   components: {
+    TransitionComponent,
     Loading,
     Summary,
+    Navbar,
   },
   setup() {
-    const { currentAuthUser, signOut } = useFirebase();
+    const { currentAuthUser } = useFirebase();
     const { getUserById, user } = useUser();
-    const router = useRouter();
     onMounted(() => {
       if (currentAuthUser?.value) {
         getUserById(currentAuthUser.value.uid);
       }
     });
-    async function logout() {
-      await signOut();
-      router.push({ name: "login" });
-    }
-    return { currentAuthUser, logout, getUserById, user };
+    return { currentAuthUser, getUserById, user };
   },
 });
 </script>

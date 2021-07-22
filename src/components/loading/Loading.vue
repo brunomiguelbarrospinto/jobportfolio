@@ -1,7 +1,7 @@
 <template>
   <div
     class="
-      bg-gray-800
+      bg-gray-200
       absolute
       w-screen
       h-screen

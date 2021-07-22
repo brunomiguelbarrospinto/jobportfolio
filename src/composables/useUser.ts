@@ -1,5 +1,7 @@
-import { Ref, ref } from "vue";
-import UserInterface from "@/definitions/entities/UserInterface";
+import { Ref, ref, computed } from "vue";
+import UserInterface, {
+  AboutMeInterface,
+} from "@/definitions/entities/UserInterface";
 import { useFirebase } from "./useFirebase";
 import { DataSnapshot } from "@firebase/database-types";
 
@@ -10,6 +12,7 @@ const user: Ref<UserInterface | null> = ref(null);
 export const useUser = (): {
   user: Ref<UserInterface | null>;
   getUserById: (id: string) => void;
+  aboutMe: Ref<AboutMeInterface | undefined>;
 } => {
   function getUserById(id: string) {
     firebase
@@ -22,8 +25,10 @@ export const useUser = (): {
         }
       });
   }
+  const aboutMe = computed(() => user.value?.aboutMe);
   return {
     user,
     getUserById,
+    aboutMe,
   };
 };

@@ -3,8 +3,7 @@ import StudyInterface from "./StudyInterface";
 import CourseInterface from "./CourseInterface";
 import ExperienceInterface from "./ExperienceInterface";
 
-export default interface User {
-  id: string;
+export interface AboutMeInterface {
   name: string;
   lastNames: string;
   dateOfBirth: string;
@@ -12,6 +11,10 @@ export default interface User {
   phone: string;
   biography: string;
   photo: string;
+}
+export default interface User {
+  id: string;
+  aboutMe: AboutMeInterface;
   socialNetworks: SocialNetworksInterface;
   studies?: StudyInterface[];
   courses?: CourseInterface[];

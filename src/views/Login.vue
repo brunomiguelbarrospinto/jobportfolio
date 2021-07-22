@@ -1,7 +1,24 @@
 <template>
-  <div>
-    <img class="w-48" :src="require('@/assets/logo.png')" />
-    <LoginWithGoogleButton @login="login" />
+  <div class="h-screen flex items-center justify-center justify-items-center">
+    <div
+      class="
+        border border-gray-200
+        bg-white
+        text-black
+        w-96
+        h-60
+        rounded-md
+        shadow-sm
+        p-5
+        flex flex-col
+        justify-around
+        items-center
+      "
+    >
+      <img class="w-48" :src="require('@/assets/logo.png')" />
+      Iniciar sesión
+      <LoginWithGoogleButton @login="login" />
+    </div>
   </div>
 </template>
 <script lang="ts">

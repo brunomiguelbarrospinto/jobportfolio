@@ -1,7 +1,5 @@
 <template>
-  <hr />
-  {{ user }}<br />
-  <hr />
+  <pre> {{ user }}</pre>
 </template>
 
 <script lang="ts">
