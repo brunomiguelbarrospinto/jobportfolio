@@ -3,7 +3,9 @@
     <Loading v-if="!user" />
     <div v-else>
       <Navbar />
-      <router-view />
+      <div class="mx-auto max-w-4xl">
+        <router-view />
+      </div>
       <Summary :user="user" />
     </div>
   </TransitionComponent>

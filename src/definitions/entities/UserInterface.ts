@@ -12,9 +12,18 @@ export interface AboutMeInterface {
   biography: string;
   photo: string;
 }
+
+export interface BannerInterface {
+  backgroundImage: string;
+  showPhoto: boolean;
+  social: boolean;
+  subTitle: string;
+  title: string;
+}
 export default interface User {
   id: string;
   aboutMe: AboutMeInterface;
+  banner: BannerInterface;
   socialNetworks: SocialNetworksInterface;
   studies?: StudyInterface[];
   courses?: CourseInterface[];
