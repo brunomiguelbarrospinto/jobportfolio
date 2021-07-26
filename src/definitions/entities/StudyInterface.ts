@@ -1,5 +1,5 @@
 export default interface StudyInterface {
-  id: string;
+  id?: string;
   title: string;
   institute: string;
   image: string;

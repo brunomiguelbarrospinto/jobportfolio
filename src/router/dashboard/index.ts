@@ -10,6 +10,7 @@ const routes: Array<RouteRecordRaw> = [
       ),
     meta: {
       requiresAuth: true,
+      breadCrumb: "Dashboard",
     },
     children: [
       {
@@ -19,6 +20,22 @@ const routes: Array<RouteRecordRaw> = [
           import(
             /* webpackChunkName: "dashboard-home" */ "@/views/dashboard/views/Home.vue"
           ),
+        meta: {
+          requiresAuth: true,
+          breadCrumb: "Inicio",
+        },
+      },
+      {
+        path: "banner",
+        name: "dashboard-banner",
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard-banner" */ "@/views/dashboard/views/Banner.vue"
+          ),
+        meta: {
+          requiresAuth: true,
+          breadCrumb: "Banner",
+        },
       },
     ],
   },

@@ -1,7 +1,7 @@
 <template>
-  <div class="py-4">
-    <Banner class="mb-4" />
-    <div class="grid grid-cols-3 gap-4">
+  <div class="pb-5">
+    <Banner class="mb-5" />
+    <div class="grid grid-cols-3 gap-5">
       <ModuleCard
         :key="module.text"
         v-for="module in modules"

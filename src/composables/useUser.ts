@@ -5,8 +5,11 @@ import UserInterface, {
 } from "@/definitions/entities/UserInterface";
 import { useFirebase } from "./useFirebase";
 import { DataSnapshot } from "@firebase/database-types";
+import StudyInterface from "@/definitions/entities/StudyInterface";
+import CourseInterface from "@/definitions/entities/CourseInterface";
+import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 
-const { firebase } = useFirebase();
+const { firebase, convertObjectsCollectionsToArrayCollections } = useFirebase();
 
 const user: Ref<UserInterface | null> = ref(null);
 
@@ -15,6 +18,9 @@ export const useUser = (): {
   getUserById: (id: string) => void;
   aboutMe: Ref<AboutMeInterface | undefined>;
   banner: Ref<BannerInterface | undefined>;
+  studies: Ref<StudyInterface[] | undefined>;
+  courses: Ref<CourseInterface[] | undefined>;
+  experiences: Ref<ExperienceInterface[] | undefined>;
 } => {
   function getUserById(id: string) {
     firebase
@@ -27,12 +33,25 @@ export const useUser = (): {
         }
       });
   }
+
   const aboutMe = computed(() => user.value?.aboutMe);
   const banner = computed(() => user.value?.banner);
+  const studies = computed((): StudyInterface[] | undefined =>
+    convertObjectsCollectionsToArrayCollections(user.value?.studies)
+  );
+  const courses = computed((): CourseInterface[] | undefined =>
+    convertObjectsCollectionsToArrayCollections(user.value?.courses)
+  );
+  const experiences = computed((): ExperienceInterface[] | undefined =>
+    convertObjectsCollectionsToArrayCollections(user.value?.experiences)
+  );
   return {
     user,
     getUserById,
     aboutMe,
     banner,
+    studies,
+    courses,
+    experiences,
   };
 };

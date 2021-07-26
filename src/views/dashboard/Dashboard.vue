@@ -4,6 +4,7 @@
     <div v-else>
       <Navbar />
       <div class="mx-auto max-w-4xl">
+        <Breadcrumbs />
         <router-view />
       </div>
       <Summary :user="user" />
@@ -19,6 +20,7 @@ import TransitionComponent from "@/components/transition/Transition.vue";
 import Loading from "@/components/loading/Loading.vue";
 import Summary from "@/components/summary/Summary.vue";
 import Navbar from "@/components/navbar/Navbar.vue";
+import Breadcrumbs from "@/components/common/Breadcrumbs.vue";
 
 export default defineComponent({
   components: {
@@ -26,6 +28,7 @@ export default defineComponent({
     Loading,
     Summary,
     Navbar,
+    Breadcrumbs,
   },
   setup() {
     const { currentAuthUser } = useFirebase();
