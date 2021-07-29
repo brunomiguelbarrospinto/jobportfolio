@@ -6,7 +6,7 @@ import RadioGroupInterface from "@/definitions/form/RadioGroupInterface";
 
 export default interface FormElementInterface {
   type: FormElementType;
-  element:
+  data:
     | InputInterface
     | SelectInterface
     | TextareaInterface

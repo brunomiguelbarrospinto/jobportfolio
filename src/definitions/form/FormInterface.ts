@@ -5,6 +5,6 @@ export default interface FormInterface {
   id?: string;
   method?: string;
   action?: string;
-  fieldset?: FieldsetInterface[];
+  fieldsets?: FieldsetInterface[];
   elements?: FormElementInterface[];
 }

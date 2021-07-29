@@ -1,18 +1,20 @@
 <template>
-  <div class="bg-white border">
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  <div class="bg-white border p-4">
+    <Form :form="form" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({});
+import Form from "@/components/common/form/Form.vue";
+import BannerForm from "@/config/BannerForm";
+export default defineComponent({
+  components: {
+    Form,
+  },
+  setup() {
+    return {
+      form: BannerForm(),
+    };
+  },
+});
 </script>
