@@ -17,9 +17,11 @@
     "firebase": "^8.7.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "vee-validate": "^4.4.9",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

@@ -1,9 +1,9 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form :key="syncedForm" @submit.prevent="onSubmit">
     <template v-if="hasFieldsets">
       <Fieldset
         :key="'fieldset-' + key"
-        v-for="(fieldset, key) in form.fieldsets"
+        v-for="(fieldset, key) in syncedForm.fieldsets"
         :fieldset="fieldset"
       />
     </template>
@@ -31,12 +31,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    values: { type: Object, required: true },
   },
-  setup(props) {
+  setup(props, context) {
     const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
     function onSubmit() {
       let data = {};
-
       if (hasFieldsets.value) {
         props.form.fieldsets?.forEach((fieldset) => {
           fieldset.elements.forEach((element) => {
@@ -45,14 +45,35 @@ export default defineComponent({
           });
         });
       }
-
-      console.log(data);
-
-      //this.$emit('form:onSubmit', data)*/
+      context.emit("form:onSubmit", data);
     }
+
+    const syncedForm = computed(() => {
+      let syncedForm = props.form;
+      syncedForm.fieldsets = syncedForm.fieldsets?.map((fieldset) => {
+        return {
+          ...fieldset,
+          elements: fieldset.elements.map((element) => {
+            return {
+              ...element,
+              data: {
+                ...element.data,
+                value:
+                  props.values[element.data.id] !== undefined
+                    ? props.values[element.data.id]
+                    : element.data.value,
+              },
+            };
+          }),
+        };
+      });
+      return syncedForm;
+    });
+
     return {
       hasFieldsets,
       onSubmit,
+      syncedForm,
     };
   },
 });

@@ -1,9 +1,6 @@
+import BaseElementInterface from "./BaseElementInterface";
 import RadioInterface from "./RadioInterface";
 
-export default interface RadioGroupInterface {
-  id: string;
-  label: string;
+export default interface RadioGroupInterface extends BaseElementInterface {
   radios: RadioInterface[];
-  name: string;
-  value: string | number;
 }

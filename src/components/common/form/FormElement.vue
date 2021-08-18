@@ -7,6 +7,7 @@
     "
     v-model="value"
     :id="element.data.id"
+    :name="element.data.name"
     :label="element.data.label"
     :placeholder="element.data.placeholder"
     :required="element.data.required"
@@ -15,6 +16,7 @@
   <!-- Input File -->
   <InputFile
     v-if="element.type === 'input' && ['file'].includes(element.data.type)"
+    :name="element.data.name"
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
@@ -26,6 +28,7 @@
   <!-- Datalist -->
   <Datalist
     v-if="element.type === 'datalist'"
+    :name="element.data.name"
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
@@ -36,6 +39,7 @@
   <!-- Checkbox -->
   <Checkbox
     v-if="element.type === 'input' && element.data.type === 'checkbox'"
+    :name="element.data.name"
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
@@ -59,6 +63,7 @@
   <!-- Select -->
   <Select
     v-if="['select'].includes(element.type)"
+    :name="element.data.name"
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
@@ -68,6 +73,7 @@
   <!--Textarea-->
   <Textarea
     v-if="element.type === 'textarea'"
+    :name="element.data.name"
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
@@ -81,6 +87,7 @@
     :radioGroup="element.data"
     v-model="value"
   />
+  <pre>{{ element.validation }}</pre>
 </template>
 
 <script lang="ts">
@@ -109,6 +116,7 @@ export default defineComponent({
   props: {
     element: {
       type: Object as PropType<FormElementInterface>,
+      required: true,
     },
     elements: {
       type: Array as PropType<FormElementInterface[]>,

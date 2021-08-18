@@ -8,6 +8,7 @@
     :leave-from-class="transition['leave-from-class']"
     :leave-to-class="transition['leave-to-class']"
     :mode="mode"
+    :appear="appear"
   >
     <slot />
   </transition>
@@ -20,6 +21,8 @@
     :leave-active-class="transition['leave-active-class']"
     :leave-from-class="transition['leave-from-class']"
     :leave-to-class="transition['leave-to-class']"
+    :move-class="transition['move-class']"
+    :appear="appear"
   >
     <slot />
   </transition-group>
@@ -58,6 +61,9 @@ export default defineComponent({
     tag: {
       type: String,
       default: undefined,
+    },
+    appear: {
+      type: Boolean,
     },
   },
   setup(props) {

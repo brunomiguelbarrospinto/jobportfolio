@@ -26,6 +26,7 @@ export const useFirebase = (): {
   signInWithPopup: (platform: string) => void;
   signOut: () => void;
   convertObjectsCollectionsToArrayCollections: any;
+  databaseRefCurrentUser: any;
 } => {
   function initializeApp() {
     firebase.initializeApp(firebaseConfig);
@@ -58,6 +59,13 @@ export const useFirebase = (): {
     await firebase.auth().signOut();
   }
 
+  function databaseRefCurrentUser() {
+    return firebase
+      .database()
+      .ref("users")
+      .child(currentAuthUser.value?.uid as string);
+  }
+
   return {
     firebase,
     initializeApp,
@@ -66,5 +74,6 @@ export const useFirebase = (): {
     signInWithPopup,
     signOut,
     convertObjectsCollectionsToArrayCollections,
+    databaseRefCurrentUser,
   };
 };

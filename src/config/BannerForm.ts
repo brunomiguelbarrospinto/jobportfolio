@@ -19,6 +19,7 @@ const title: InputInterface = {
 
 const subTitle: InputInterface = {
   id: "subTitle",
+  name: "subTitle",
   label: "Subtitulo",
   type: "text",
   value: null,

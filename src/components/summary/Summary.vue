@@ -1,5 +1,8 @@
 <template>
-  <pre> {{ user }}</pre>
+  <details>
+    <summary>User</summary>
+    <pre> {{ user }}</pre>
+  </details>
 </template>
 
 <script lang="ts">

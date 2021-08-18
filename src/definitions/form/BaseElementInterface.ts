@@ -1,6 +1,6 @@
 export default interface BaseElementInterface {
   //required
-  id: string | number;
+  id: string;
   value: string | number | boolean | null;
   //optional
   label?: string;
