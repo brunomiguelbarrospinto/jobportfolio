@@ -45,6 +45,7 @@ export default defineComponent({
           });
         });
       }
+
       context.emit("form:onSubmit", data);
     }
 
