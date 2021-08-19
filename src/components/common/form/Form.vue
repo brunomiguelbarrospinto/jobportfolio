@@ -8,18 +8,26 @@
       />
     </template>
     <slot />
-    <button :disabled="isLoading" :isLoading="isLoading" type="submit">
+    <Button
+      class="ml-auto"
+      :disabled="isLoading"
+      :isLoading="isLoading"
+      type="submit"
+    >
       {{ isLoading ? "Procesando" : "Guardar" }}
-    </button>
+    </Button>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
+import Button from "@/components/common/button/Button.vue";
+
 import FormInterface from "@/definitions/form/FormInterface";
 import Fieldset from "./Fieldset.vue";
 export default defineComponent({
   components: {
+    Button,
     Fieldset,
   },
   props: {

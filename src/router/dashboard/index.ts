@@ -37,6 +37,18 @@ const routes: Array<RouteRecordRaw> = [
           breadCrumb: "Banner",
         },
       },
+      {
+        path: "about-me",
+        name: "dashboard-about-me",
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard-about-me" */ "@/views/dashboard/views/AboutMe.vue"
+          ),
+        meta: {
+          requiresAuth: true,
+          breadCrumb: "Acerca de mi",
+        },
+      },
     ],
   },
 ];

@@ -45,7 +45,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       },
       {
         text: "Acerca de mi",
-        to: { name: "dashboard-banner" },
+        to: { name: "dashboard-about-me" },
         iconName: "User",
         percent: percentAboutMe,
         level:

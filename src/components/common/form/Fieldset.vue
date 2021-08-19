@@ -1,6 +1,9 @@
 <template>
-  <fieldset class="border border-solid border-gray-200 p-4">
-    <legend class="text-sm bg-gray-600 text-white px-1" v-if="fieldset.legend">
+  <fieldset class="border border-solid border-gray-200 p-4 mb-5">
+    <legend
+      class="text-sm bg-blue-500 text-white py-0.5 px-2"
+      v-if="fieldset.legend"
+    >
       {{ fieldset.legend }}
     </legend>
     <FormElement

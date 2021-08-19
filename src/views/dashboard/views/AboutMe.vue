@@ -2,8 +2,8 @@
   <div class="bg-white border p-4">
     <Form
       :form="form"
-      :values="user.banner"
-      @form:onSubmit="updateBannerForm"
+      :values="user.aboutMe"
+      @form:onSubmit="updateAboutMeForm"
       :isLoading="isLoading"
     />
   </div>
@@ -11,9 +11,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Form from "@/components/common/form/Form.vue";
-import BannerForm from "@/config/BannerForm";
+import AboutMeForm from "@/config/AboutMeForm";
 import { useUser } from "@/composables/useUser";
-import { useBanner } from "@/composables/useBanner";
+import { useAboutMe } from "@/composables/useAboutMe";
 import { useRouter } from "vue-router";
 import useNotifications from "@/composables/useNotifications";
 
@@ -23,26 +23,26 @@ export default defineComponent({
   },
   setup() {
     const { user } = useUser();
-    const { updateBanner, isLoading, isFinished } = useBanner();
+    const { updateAboutMe, isLoading, isFinished } = useAboutMe();
     const router = useRouter();
     const { pushNotification } = useNotifications();
 
-    async function updateBannerForm(data: any) {
-      await updateBanner(data);
+    async function updateAboutMeForm(data: any) {
+      await updateAboutMe(data);
       if (isFinished) {
         router.push({ name: "home" });
         pushNotification({
           id: "",
-          title: "Banner actualizado",
-          description: "Banner actualizado correctamente",
+          title: "Información actualizada",
+          description: "Actualizado correctamente",
           type: "success",
         });
       }
     }
     return {
-      form: BannerForm(),
+      form: AboutMeForm(),
       user,
-      updateBannerForm,
+      updateAboutMeForm,
       isLoading,
       isFinished,
     };
