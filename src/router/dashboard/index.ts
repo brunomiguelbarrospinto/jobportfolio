@@ -49,6 +49,18 @@ const routes: Array<RouteRecordRaw> = [
           breadCrumb: "Acerca de mi",
         },
       },
+      {
+        path: "social-networks",
+        name: "dashboard-social-networks",
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard-social-networks" */ "@/views/dashboard/views/SocialNetworks.vue"
+          ),
+        meta: {
+          requiresAuth: true,
+          breadCrumb: "Redes Sociales",
+        },
+      },
     ],
   },
 ];
