@@ -62,7 +62,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       },
       {
         text: "Estudios",
-        to: { name: "dashboard-banner" },
+        to: { name: "dashboard-studies-list" },
         iconName: "AcademicCap",
         count: studies.value?.length,
         level: countStudies < 1 ? "medium" : "hight",
