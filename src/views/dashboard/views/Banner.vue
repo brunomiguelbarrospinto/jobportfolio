@@ -10,7 +10,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Form from "@/components/common/form/Form.vue";
 import BannerForm from "@/config/BannerForm";
 import { useUser } from "@/composables/useUser";
 import { useBanner } from "@/composables/useBanner";
@@ -18,9 +17,6 @@ import { useRouter } from "vue-router";
 import useNotifications from "@/composables/useNotifications";
 
 export default defineComponent({
-  components: {
-    Form,
-  },
   setup() {
     const { user } = useUser();
     const { updateBanner, isLoading, isFinished } = useBanner();

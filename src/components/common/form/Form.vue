@@ -39,7 +39,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    values: { type: Object, required: true },
+    values: { type: Object },
   },
   setup(props, context) {
     const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
@@ -67,10 +67,11 @@ export default defineComponent({
               ...element,
               data: {
                 ...element.data,
-                value:
-                  props.values[element.data.id] !== undefined
+                value: props?.values
+                  ? props?.values[element.data.id] !== undefined
                     ? props.values[element.data.id]
-                    : element.data.value,
+                    : element.data.value
+                  : null,
               },
             };
           }),

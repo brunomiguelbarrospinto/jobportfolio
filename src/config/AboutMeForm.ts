@@ -54,6 +54,7 @@ const biography: TextareaInterface = {
   label: "Biografia",
   value: null,
   required: true,
+  rows: 10,
 };
 
 export default (): FormInterface => {

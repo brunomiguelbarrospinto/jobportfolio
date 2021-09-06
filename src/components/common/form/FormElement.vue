@@ -78,6 +78,7 @@
     :id="element.data.id"
     :label="element.data.label"
     :placeholder="element.data.placeholder"
+    :rows="element.data.rows"
     :required="element.data.required"
   />
 

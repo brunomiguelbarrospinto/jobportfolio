@@ -1,11 +1,12 @@
 <template>
   <div class="bg-white border p-4">
-    <div>{{ id }}</div>
-    <div>{{ study }}</div>
+    <Form :form="StudyForm(isNewStudy)" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";
+import StudyForm from "@/config/StudyForm";
+
 import { useStudies } from "@/composables/useStudies";
 export default defineComponent({
   props: {
@@ -17,7 +18,10 @@ export default defineComponent({
   setup(props) {
     const { getStudyById } = useStudies();
     const study = computed(() => getStudyById(props.id));
-    return { study };
+
+    const isNewStudy = computed(() => study.value === undefined);
+
+    return { study, isNewStudy, StudyForm };
   },
 });
 </script>
