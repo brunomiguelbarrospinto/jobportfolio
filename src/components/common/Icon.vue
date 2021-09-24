@@ -1,26 +1,82 @@
 <template>
-  <component v-if="isMounted" class="w-5 h-5 inline" :is="heroicon" />
+  <component v-if="isMounted && heroicon" :class="classList" :is="heroicon" />
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
+
+import * as SolidIcons from "@heroicons/vue/solid";
+import * as OutlineIcons from "@heroicons/vue/outline";
+
+export const types = ["solid", "outline"];
+export const solidIconNames = Object.keys(SolidIcons);
+export const outlineIconNames = Object.keys(OutlineIcons);
+export const iconNames = [...new Set([...solidIconNames, ...outlineIconNames])];
+export const sizes = ["xs", "sm", "md", "lg", "xl"];
+
 export default defineComponent({
   props: {
     // https://heroicons.com
     // https://github.com/tailwindlabs/heroicons
-    name: String, // Prop "name" must be in PascalCase like "ArrowSmLeft"
-    type: { type: String, default: "solid" }, // solid || outline
+    name: {
+      type: String,
+      validator: (value: string) => iconNames.includes(value),
+    }, // Prop "name" must be in PascalCase like "ArrowSmLeft"
+    type: {
+      type: String,
+      default: "solid",
+      validator: (value: string) => types.includes(value),
+    }, // solid || outline
+    size: {
+      type: String,
+      default: "md",
+      validator: (value: string) => {
+        return sizes.includes(value);
+      },
+    },
   },
   setup(props) {
     const isMounted = ref(false);
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const heroicon = require(`@heroicons/vue/${props.type}`)[
-      props.name + "Icon"
-    ]();
+    let heroicon;
+    if (props.name) {
+      heroicon =
+        props.type === "solid"
+          ? SolidIcons[props.name]()
+          : OutlineIcons[props.name]();
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      //require(`@heroicons/vue/${props.type}/${props.name}`)();
+    }
+    const classList = computed(() => {
+      const { size } = props;
+
+      return `svg svg--${size} `;
+    });
     onMounted(() => (isMounted.value = true));
     return {
       isMounted,
       heroicon,
+      classList,
     };
   },
 });
 </script>
+
+<style lang="scss">
+.svg {
+  @apply inline;
+  &--xs {
+    @apply h-4 w-4;
+  }
+  &--sm {
+    @apply h-5 w-5;
+  }
+  &--md {
+    @apply h-6 w-6;
+  }
+  &--lg {
+    @apply h-7 w-7;
+  }
+  &--xl {
+    @apply h-8 w-8;
+  }
+}
+</style>

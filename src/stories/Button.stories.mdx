@@ -1,20 +1,31 @@
-import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
-import { action } from '@storybook/addon-actions'
-import { linkTo } from '@storybook/addon-links'
-import Button, {sizes, colors} from '../components/common/button/Button.vue';
+import { Meta, ArgsTable, Story, Canvas } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import Button, { sizes, colors } from "../components/common/button/Button.vue";
+import { iconNames } from "../components/common/Icon.vue";
 
-<Meta title="Components / Button" component={Button} 
-argTypes={{    
+<Meta
+  title="Components / Button"
+  component={Button}
+  argTypes={{
     size: {
-      description: 'Button sizes values',
+      description: "Button sizes values",
       options: sizes,
-      control: { type: 'inline-radio' },
+      control: { type: "inline-radio" },
     },
     color: {
-      description: 'Button colors values',
+      description: "Button colors values",
       options: colors,
-      control: { type: 'inline-radio' },
-    }
+      control: { type: "inline-radio" },
+    },
+    leftIcon: {
+      options: iconNames,
+      control: { type: "select" },
+    },
+    rightIcon: {
+      options: iconNames,
+      control: { type: "select" },
+    },
   }}
 />
 
@@ -29,30 +40,37 @@ export const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: '<Button v-bind="args" @click="action">{{args.slot}}</Button>',
+  template: '<Button v-bind="args" @click="action"/>',
 });
 
-<Canvas>
-  <Story name="Default">
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="Default"
+  args={{
+    text: "Default button",
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+## <br/>
+
+<br />
 
 ### Sizes
 
 Button accept a `size` prop with the following values:
 
-<table style={{ fontFamily: 'monospace' }}>
+<table style={{ fontFamily: "monospace" }}>
   <thead>
     <tr>
-      <th >Size</th>
-      <th >Class</th>
+      <th>Size</th>
+      <th>Class</th>
     </tr>
   </thead>
   <tbody>
     {sizes.map((value) => {
       return (
-        <tr>
+        <tr key={value}>
           <td className="text-red-500">{value}</td>
           <td className="text-blue-500">.button--{value}</td>
         </tr>
@@ -62,44 +80,116 @@ Button accept a `size` prop with the following values:
 </table>
 
 <Canvas>
-  <Story 
-    name="Extra small"
+  <Story
+    name="ExtraSmall"
     args={{
-      size: 'xs', 
-      slot: 'Extra small'
-    }}>
+      size: "xs",
+      text: "Extra small",
+    }}
+  >
     {Template.bind({})}
   </Story>
-  <Story 
+  <Story
     name="Small"
     args={{
-      size: 'sm', 
-      slot: 'Small'
-    }}>
+      size: "sm",
+      text: "Small",
+    }}
+  >
     {Template.bind({})}
   </Story>
-  <Story 
+  <Story
     name="Medium"
     args={{
-      size: 'md',
-      slot: 'Medium'
-    }}>
+      size: "md",
+      text: "Medium",
+    }}
+  >
     {Template.bind({})}
   </Story>
-  <Story 
+  <Story
     name="Large"
     args={{
-      size: 'lg', 
-      slot: 'Large'
-    }}>
+      size: "lg",
+      text: "Large",
+    }}
+  >
     {Template.bind({})}
   </Story>
-  <Story 
-    name="Extra large"
+  <Story
+    name="ExtraLarge"
     args={{
-      size: 'xl',
-      slot: 'Extra large'
-    }}>
+      size: "xl",
+      text: "Extra large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## <br/>
+
+<br />
+
+### Icons
+
+Button accept a two props for icons, `leftIcon` and `rightIcon`
+
+<Canvas>
+  <Story
+    name="Right Icon"
+    args={{ text: "Right icon", rightIcon: "ThumbDownIcon" }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story name="LeftIcon" args={{ leftIcon: "ThumbUpIcon", text: "Left icon" }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Left & Right Icons"
+    args={{
+      leftIcon: "ThumbUpIcon",
+      text: "Left & right icons",
+      rightIcon: "ThumbDownIcon",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## <br/>
+
+<br />
+
+### Variants
+
+Button accept different boolean props `isText` `isOutline` `isCircle`
+
+<Canvas>
+<Story
+    name="Variant default"
+    args={{
+      text: "Default button",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Variant text"
+    args={{
+      text: "Text button",
+      isText: true
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Variant outline"
+    args={{
+      text: "Outline button",
+      isOutline: true
+    }}
+  >
     {Template.bind({})}
   </Story>
 </Canvas>
