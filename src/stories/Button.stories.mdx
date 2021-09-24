@@ -1,0 +1,105 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import Button, {sizes, colors} from '../components/common/button/Button.vue';
+
+<Meta title="Components / Button" component={Button} 
+argTypes={{    
+    size: {
+      description: 'Button sizes values',
+      options: sizes,
+      control: { type: 'inline-radio' },
+    },
+    color: {
+      description: 'Button colors values',
+      options: colors,
+      control: { type: 'inline-radio' },
+    }
+  }}
+/>
+
+# Button
+
+<ArgsTable of={Button} />
+
+This is a simple button with some text in it.
+
+export const Template = (args) => ({
+  components: { Button },
+  setup() {
+    return { args };
+  },
+  template: '<Button v-bind="args" @click="action">{{args.slot}}</Button>',
+});
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Sizes
+
+Button accept a `size` prop with the following values:
+
+<table style={{ fontFamily: 'monospace' }}>
+  <thead>
+    <tr>
+      <th >Size</th>
+      <th >Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    {sizes.map((value) => {
+      return (
+        <tr>
+          <td className="text-red-500">{value}</td>
+          <td className="text-blue-500">.button--{value}</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
+<Canvas>
+  <Story 
+    name="Extra small"
+    args={{
+      size: 'xs', 
+      slot: 'Extra small'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Small"
+    args={{
+      size: 'sm', 
+      slot: 'Small'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Medium"
+    args={{
+      size: 'md',
+      slot: 'Medium'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Large"
+    args={{
+      size: 'lg', 
+      slot: 'Large'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Extra large"
+    args={{
+      size: 'xl',
+      slot: 'Extra large'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
