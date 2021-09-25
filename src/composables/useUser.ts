@@ -1,3 +1,4 @@
+import SocialNetworksInterface from "@/definitions/entities/SocialNetworksInterface";
 import { Ref, ref, computed } from "vue";
 import UserInterface, {
   AboutMeInterface,
@@ -17,6 +18,8 @@ export const useUser = (): {
   user: Ref<UserInterface | null>;
   getUserById: (id: string) => void;
   aboutMe: Ref<AboutMeInterface | undefined>;
+  socialNetworks: Ref<SocialNetworksInterface | undefined>;
+
   banner: Ref<BannerInterface | undefined>;
   studies: Ref<StudyInterface[] | undefined>;
   courses: Ref<CourseInterface[] | undefined>;
@@ -36,6 +39,9 @@ export const useUser = (): {
 
   const aboutMe = computed(() => user.value?.aboutMe);
   const banner = computed(() => user.value?.banner);
+  const socialNetworks = computed(
+    (): SocialNetworksInterface | undefined => user.value?.socialNetworks
+  );
   const studies = computed((): StudyInterface[] | undefined =>
     convertObjectsCollectionsToArrayCollections(user.value?.studies)
   );
@@ -49,6 +55,7 @@ export const useUser = (): {
     user,
     getUserById,
     aboutMe,
+    socialNetworks,
     banner,
     studies,
     courses,

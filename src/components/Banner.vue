@@ -49,19 +49,80 @@
         >
           {{ user?.banner.subTitle }}
         </div>
+
+        <div
+          v-if="user.banner.social"
+          class="
+            flex
+            items-center
+            justify-center justify-items-center
+            border-t-2
+            pt-6
+            md:pt-8
+            border-gray-200 border-opacity-50
+          "
+        >
+          <a
+            :key="sn.link"
+            v-for="sn in socialNextworksComputed"
+            class="
+              mr-4
+              w-6
+              flex
+              items-center
+              justify-center justify-items-center
+            "
+            :href="user.socialNetworks.linkedin"
+            target="_blank"
+          >
+            <component :is="sn.component" class="w-full" color="#fff" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
+  {{ socialNextworksComputed }}
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useUser } from "@/composables/useUser";
+
+import Linkedin from "@/components/common/social/Linkedin.vue";
+/*import Facebook from "@/components/common/social/Facebook";
+import Twitter from "@/components/common/social/Twitter";
+import Instagram from "@/components/common/social/Instagram";
+import Pinterest from "@/components/common/social/Pinterest";
+import Youtube from "@/components/common/social/Youtube";
+import Github from "@/components/common/social/Github";
+import Gitlab from "@/components/common/social/Gitlab";
+import Patreon from "@/components/common/social/Patreon";
+import Behance from "@/components/common/social/Behance";*/
+
 export default defineComponent({
   setup() {
-    const { user } = useUser();
+    const { user, socialNetworks } = useUser();
+
+    const socialNextworksComputed = computed(() => {
+      console.log(socialNetworks.value);
+      if (socialNetworks.value) {
+        return Object.keys(socialNetworks.value).map((socialname) => {
+          let component;
+          if (socialname === "linkedin") {
+            component = Linkedin;
+          }
+          return {
+            component: component,
+            link: socialNetworks.value?.[socialname],
+          };
+        });
+      }
+      return null;
+    });
+
     return {
       user,
+      socialNextworksComputed,
     };
   },
 });

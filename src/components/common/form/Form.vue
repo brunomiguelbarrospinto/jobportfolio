@@ -13,9 +13,9 @@
       :disabled="isLoading"
       :isLoading="isLoading"
       type="submit"
-    >
-      {{ isLoading ? "Procesando" : "Guardar" }}
-    </Button>
+      :text="isLoading ? 'Procesando' : 'Guardar'"
+      color="primary"
+    />
   </form>
 </template>
 

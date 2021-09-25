@@ -3,7 +3,6 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from "vue";
-
 import * as SolidIcons from "@heroicons/vue/solid";
 import * as OutlineIcons from "@heroicons/vue/outline";
 

@@ -38,7 +38,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       {
         text: "Banner",
         to: { name: "dashboard-banner" },
-        iconName: "Newspaper",
+        iconName: "NewspaperIcon",
         percent: percentBanner,
         level:
           percentBanner < 50 ? "low" : percentBanner < 75 ? "medium" : "hight",
@@ -46,7 +46,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       {
         text: "Acerca de mi",
         to: { name: "dashboard-about-me" },
-        iconName: "User",
+        iconName: "UserIcon",
         percent: percentAboutMe,
         level:
           percentAboutMe < 50
@@ -58,26 +58,26 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       {
         text: "Redes sociales",
         to: { name: "dashboard-social-networks" },
-        iconName: "GlobeAlt",
+        iconName: "GlobeAltIcon",
       },
       {
         text: "Estudios",
         to: { name: "dashboard-studies-list" },
-        iconName: "AcademicCap",
+        iconName: "AcademicCapIcon",
         count: studies.value?.length,
         level: countStudies < 1 ? "medium" : "hight",
       },
       {
         text: "Cursos",
         to: { name: "dashboard-banner" },
-        iconName: "BadgeCheck",
+        iconName: "BadgeCheckIcon",
         count: courses.value?.length,
         level: countCourses < 1 ? "medium" : "hight",
       },
       {
         text: "Experiencias",
         to: { name: "dashboard-banner" },
-        iconName: "Briefcase",
+        iconName: "BriefcaseIcon",
         count: experiences.value?.length,
         level:
           countExperiences <= 1

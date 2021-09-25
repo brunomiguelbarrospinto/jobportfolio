@@ -5,17 +5,17 @@
         <div class="w-7 mr-3">
           <Icon
             v-if="type === 'info'"
-            name="InformationCircle"
+            name="InformationCircleIcon"
             class="text-blue-400"
           />
           <Icon
             v-if="type === 'success'"
-            name="CheckCircle"
+            name="CheckCircleIcon"
             class="text-green-400"
           />
           <Icon
             v-if="type === 'warning'"
-            name="ExclamationCircle"
+            name="ExclamationCircleIcon"
             class="text-yellow-400"
           />
         </div>
@@ -28,7 +28,7 @@
       <div class="w-5 ml-3">
         <Icon
           @click="$emit('close')"
-          name="X"
+          name="XIcon"
           class="text-gray-400 cursor-pointer hover:text-gray-500"
         />
       </div>

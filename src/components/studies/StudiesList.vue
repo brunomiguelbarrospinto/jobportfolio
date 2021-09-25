@@ -18,7 +18,7 @@
       <template #button>
         <Dropdown>
           <template #activator>
-            <Icon name="DotsVertical" class="text-red bg-red w-5" />
+            <Icon name="DotsVerticalIcon" class="text-red bg-red w-5" />
           </template>
           <template #content>
             <DropdownMenuItem

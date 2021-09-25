@@ -10,7 +10,7 @@
       >
         <Icon
           v-if="index > 0"
-          name="ChevronRight"
+          name="ChevronRightIcon"
           class="fill-current w-3 h-3 mx-3"
         />
         <span :class="{ 'text-gray-500': crumbs.length - 1 === index }">

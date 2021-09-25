@@ -66,6 +66,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    isCircle: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: "md",
@@ -91,11 +95,12 @@ export default defineComponent({
   },
   setup(props) {
     const classList = computed(() => {
-      const { isOutline, color, isText } = props;
+      const { isOutline, color, isText, isCircle } = props;
       const isOutlineClass = isOutline ? "button--outline" : "";
       const isTextClass = isText ? "button--text" : "";
+      const isCircleClass = isCircle ? "button--circle" : "";
       const colorClass = color ? `button--${color}` : "";
-      return `button button--${props.size} ${isOutlineClass} ${colorClass} ${isTextClass}`;
+      return `button button--${props.size} ${isOutlineClass} ${colorClass} ${isTextClass} ${isCircleClass}`;
     });
     return {
       classList,
@@ -115,7 +120,7 @@ $selector: ".button";
   // Basic
   @apply cursor-pointer box-border;
   // Display
-  @apply flex items-center;
+  @apply flex items-center justify-center;
   // Text
   @apply text-#{$default-color} font-medium;
   // Background
@@ -221,6 +226,25 @@ $selector: ".button";
     }
     &:focus {
       @apply focus:bg-gray-200;
+    }
+  }
+
+  &--circle {
+    @apply rounded-full px-0;
+    &#{$selector}--xs {
+      @apply h-6 w-6;
+    }
+    &#{$selector}--sm {
+      @apply h-8 w-8;
+    }
+    &#{$selector}--md {
+      @apply h-10 w-10;
+    }
+    &#{$selector}--lg {
+      @apply h-12 w-12;
+    }
+    &#{$selector}--xl {
+      @apply h-14 w-14;
     }
   }
 
