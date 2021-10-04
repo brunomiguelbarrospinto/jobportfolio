@@ -7,7 +7,7 @@
     x="0px"
     y="0px"
     viewBox="0 0 490.659 490.659"
-    style="enable-background:new 0 0 490.659 490.659;"
+    style="enable-background: new 0 0 490.659 490.659"
     xml:space="preserve"
   >
     <path
@@ -26,17 +26,15 @@
     />
   </svg>
 </template>
-
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: '#03A9F4'
-    }
-  }
-}
+      default: "#03A9F4",
+    },
+  },
+});
 </script>
-
-<style></style>

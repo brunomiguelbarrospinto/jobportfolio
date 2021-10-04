@@ -51,7 +51,7 @@
         </div>
 
         <div
-          v-if="user.banner.social"
+          v-if="user?.banner.social"
           class="
             flex
             items-center
@@ -62,21 +62,22 @@
             border-gray-200 border-opacity-50
           "
         >
-          <a
-            :key="sn.link"
-            v-for="sn in socialNextworksComputed"
-            class="
-              mr-4
-              w-6
-              flex
-              items-center
-              justify-center justify-items-center
-            "
-            :href="user.socialNetworks.linkedin"
-            target="_blank"
-          >
-            <component :is="sn.component" class="w-full" color="#fff" />
-          </a>
+          <template :key="sn.link" v-for="sn in socialNextworksComputed">
+            <a
+              v-if="sn.link.length"
+              class="
+                mr-4
+                w-6
+                flex
+                items-center
+                justify-center justify-items-center
+              "
+              :href="sn.link"
+              target="_blank"
+            >
+              <component :is="sn.component" class="w-full" color="#fff" />
+            </a>
+          </template>
         </div>
       </div>
     </div>
@@ -89,11 +90,12 @@ import { defineComponent, computed } from "vue";
 import { useUser } from "@/composables/useUser";
 
 import Linkedin from "@/components/common/social/Linkedin.vue";
-/*import Facebook from "@/components/common/social/Facebook";
-import Twitter from "@/components/common/social/Twitter";
-import Instagram from "@/components/common/social/Instagram";
-import Pinterest from "@/components/common/social/Pinterest";
-import Youtube from "@/components/common/social/Youtube";
+import Facebook from "@/components/common/social/Facebook.vue";
+import Twitter from "@/components/common/social/Twitter.vue";
+import Instagram from "@/components/common/social/Instagram.vue";
+import Youtube from "@/components/common/social/Youtube.vue";
+
+/*import Pinterest from "@/components/common/social/Pinterest";
 import Github from "@/components/common/social/Github";
 import Gitlab from "@/components/common/social/Gitlab";
 import Patreon from "@/components/common/social/Patreon";
@@ -111,6 +113,18 @@ export default defineComponent({
           if (socialname === "linkedin") {
             component = Linkedin;
           }
+          if (socialname === "facebook") {
+            component = Facebook;
+          }
+          if (socialname === "twitter") {
+            component = Twitter;
+          }
+          if (socialname === "instagram") {
+            component = Instagram;
+          }
+          if (socialname === "youtube") {
+            component = Youtube;
+          }
           return {
             component: component,
             link: socialNetworks.value?.[socialname],
@@ -119,7 +133,6 @@ export default defineComponent({
       }
       return null;
     });
-
     return {
       user,
       socialNextworksComputed,
