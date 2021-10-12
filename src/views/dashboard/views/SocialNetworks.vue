@@ -24,9 +24,11 @@ export default defineComponent({
     const { pushNotification } = useNotifications();
 
     async function updateSocialNetworksForm(data: any) {
+      console.log(data);
       await updateSocialNetworks(data);
+
       if (isFinished) {
-        router.push({ name: "home" });
+        //router.push({ name: "home" });
         pushNotification({
           id: "",
           title: "Información actualizada",

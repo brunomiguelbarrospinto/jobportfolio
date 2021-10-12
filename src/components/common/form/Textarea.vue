@@ -1,5 +1,4 @@
 <template>
-  <Label :for="id" v-if="label" :label="label" />
   <textarea
     :id="id"
     class="
@@ -23,19 +22,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Label from "./Label.vue";
 
 export default defineComponent({
-  components: {
-    Label,
-  },
   props: {
     id: {
       type: String,
     },
-    label: {
-      type: String,
-    },
+
     placeholder: {
       type: String,
     },

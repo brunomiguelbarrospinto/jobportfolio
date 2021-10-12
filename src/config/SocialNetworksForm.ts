@@ -75,6 +75,7 @@ export default (): FormInterface => {
   return {
     fieldsets: [
       {
+        sortable: true,
         legend: "Redes sociales",
         elements: [
           {

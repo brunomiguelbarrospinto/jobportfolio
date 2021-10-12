@@ -1,4 +1,10 @@
 <template v-if="isVisible">
+  <Label
+    v-if="element.data.label"
+    :for="element.data.id"
+    :label="element.data.label"
+  />
+
   <!-- Input -->
   <Input
     v-if="
@@ -8,7 +14,6 @@
     v-model="value"
     :id="element.data.id"
     :name="element.data.name"
-    :label="element.data.label"
     :placeholder="element.data.placeholder"
     :required="element.data.required"
     :type="element.data.type"
@@ -88,13 +93,13 @@
     :radioGroup="element.data"
     v-model="value"
   />
-  <pre>{{ element.validation }}</pre>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from "vue";
 import FormElementInterface from "@/definitions/form/FormElementInterface";
 
+import Label from "./Label.vue";
 import Input from "./Input.vue";
 import InputFile from "./InputFile.vue";
 import Datalist from "./Datalist.vue";
@@ -105,6 +110,7 @@ import Select from "./Select.vue";
 import Textarea from "./Textarea.vue";
 export default defineComponent({
   components: {
+    Label,
     Input,
     InputFile,
     Datalist,

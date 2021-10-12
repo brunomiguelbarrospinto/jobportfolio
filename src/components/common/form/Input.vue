@@ -1,5 +1,4 @@
 <template>
-  <Label v-if="label" :for="id" :label="label" />
   <input
     class="
       block
@@ -28,12 +27,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Label from "./Label.vue";
 import ErrorMessage from "./ErrorMessage.vue";
 
 export default defineComponent({
   components: {
-    Label,
     ErrorMessage,
   },
   props: {
@@ -42,9 +39,6 @@ export default defineComponent({
       required: true,
     },
     name: {
-      type: String,
-    },
-    label: {
       type: String,
     },
     placeholder: {

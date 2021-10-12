@@ -1,6 +1,4 @@
 <template>
-  <Label :for="id" v-if="label" :label="label" />
-
   <input
     class="
       block
@@ -23,17 +21,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Label from "./Label.vue";
 
 export default defineComponent({
-  components: {
-    Label,
-  },
   props: {
     id: {
-      type: String,
-    },
-    label: {
       type: String,
     },
     placeholder: {
