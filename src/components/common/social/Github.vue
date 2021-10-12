@@ -21,16 +21,15 @@
   </svg>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: '#24292E'
-    }
-  }
-}
+      default: "#24292E",
+    },
+  },
+});
 </script>
-
-<style></style>

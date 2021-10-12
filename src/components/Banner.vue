@@ -94,12 +94,11 @@ import Facebook from "@/components/common/social/Facebook.vue";
 import Twitter from "@/components/common/social/Twitter.vue";
 import Instagram from "@/components/common/social/Instagram.vue";
 import Youtube from "@/components/common/social/Youtube.vue";
-
-/*import Pinterest from "@/components/common/social/Pinterest";
-import Github from "@/components/common/social/Github";
-import Gitlab from "@/components/common/social/Gitlab";
-import Patreon from "@/components/common/social/Patreon";
-import Behance from "@/components/common/social/Behance";*/
+import Pinterest from "@/components/common/social/Pinterest.vue";
+import Patreon from "@/components/common/social/Patreon.vue";
+import Github from "@/components/common/social/Github.vue";
+import Gitlab from "@/components/common/social/Gitlab.vue";
+import Behance from "@/components/common/social/Behance.vue";
 
 export default defineComponent({
   setup() {
@@ -124,6 +123,21 @@ export default defineComponent({
           }
           if (socialname === "youtube") {
             component = Youtube;
+          }
+          if (socialname === "pinterest") {
+            component = Pinterest;
+          }
+          if (socialname === "patreon") {
+            component = Patreon;
+          }
+          if (socialname === "github") {
+            component = Github;
+          }
+          if (socialname === "gitlab") {
+            component = Gitlab;
+          }
+          if (socialname === "behance") {
+            component = Behance;
           }
           return {
             component: component,

@@ -3,11 +3,10 @@
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
     viewBox="0 0 97.75 97.75"
-    style="enable-background:new 0 0 97.75 97.75;"
+    style="enable-background: new 0 0 97.75 97.75"
     xml:space="preserve"
   >
     <g>
@@ -37,16 +36,16 @@
   </svg>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: '#0057ff'
-    }
-  }
-}
+      default: "#0057ff",
+    },
+  },
+});
 </script>
-
-<style></style>

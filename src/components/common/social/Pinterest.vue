@@ -1,14 +1,11 @@
 <template>
   <svg
     version="1.1"
-    id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
     viewBox="0 0 512.883 512.883"
-    style="enable-background:new 0 0 512.883 512.883;"
-    xml:space="preserve"
+    style="enable-background: new 0 0 512.883 512.883"
   >
     <path
       :fill="color"
@@ -25,16 +22,15 @@
   </svg>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: '#CB1F24'
-    }
-  }
-}
+      default: "#CB1F24",
+    },
+  },
+});
 </script>
-
-<style></style>

@@ -1,6 +1,5 @@
 <template>
   <svg
-    id="Bold"
     enable-background="new 0 0 24 24"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -13,16 +12,16 @@
   </svg>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: 'rgb(255, 66, 77)'
-    }
-  }
-}
+      default: "rgb(255, 66, 77)",
+    },
+  },
+});
 </script>
-
-<style></style>

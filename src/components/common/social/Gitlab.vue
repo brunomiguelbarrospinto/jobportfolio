@@ -1,8 +1,7 @@
-<template
-  ><svg
+<template>
+  <svg
     version="1.1"
     viewBox="0 0 512 512"
-    xml:space="preserve"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >
@@ -18,16 +17,15 @@
   </svg>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     color: {
       type: String,
       required: false,
-      default: '#F49E25'
-    }
-  }
-}
+      default: "#F49E25",
+    },
+  },
+});
 </script>
-
-<style></style>
