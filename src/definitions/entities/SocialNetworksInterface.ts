@@ -1,4 +1,4 @@
-type SocialNetworkType =
+export type SocialNetworkType =
   | "behance"
   | "facebook"
   | "github"
@@ -10,10 +10,23 @@ type SocialNetworkType =
   | "twitter"
   | "youtube";
 
+export const SocialNetworkTypeValues = [
+  "behance",
+  "facebook",
+  "github",
+  "gitlab",
+  "instagram",
+  "linkedin",
+  "patreon",
+  "pinterest",
+  "twitter",
+  "youtube",
+];
+
 interface SocialNetworkInterface {
-  social: SocialNetworkType;
+  name: SocialNetworkType;
   link: string;
   order: number;
 }
 
-export default interface SocialNetworksInterface {}
+export default SocialNetworkInterface;

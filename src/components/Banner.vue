@@ -88,6 +88,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useUser } from "@/composables/useUser";
+import { useSocialNetworks } from "@/composables/useSocialNetworks";
 
 import Linkedin from "@/components/common/social/Linkedin.vue";
 import Facebook from "@/components/common/social/Facebook.vue";
@@ -102,7 +103,8 @@ import Behance from "@/components/common/social/Behance.vue";
 
 export default defineComponent({
   setup() {
-    const { user, socialNetworks } = useUser();
+    const { user } = useUser();
+    const { socialNetworks } = useSocialNetworks();
 
     const socialNextworksComputed = computed(() => {
       console.log(socialNetworks.value);

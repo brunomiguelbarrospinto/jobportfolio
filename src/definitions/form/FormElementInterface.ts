@@ -5,6 +5,7 @@ import TextareaInterface from "@/definitions/form/TextareaInterface";
 import RadioGroupInterface from "@/definitions/form/RadioGroupInterface";
 
 export default interface FormElementInterface {
+  order?: number;
   type: FormElementType;
   data:
     | InputInterface

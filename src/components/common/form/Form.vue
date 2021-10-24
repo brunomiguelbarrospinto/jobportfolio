@@ -5,6 +5,7 @@
         :key="'fieldset-' + key"
         v-for="(fieldset, key) in syncedForm.fieldsets"
         :fieldset="fieldset"
+        @orderChanged="(order: any) => onChangeOrder(order)"
       />
     </template>
     <slot />
@@ -20,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+import { defineComponent, PropType, computed, ref } from "vue";
 import Button from "@/components/common/button/Button.vue";
 
 import FormInterface from "@/definitions/form/FormInterface";
@@ -43,18 +44,30 @@ export default defineComponent({
   },
   setup(props, context) {
     const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
+    let data = {};
+    let order: string[] = [];
     function onSubmit() {
-      let data = {};
       if (hasFieldsets.value) {
-        props.form.fieldsets?.forEach((fieldset) => {
-          fieldset.elements.forEach((element) => {
-            data[element.data.id] =
-              element.data.value !== undefined ? element.data.value : null;
-          });
-        });
+        formatData(props.form.fieldsets);
+        context.emit("form:onSubmit", { data, order });
       }
+    }
 
-      context.emit("form:onSubmit", data);
+    function onChangeOrder(fieldsets) {
+      formatData(fieldsets);
+      context.emit("form:onChangeOrder", { data, order });
+    }
+
+    function formatData(fieldsets) {
+      order = [];
+      data = {};
+      fieldsets?.forEach((fieldset) => {
+        fieldset.elements.forEach((element) => {
+          data[element.data.id] =
+            element.data.value !== undefined ? element.data.value : null;
+          order.push(element.data.id as string);
+        });
+      });
     }
 
     const syncedForm = computed(() => {
@@ -84,6 +97,7 @@ export default defineComponent({
       hasFieldsets,
       onSubmit,
       syncedForm,
+      onChangeOrder,
     };
   },
 });

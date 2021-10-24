@@ -5,7 +5,11 @@
       <Navbar />
       <div class="mx-auto max-w-4xl">
         <Breadcrumbs />
-        <router-view />
+        <router-view v-slot="{ Component }">
+          <TransitionComponent>
+            <component :is="Component" />
+          </TransitionComponent>
+        </router-view>
       </div>
       <Summary :user="user" />
     </div>
