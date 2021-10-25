@@ -32,6 +32,20 @@ const route: RouteRecordRaw = {
         breadCrumb: "Añadir red social",
       },
     },
+    {
+      path: "edit/:id",
+      name: "dashboard-social-networks-edit",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "dashboard-social-networks-edit" */ "@/components/social-networks/SocialNetworkForm.vue"
+        ),
+      meta: {
+        requiresAuth: true,
+        breadCrumb: "Editar red social",
+        dinamicRoute: true,
+      },
+    },
   ],
 };
 

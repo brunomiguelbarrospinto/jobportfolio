@@ -1,4 +1,4 @@
-import SocialNetworksInterface from "./SocialNetworksInterface";
+import SocialNetworkInterface from "./SocialNetworksInterface";
 import StudyInterface from "./StudyInterface";
 import CourseInterface from "./CourseInterface";
 import ExperienceInterface from "./ExperienceInterface";
@@ -24,7 +24,7 @@ export default interface User {
   id: string;
   aboutMe: AboutMeInterface;
   banner: BannerInterface;
-  socialNetworks: SocialNetworksInterface;
+  socialNetworks: SocialNetworkInterface[];
   studies?: StudyInterface[];
   courses?: CourseInterface[];
   experiences?: ExperienceInterface[];

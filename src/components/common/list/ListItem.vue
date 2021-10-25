@@ -12,6 +12,7 @@
     "
   >
     <div
+      v-if="$slots.image"
       class="
         flex-shrink-0
         w-8
@@ -22,12 +23,13 @@
         rounded-full
         bg-blue-500
         text-white
+        mr-4
       "
     >
       <slot name="image" />
     </div>
 
-    <div class="ml-4 flex-initial flex-shrink-1 w-full truncate">
+    <div class="flex-initial flex-shrink-1 w-full truncate">
       <div class="text-sm font-medium text-gray-900 truncate">
         <slot name="title" />
       </div>
