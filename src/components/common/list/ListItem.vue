@@ -8,7 +8,7 @@
       pr-4
       pl-4
       transition-all
-      hover:bg-gray-100 hover:shadow-lg
+      hover:bg-gray-100 hover:shadow-md
     "
   >
     <div

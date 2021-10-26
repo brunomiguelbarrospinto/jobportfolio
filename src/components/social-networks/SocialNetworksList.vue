@@ -8,7 +8,10 @@
           text="Añadir"
         />
       </div>
-      <ListItem :key="sn.id" v-for="sn in socialNetworks">
+      <ListItem :key="k" v-for="(sn, k) in socialNetworks">
+        <template #image>
+          <component class="p-1" :is="getSocialNetworkIconComponent(sn.name)" />
+        </template>
         <template #title>
           <span class="capitalize">{{ sn.name }}</span>
         </template>
@@ -61,6 +64,7 @@ import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue"
 import Icon from "@/components/common/Icon.vue";
 import SocialNetworkModalDelete from "./SocialNetworkModalDelete.vue";
 import useNotifications from "@/composables/useNotifications";
+import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 export default defineComponent({
   components: {
     Button,
@@ -95,6 +99,7 @@ export default defineComponent({
       socialNetworks,
       isOpen,
       submit,
+      getSocialNetworkIconComponent,
     };
   },
 });
