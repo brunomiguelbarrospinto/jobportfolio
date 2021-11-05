@@ -57,7 +57,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       },
       {
         text: "Redes sociales",
-        to: { name: "dashboard-social-networks" },
+        to: { name: "dashboard-social-networks-list" },
         iconName: "GlobeAltIcon",
       },
       {

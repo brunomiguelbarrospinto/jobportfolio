@@ -13,6 +13,7 @@
       text="Cambiar orden"
       isOutline
       size="xs"
+      @click="sort = !sort"
     />
 
     <draggable
@@ -21,6 +22,7 @@
       @end="drag = false"
       item-key="id"
       :sort="sort"
+      @change="emitsort"
     >
       <template #item="{ element, index }">
         <div class="flex items-center">
@@ -48,7 +50,6 @@
 
 <script lang="ts">
 import draggable from "vuedraggable";
-
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
 import { defineComponent, PropType, ref } from "vue";
 import FormElement from "./FormElement.vue";
@@ -63,20 +64,28 @@ export default defineComponent({
     fieldset: { type: Object as PropType<FieldsetInterface>, required: true },
   },
 
-  setup(props) {
+  setup(props, context) {
     const drag = ref(false);
     const sort = ref(false);
 
-    const elements = props.fieldset.elements.map((element) => {
+    const elements = ref<any[]>([]);
+
+    elements.value = props.fieldset.elements.map((element) => {
       return {
         ...element,
         id: element.data.id,
       };
     });
+
+    function emitsort() {
+      context.emit("orderChanged", [{ elements: elements.value }]);
+    }
+
     return {
       drag,
       sort,
       elements,
+      emitsort,
     };
   },
 });

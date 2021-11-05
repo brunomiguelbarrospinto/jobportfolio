@@ -1,5 +1,10 @@
 <template>
-  <InteractiveElement :class="classList" :disabled="isDisabled" type="button">
+  <InteractiveElement
+    v-bind="$props"
+    :class="classList"
+    :disabled="isDisabled"
+    type="button"
+  >
     <svg
       v-if="isLoading"
       class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
@@ -50,6 +55,7 @@ export default defineComponent({
     Icon,
   },
   props: {
+    ...InteractiveElement.$props,
     isDisabled: {
       type: Boolean,
       default: false,
@@ -131,7 +137,6 @@ $selector: ".button";
   @apply transition duration-300;
 
   // Disabled
-  &[disabled],
   &[disabled="disabled"],
   &:disabled {
     @apply opacity-50 pointer-events-none;

@@ -43,18 +43,22 @@ export default defineComponent({
   },
   setup(props, context) {
     const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
+    let data = {};
     function onSubmit() {
-      let data = {};
       if (hasFieldsets.value) {
-        props.form.fieldsets?.forEach((fieldset) => {
-          fieldset.elements.forEach((element) => {
-            data[element.data.id] =
-              element.data.value !== undefined ? element.data.value : null;
-          });
-        });
+        formatData(props.form.fieldsets);
+        context.emit("form:onSubmit", data);
       }
+    }
 
-      context.emit("form:onSubmit", data);
+    function formatData(fieldsets) {
+      data = {};
+      fieldsets?.forEach((fieldset) => {
+        fieldset.elements.forEach((element) => {
+          data[element.data.id] =
+            element.data.value !== undefined ? element.data.value : null;
+        });
+      });
     }
 
     const syncedForm = computed(() => {
