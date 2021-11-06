@@ -2,7 +2,7 @@
   <div class="bg-white border p-4">
     <Form
       :form="form"
-      :values="user.banner"
+      :values="user?.banner"
       @form:onSubmit="updateBannerForm"
       :isLoading="isLoading"
     />
@@ -41,7 +41,6 @@ export default defineComponent({
       user,
       updateBannerForm,
       isLoading,
-      isFinished,
     };
   },
 });

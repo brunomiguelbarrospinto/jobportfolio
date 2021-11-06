@@ -9,6 +9,7 @@
       pl-4
       transition-all
       hover:bg-gray-100 hover:shadow-md
+      border-t
     "
   >
     <div

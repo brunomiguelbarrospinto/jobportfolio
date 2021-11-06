@@ -6,23 +6,25 @@ import { useUser } from "./useUser";
 const { databaseRefCurrentUser, convertObjectsCollectionsToArrayCollections } =
   useFirebase();
 
-const isFinished: Ref<boolean | null> = ref(null);
-const isLoading: Ref<boolean | null> = ref(null);
+const isFinished: Ref<boolean> = ref(false);
+const isLoading: Ref<boolean> = ref(false);
 
 export const useSocialNetworks = (): {
   saveSocialNetworks: (data: SocialNetworkInterface) => Promise<void>;
-  isLoading: Ref<boolean | null>;
-  isFinished: Ref<boolean | null>;
-  socialNetworks: Ref<SocialNetworkInterface[] | undefined>;
+  isLoading: Ref<boolean>;
+  isFinished: Ref<boolean>;
+  socialNetworks: Ref<SocialNetworkInterface[]>;
   getSocialNetworkById: (id: string) => SocialNetworkInterface;
   deleteSocialNetwork: (id: string) => Promise<void>;
+  updateOrderSocialNetworks: (
+    socialNetworks: SocialNetworkInterface[]
+  ) => Promise<void>;
 } => {
   async function saveSocialNetworks(
     data: SocialNetworkInterface
   ): Promise<void> {
-    isFinished.value = null;
+    isFinished.value = false;
     isLoading.value = true;
-    console.log(data);
     if (data.id) {
       await databaseRefCurrentUser()
         .child("socialNetworks")
@@ -36,8 +38,10 @@ export const useSocialNetworks = (): {
   }
 
   const { user } = useUser();
-  const socialNetworks = computed((): SocialNetworkInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.socialNetworks)
+  const socialNetworks = computed((): SocialNetworkInterface[] =>
+    convertObjectsCollectionsToArrayCollections(
+      user.value?.socialNetworks
+    ).sort((a, b) => (a.order > b.order ? 1 : -1))
   );
 
   function getSocialNetworkById(id: string): SocialNetworkInterface {
@@ -47,11 +51,27 @@ export const useSocialNetworks = (): {
   }
 
   async function deleteSocialNetwork(id: string) {
-    isFinished.value = null;
+    isFinished.value = false;
     isLoading.value = true;
 
     await databaseRefCurrentUser().child("socialNetworks").child(id).remove();
 
+    isLoading.value = false;
+    isFinished.value = true;
+  }
+
+  async function updateOrderSocialNetworks(
+    socialNetworks: SocialNetworkInterface[]
+  ): Promise<void> {
+    isFinished.value = false;
+    isLoading.value = true;
+
+    socialNetworks.forEach((sn, index) => {
+      databaseRefCurrentUser()
+        .child("socialNetworks")
+        .child(sn.id)
+        .update({ ...sn, order: index });
+    });
     isLoading.value = false;
     isFinished.value = true;
   }
@@ -63,5 +83,6 @@ export const useSocialNetworks = (): {
     isFinished,
     getSocialNetworkById,
     deleteSocialNetwork,
+    updateOrderSocialNetworks,
   };
 };

@@ -1,10 +1,7 @@
 <template>
   <div class="p-5 flex flex-col items-center justify-center relative">
     <div class="absolute h-full w-full">
-      <img
-        class="h-full w-full object-cover"
-        :src="user?.banner.backgroundImage"
-      />
+      <img class="h-full w-full object-cover" :src="banner.backgroundImage" />
     </div>
     <div
       class="
@@ -20,10 +17,10 @@
         class="flex flex-col items-center justify-center justify-items-center"
       >
         <img
-          v-if="user?.banner.showPhoto && user?.aboutMe.photo"
+          v-if="banner.showPhoto && aboutMe.photo"
           class="rounded-full border-4 border-white mb-2 w-32 h-32 md:mb-4"
           alt=""
-          :src="user?.aboutMe.photo"
+          :src="aboutMe.photo"
         />
         <div
           class="
@@ -35,7 +32,7 @@
             md:mb-4
           "
         >
-          {{ user?.banner.title }}
+          {{ banner.title }}
         </div>
         <div
           class="
@@ -47,22 +44,22 @@
             md:mb-4
           "
         >
-          {{ user?.banner.subTitle }}
+          {{ banner.subTitle }}
         </div>
 
         <div
-          v-if="user?.banner.social"
+          v-if="banner.social"
           class="
             flex
             items-center
             justify-center justify-items-center
             border-t-2
-            pt-6
-            md:pt-8
+            pt-2
+            md:pt-4
             border-gray-200 border-opacity-50
           "
         >
-          <template :key="sn.link" v-for="sn in socialNextworksComputed">
+          <template :key="sn.link + sn.order" v-for="sn in socialNetworks">
             <a
               v-if="sn.link.length"
               class="
@@ -75,83 +72,33 @@
               :href="sn.link"
               target="_blank"
             >
-              <component :is="sn.component" class="w-full" color="#fff" />
+              <component
+                :is="getSocialNetworkIconComponent(sn.name)"
+                color="#fff"
+              />
             </a>
           </template>
         </div>
       </div>
     </div>
   </div>
-  {{ socialNextworksComputed }}
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent } from "vue";
 import { useUser } from "@/composables/useUser";
 import { useSocialNetworks } from "@/composables/useSocialNetworks";
-
-import Linkedin from "@/components/common/social/Linkedin.vue";
-import Facebook from "@/components/common/social/Facebook.vue";
-import Twitter from "@/components/common/social/Twitter.vue";
-import Instagram from "@/components/common/social/Instagram.vue";
-import Youtube from "@/components/common/social/Youtube.vue";
-import Pinterest from "@/components/common/social/Pinterest.vue";
-import Patreon from "@/components/common/social/Patreon.vue";
-import Github from "@/components/common/social/Github.vue";
-import Gitlab from "@/components/common/social/Gitlab.vue";
-import Behance from "@/components/common/social/Behance.vue";
+import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 
 export default defineComponent({
   setup() {
-    const { user } = useUser();
+    const { aboutMe, banner } = useUser();
     const { socialNetworks } = useSocialNetworks();
-
-    const socialNextworksComputed = computed(() => {
-      console.log(socialNetworks.value);
-      if (socialNetworks.value) {
-        return Object.keys(socialNetworks.value).map((socialname) => {
-          let component;
-          if (socialname === "linkedin") {
-            component = Linkedin;
-          }
-          if (socialname === "facebook") {
-            component = Facebook;
-          }
-          if (socialname === "twitter") {
-            component = Twitter;
-          }
-          if (socialname === "instagram") {
-            component = Instagram;
-          }
-          if (socialname === "youtube") {
-            component = Youtube;
-          }
-          if (socialname === "pinterest") {
-            component = Pinterest;
-          }
-          if (socialname === "patreon") {
-            component = Patreon;
-          }
-          if (socialname === "github") {
-            component = Github;
-          }
-          if (socialname === "gitlab") {
-            component = Gitlab;
-          }
-          if (socialname === "behance") {
-            component = Behance;
-          }
-          return {
-            component: component,
-            link: socialNetworks.value?.[socialname],
-          };
-        });
-      }
-      return null;
-    });
     return {
-      user,
-      socialNextworksComputed,
+      aboutMe,
+      banner,
+      socialNetworks,
+      getSocialNetworkIconComponent,
     };
   },
 });

@@ -1,48 +1,64 @@
 <template>
   <div>
     <div class="bg-white border p-4">
-      <div class="flex justify-between">
+      <div class="flex justify-between items-center mb-4">
         <div class="font-semibold">Mis redes sociales</div>
         <Button
           :to="{ name: 'dashboard-social-networks-create' }"
           text="Añadir"
         />
       </div>
-      <ListItem :key="k" v-for="(sn, k) in socialNetworks">
-        <template #image>
-          <component class="p-1" :is="getSocialNetworkIconComponent(sn.name)" />
-        </template>
-        <template #title>
-          <span class="capitalize">{{ sn.name }}</span>
-        </template>
-        <template #subtitle> Link: {{ sn.link }} </template>
-        <template #button>
-          <Dropdown>
-            <template #activator>
-              <Icon name="DotsVerticalIcon" class="text-red bg-red w-5" />
+
+      <draggable
+        v-model="elements"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="id"
+        :sort="sort"
+        @change="updateOrder"
+      >
+        <template #item="{ element: sn }">
+          <ListItem>
+            <template #image>
+              <component
+                class="p-1"
+                :is="getSocialNetworkIconComponent(sn.name)"
+                color="#fff"
+              />
             </template>
-            <template #content>
-              <DropdownMenuItem
-                is="router-link"
-                :to="{
-                  name: 'dashboard-social-networks-edit',
-                  params: { id: sn.id },
-                }"
-              >
-                Editar
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                @click="
-                  id = sn.id;
-                  isOpen = true;
-                "
-              >
-                Eliminar
-              </DropdownMenuItem>
+            <template #title>
+              <span class="capitalize">{{ sn.name }}</span>
             </template>
-          </Dropdown>
+            <template #subtitle> Link: {{ sn.link }} </template>
+            <template #button>
+              <Dropdown>
+                <template #activator>
+                  <Icon name="DotsVerticalIcon" class="text-red bg-red w-5" />
+                </template>
+                <template #content>
+                  <DropdownMenuItem
+                    is="router-link"
+                    :to="{
+                      name: 'dashboard-social-networks-edit',
+                      params: { id: sn.id },
+                    }"
+                  >
+                    Editar
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    @click="
+                      id = sn.id;
+                      isOpen = true;
+                    "
+                  >
+                    Eliminar
+                  </DropdownMenuItem>
+                </template>
+              </Dropdown>
+            </template>
+          </ListItem>
         </template>
-      </ListItem>
+      </draggable>
     </div>
     <SocialNetworkModalDelete
       :isOpen="isOpen"
@@ -65,6 +81,9 @@ import Icon from "@/components/common/Icon.vue";
 import SocialNetworkModalDelete from "./SocialNetworkModalDelete.vue";
 import useNotifications from "@/composables/useNotifications";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
+import draggable from "vuedraggable";
+import SocialNetworkInterface from "@/definitions/entities/SocialNetworksInterface";
+
 export default defineComponent({
   components: {
     Button,
@@ -73,12 +92,19 @@ export default defineComponent({
     DropdownMenuItem,
     Icon,
     SocialNetworkModalDelete,
+    draggable,
   },
   setup() {
+    const drag = ref(false);
+    const sort = ref(true);
     const { pushNotification } = useNotifications();
 
-    const { socialNetworks, deleteSocialNetwork, isFinished } =
-      useSocialNetworks();
+    const {
+      socialNetworks,
+      deleteSocialNetwork,
+      isFinished,
+      updateOrderSocialNetworks,
+    } = useSocialNetworks();
     const isOpen = ref(false);
     const id = ref("");
     async function submit() {
@@ -94,12 +120,38 @@ export default defineComponent({
         });
       }
     }
+    async function updateOrder() {
+      await updateOrderSocialNetworks(elements.value);
+      if (isFinished) {
+        isOpen.value = false;
+        id.value = "";
+        pushNotification({
+          id: "",
+          title: "Orden actualizdo",
+          description: "Tus redes sociales se han ordenado",
+          type: "success",
+        });
+      }
+    }
+
+    const elements = ref<SocialNetworkInterface[]>([]);
+
+    elements.value = socialNetworks.value.map((element) => {
+      return {
+        ...element,
+        id: element.id,
+      };
+    });
+
     return {
       id,
-      socialNetworks,
+      elements,
       isOpen,
       submit,
       getSocialNetworkIconComponent,
+      drag,
+      sort,
+      updateOrder,
     };
   },
 });

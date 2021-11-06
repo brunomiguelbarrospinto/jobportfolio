@@ -11,13 +11,13 @@ import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 
 const { firebase, convertObjectsCollectionsToArrayCollections } = useFirebase();
 
-const user: Ref<UserInterface | null> = ref(null);
+const user: Ref<UserInterface | undefined> = ref(undefined);
 
 export const useUser = (): {
-  user: Ref<UserInterface | null>;
+  user: Ref<UserInterface | undefined>;
   getUserById: (id: string) => void;
-  aboutMe: Ref<AboutMeInterface | undefined>;
-  banner: Ref<BannerInterface | undefined>;
+  aboutMe: Ref<AboutMeInterface>;
+  banner: Ref<BannerInterface>;
   studies: Ref<StudyInterface[] | undefined>;
   courses: Ref<CourseInterface[] | undefined>;
   experiences: Ref<ExperienceInterface[] | undefined>;
@@ -34,9 +34,12 @@ export const useUser = (): {
       });
   }
 
-  const aboutMe = computed(() => user.value?.aboutMe);
-  const banner = computed(() => user.value?.banner);
-
+  const aboutMe = computed(
+    (): AboutMeInterface => user.value?.aboutMe as AboutMeInterface
+  );
+  const banner = computed(
+    (): BannerInterface => user.value?.banner as BannerInterface
+  );
   const studies = computed((): StudyInterface[] | undefined =>
     convertObjectsCollectionsToArrayCollections(user.value?.studies)
   );

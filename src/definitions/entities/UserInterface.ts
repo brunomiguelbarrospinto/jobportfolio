@@ -22,9 +22,9 @@ export interface BannerInterface {
 }
 export default interface User {
   id: string;
-  aboutMe: AboutMeInterface;
-  banner: BannerInterface;
-  socialNetworks: SocialNetworkInterface[];
+  aboutMe?: AboutMeInterface;
+  banner?: BannerInterface;
+  socialNetworks?: SocialNetworkInterface[];
   studies?: StudyInterface[];
   courses?: CourseInterface[];
   experiences?: ExperienceInterface[];
