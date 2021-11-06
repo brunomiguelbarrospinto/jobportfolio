@@ -30,6 +30,10 @@ export default defineComponent({
     Icon,
   },
   setup() {
+    interface Breadcrumb {
+      path: string;
+      to: string;
+    }
     const route = useRoute();
     const crumbs = computed(() => {
       let pathArray = route.path.split("/");
@@ -42,10 +46,10 @@ export default defineComponent({
               ? "/" + breadcrumbArray[idx - 1].path + "/" + path
               : "/" + path,
             text: route.matched[idx].meta.breadCrumb || path,
-          } as any);
+          } as Breadcrumb);
         }
         return breadcrumbArray;
-      }, [] as any);
+      }, [] as Breadcrumb[]);
       return breadcrumbs;
     });
 

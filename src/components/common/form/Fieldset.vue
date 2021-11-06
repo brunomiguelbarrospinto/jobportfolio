@@ -51,6 +51,7 @@
 <script lang="ts">
 import draggable from "vuedraggable";
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
+import FormElementInterface from "@/definitions/form/FormElementInterface";
 import { defineComponent, PropType, ref } from "vue";
 import FormElement from "./FormElement.vue";
 import Button from "@/components/common/button/Button.vue";
@@ -68,7 +69,7 @@ export default defineComponent({
     const drag = ref(false);
     const sort = ref(false);
 
-    const elements = ref<any[]>([]);
+    const elements = ref<FormElementInterface[]>([]);
 
     elements.value = props.fieldset.elements.map((element) => {
       return {

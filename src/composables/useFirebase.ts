@@ -25,8 +25,8 @@ export const useFirebase = (): {
   currentAuthUser: Ref<AuthUserInterface | null>;
   signInWithPopup: (platform: string) => void;
   signOut: () => void;
-  convertObjectsCollectionsToArrayCollections: any;
-  databaseRefCurrentUser: any;
+  convertObjectsCollectionsToArrayCollections;
+  databaseRefCurrentUser;
 } => {
   function initializeApp() {
     firebase.initializeApp(firebaseConfig);
@@ -42,13 +42,13 @@ export const useFirebase = (): {
     }
   }
 
-  function convertObjectsCollectionsToArrayCollections(objectColection: any) {
-    if (objectColection) {
-      const ids = Object.keys(objectColection);
+  function convertObjectsCollectionsToArrayCollections(objectCollection) {
+    if (objectCollection) {
+      const ids = Object.keys(objectCollection);
       return ids.map((key) => {
         return {
           id: key,
-          ...objectColection?.[key],
+          ...objectCollection?.[key],
         };
       });
     }

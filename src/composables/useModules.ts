@@ -15,7 +15,7 @@ interface ModuleItemInterface {
   level?: ModuleLevelType;
 }
 
-function getPercentOfFillKeysInObject(ob: any) {
+function getPercentOfFillKeysInObject(ob) {
   return (
     (Object.values(ob)
       .map((value) => {

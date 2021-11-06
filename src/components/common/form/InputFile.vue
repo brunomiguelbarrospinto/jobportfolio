@@ -32,7 +32,7 @@ export default defineComponent({
     },
   },
   methods: {
-    input(event: any) {
+    input(event) {
       if (event.target.files.length) {
         var reader = new FileReader();
         reader.onload = () => {

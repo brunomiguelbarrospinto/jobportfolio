@@ -9,7 +9,7 @@ import Github from "@/components/common/social/Github.vue";
 import Gitlab from "@/components/common/social/Gitlab.vue";
 import Behance from "@/components/common/social/Behance.vue";
 
-export function getSocialNetworkIconComponent(name: string): any {
+export function getSocialNetworkIconComponent(name: string): HTMLElement {
   let component;
 
   if (name === "linkedin") {
@@ -42,7 +42,6 @@ export function getSocialNetworkIconComponent(name: string): any {
   if (name === "behance") {
     component = Behance;
   }
-  console.log(component);
 
   return component;
 }

@@ -51,7 +51,7 @@ export default defineComponent({
       open.value = !open.value;
     }
 
-    function closeDropdown(e: any) {
+    function closeDropdown(e) {
       if (activator.value) {
         if (!activator.value.contains(e.target)) {
           open.value = false;

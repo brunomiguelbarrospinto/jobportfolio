@@ -15,6 +15,7 @@ import { useUser } from "@/composables/useUser";
 import { useAboutMe } from "@/composables/useAboutMe";
 import { useRouter } from "vue-router";
 import useNotifications from "@/composables/useNotifications";
+import { AboutMeInterface } from "@/definitions/entities/UserInterface";
 
 export default defineComponent({
   setup() {
@@ -23,7 +24,7 @@ export default defineComponent({
     const router = useRouter();
     const { pushNotification } = useNotifications();
 
-    async function updateAboutMeForm(data: any) {
+    async function updateAboutMeForm(data: AboutMeInterface) {
       await updateAboutMe(data);
       if (isFinished) {
         router.push({ name: "home" });

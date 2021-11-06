@@ -15,6 +15,7 @@ import { useUser } from "@/composables/useUser";
 import { useBanner } from "@/composables/useBanner";
 import { useRouter } from "vue-router";
 import useNotifications from "@/composables/useNotifications";
+import { BannerInterface } from "@/definitions/entities/UserInterface";
 
 export default defineComponent({
   setup() {
@@ -23,7 +24,7 @@ export default defineComponent({
     const router = useRouter();
     const { pushNotification } = useNotifications();
 
-    async function updateBannerForm(data: any) {
+    async function updateBannerForm(data: BannerInterface) {
       await updateBanner(data);
       if (isFinished) {
         router.push({ name: "home" });
