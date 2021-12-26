@@ -1,37 +1,57 @@
+import { ref as refDB, onValue, set, get, child } from "firebase/database";
+
 import { Ref, ref, computed } from "vue";
 import UserInterface, {
   AboutMeInterface,
   BannerInterface,
 } from "@/definitions/entities/UserInterface";
 import { useFirebase } from "./useFirebase";
-import { DataSnapshot } from "@firebase/database-types";
-import StudyInterface from "@/definitions/entities/StudyInterface";
 import CourseInterface from "@/definitions/entities/CourseInterface";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 
-const { firebase, convertObjectsCollectionsToArrayCollections } = useFirebase();
+const { database, convertObjectsCollectionsToArrayCollections } = useFirebase();
 
-const user: Ref<UserInterface | undefined> = ref(undefined);
+const user: Ref<UserInterface | null> = ref(null);
 
 export const useUser = (): {
-  user: Ref<UserInterface | undefined>;
+  user: Ref<UserInterface | null>;
   getUserById: (id: string) => void;
+  setBaseUser: (id: string) => void;
   aboutMe: Ref<AboutMeInterface>;
   banner: Ref<BannerInterface>;
-  studies: Ref<StudyInterface[] | undefined>;
   courses: Ref<CourseInterface[] | undefined>;
   experiences: Ref<ExperienceInterface[] | undefined>;
 } => {
-  function getUserById(id: string) {
-    firebase
-      .database()
-      .ref("users")
-      .child(id)
-      .on("value", (snapshot: DataSnapshot) => {
-        if (snapshot.val()) {
+  async function getUserById(id: string) {
+    await get(child(refDB(database), "users/" + id))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
           user.value = snapshot.val();
+          onValue(refDB(database, "users/" + id), (snapshot) => {
+            user.value = snapshot.val();
+          });
+        } else {
+          console.log("No data available");
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function setBaseUser(authUser: any) {
+    set(refDB(database, "users/" + authUser.uid), {
+      id: authUser.uid,
+      email: authUser.email,
+      aboutMe: {
+        photo: authUser.photoURL,
+      },
+      banner: {
+        title: authUser.email,
+        subTitle: authUser.email,
+      },
+    });
   }
 
   const aboutMe = computed(
@@ -40,9 +60,7 @@ export const useUser = (): {
   const banner = computed(
     (): BannerInterface => user.value?.banner as BannerInterface
   );
-  const studies = computed((): StudyInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.studies)
-  );
+
   const courses = computed((): CourseInterface[] | undefined =>
     convertObjectsCollectionsToArrayCollections(user.value?.courses)
   );
@@ -52,9 +70,9 @@ export const useUser = (): {
   return {
     user,
     getUserById,
+    setBaseUser,
     aboutMe,
     banner,
-    studies,
     courses,
     experiences,
   };

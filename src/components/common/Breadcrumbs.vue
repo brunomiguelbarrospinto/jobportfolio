@@ -1,5 +1,5 @@
 <template>
-  <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
+  <nav class="text-black font-semibold my-8" aria-label="Breadcrumb">
     <ol class="list-none p-0 inline-flex">
       <router-link
         :to="crumb.path"

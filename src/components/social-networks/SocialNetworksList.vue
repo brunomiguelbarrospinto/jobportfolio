@@ -10,7 +10,8 @@
       </div>
 
       <draggable
-        v-model="elements"
+        v-if="elementsToOrder"
+        v-model="elementsToOrder"
         @start="drag = true"
         @end="drag = false"
         item-key="id"
@@ -71,7 +72,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed, watch } from "vue";
 import Button from "@/components/common/button/Button.vue";
 import { useSocialNetworks } from "@/composables/useSocialNetworks";
 import ListItem from "@/components/common/list/ListItem.vue";
@@ -121,37 +122,47 @@ export default defineComponent({
       }
     }
     async function updateOrder() {
-      await updateOrderSocialNetworks(elements.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Orden actualizdo",
-          description: "Tus redes sociales se han ordenado",
-          type: "success",
-        });
+      if (elementsToOrder.value) {
+        await updateOrderSocialNetworks(elementsToOrder.value);
+        if (isFinished) {
+          isOpen.value = false;
+          id.value = "";
+          pushNotification({
+            id: "",
+            title: "Orden actualizado",
+            description: "Tus redes sociales se han ordenado",
+            type: "success",
+          });
+        }
       }
     }
 
-    const elements = ref<SocialNetworkInterface[]>([]);
+    const elements = computed((): SocialNetworkInterface[] | null =>
+      socialNetworks.value
+        ? socialNetworks.value.map((element) => {
+            return {
+              ...element,
+              id: element.id,
+            };
+          })
+        : null
+    );
 
-    elements.value = socialNetworks.value.map((element) => {
-      return {
-        ...element,
-        id: element.id,
-      };
+    const elementsToOrder = ref(elements.value);
+
+    watch(elements, (value) => {
+      elementsToOrder.value = value;
     });
 
     return {
       id,
-      elements,
       isOpen,
       submit,
       getSocialNetworkIconComponent,
       drag,
       sort,
       updateOrder,
+      elementsToOrder,
     };
   },
 });

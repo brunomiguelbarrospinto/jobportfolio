@@ -1,9 +1,9 @@
 import { Ref, ref } from "vue";
 import UserInterface from "@/definitions/entities/userInterface";
 import { useFirebase } from "./useFirebase";
-import { DataSnapshot } from "@firebase/database-types";
+import { ref as refDB, onValue } from "firebase/database";
 
-const { firebase } = useFirebase();
+const { database, convertObjectsCollectionsToArrayCollections } = useFirebase();
 
 const profile: Ref<UserInterface | null> = ref(null);
 
@@ -12,17 +12,19 @@ export const useProfile = (): {
   getProfileByEmail: (email: string) => void;
 } => {
   function getProfileByEmail(email: string) {
-    firebase
-      .database()
-      .ref("users")
-      .orderByChild("email")
-      .equalTo(email)
-      .on("value", (snapshot: DataSnapshot) => {
-        if (snapshot.val()) {
-          const data = snapshot.val();
-          profile.value = data[Object.keys(data)[0]];
-        }
-      });
+    const userDB = refDB(database, `users`);
+    onValue(
+      userDB,
+      (snapshot) => {
+        const users = convertObjectsCollectionsToArrayCollections(
+          snapshot.val()
+        );
+        profile.value = users.find((u) => u.email === email);
+      },
+      {
+        onlyOnce: true,
+      }
+    );
   }
   return {
     profile,

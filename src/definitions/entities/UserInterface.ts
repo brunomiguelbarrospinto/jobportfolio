@@ -5,12 +5,12 @@ import ExperienceInterface from "./ExperienceInterface";
 
 export interface AboutMeInterface {
   name: string;
-  lastNames: string;
-  dateOfBirth: string;
-  address: string;
-  phone: string;
-  biography: string;
-  photo: string;
+  lastNames?: string;
+  dateOfBirth?: string;
+  address?: string;
+  phone?: string;
+  biography?: string;
+  photo?: string;
 }
 
 export interface BannerInterface {

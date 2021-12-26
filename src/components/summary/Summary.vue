@@ -1,6 +1,7 @@
 <template>
   <details>
     <summary>User</summary>
+    {{ user }}
   </details>
 </template>
 

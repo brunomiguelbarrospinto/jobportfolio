@@ -1,6 +1,8 @@
 import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
-const { banner, aboutMe, studies, courses, experiences } = useUser();
+import { useStudies } from "./useStudies";
+const { banner, aboutMe, courses, experiences } = useUser();
+const { studies } = useStudies();
 interface ToInterface {
   name: string;
 }
@@ -16,6 +18,9 @@ interface ModuleItemInterface {
 }
 
 function getPercentOfFillKeysInObject(ob) {
+  if (!ob) {
+    return 0;
+  }
   return (
     (Object.values(ob)
       .map((value) => {
@@ -32,8 +37,8 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const percentBanner = getPercentOfFillKeysInObject(banner.value);
     const percentAboutMe = getPercentOfFillKeysInObject(aboutMe.value);
     const countStudies = studies.value?.length || 0;
-    const countCourses = courses.value?.length || 0;
-    const countExperiences = experiences.value?.length || 0;
+    // const countCourses = courses.value?.length || 0;
+    // const countExperiences = experiences.value?.length || 0;
     return [
       {
         text: "Banner",
@@ -67,25 +72,25 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         count: studies.value?.length,
         level: countStudies < 1 ? "medium" : "hight",
       },
-      {
-        text: "Cursos",
-        to: { name: "dashboard-banner" },
-        iconName: "BadgeCheckIcon",
-        count: courses.value?.length,
-        level: countCourses < 1 ? "medium" : "hight",
-      },
-      {
-        text: "Experiencias",
-        to: { name: "dashboard-banner" },
-        iconName: "BriefcaseIcon",
-        count: experiences.value?.length,
-        level:
-          countExperiences <= 1
-            ? "low"
-            : countExperiences < 2
-            ? "medium"
-            : "hight",
-      },
+      // {
+      //   text: "Cursos",
+      //   to: { name: "dashboard-banner" },
+      //   iconName: "BadgeCheckIcon",
+      //   count: courses.value?.length,
+      //   level: countCourses < 1 ? "medium" : "hight",
+      // },
+      // {
+      //   text: "Experiencias",
+      //   to: { name: "dashboard-banner" },
+      //   iconName: "BriefcaseIcon",
+      //   count: experiences.value?.length,
+      //   level:
+      //     countExperiences <= 1
+      //       ? "low"
+      //       : countExperiences < 2
+      //       ? "medium"
+      //       : "hight",
+      // },
     ];
   });
 

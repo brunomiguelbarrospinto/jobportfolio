@@ -22,7 +22,6 @@
           shadow-lg
           bg-white
           ring-1 ring-black ring-opacity-5
-          bg-white
           z-10
           overflow-hidden
         "

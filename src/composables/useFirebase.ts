@@ -1,43 +1,50 @@
-import firebase from "firebase/app";
-import { User as AuthUserInterface } from "@firebase/auth-types";
-import "firebase/auth";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
+
+import {
+  getAuth,
+  signInWithPopup as _signInWithPopup,
+  GoogleAuthProvider,
+  signOut as _signOut,
+} from "firebase/auth";
 import { ref, Ref } from "vue";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGGMUdvTxSKzq_jQoBeSmPhbYsW53Wpf4",
-  authDomain: "full-vue-project.firebaseapp.com",
-  databaseURL: "https://full-vue-project.firebaseio.com",
-  projectId: "full-vue-project",
-  storageBucket: "full-vue-project.appspot.com",
-  messagingSenderId: "927745880591",
-  appId: "1:927745880591:web:5a785f1a8f2c6c4ab3e97a",
-  measurementId: "G-501JKMCMYB",
+  apiKey: "AIzaSyB342x-1-ffWlo27BYuW6cX0VlYclcJe6M",
+  authDomain: "jobportfolio-8a4e8.firebaseapp.com",
+  databaseURL:
+    "https://jobportfolio-8a4e8-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "jobportfolio-8a4e8",
+  storageBucket: "jobportfolio-8a4e8.appspot.com",
+  messagingSenderId: "628215896834",
+  appId: "1:628215896834:web:ea574ea60c6f27cb87c01b",
+  measurementId: "G-4K527RNGKT",
 };
 
-const currentAuthUser: Ref<AuthUserInterface | null> = ref(null);
+const currentAuthUser: Ref<any | null> = ref(null);
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase(app);
 
 export const useFirebase = (): {
-  firebase;
-  initializeApp: () => void;
-  setCurrentAuthUser: (authUser: AuthUserInterface) => void;
-  currentAuthUser: Ref<AuthUserInterface | null>;
-  signInWithPopup: (platform: string) => void;
+  database: any;
+  setCurrentAuthUser: (authUser: any | null) => void;
+  currentAuthUser: Ref<any | null>;
+  signInWithPopup: (platform: string) => Promise<void>;
   signOut: () => void;
   convertObjectsCollectionsToArrayCollections;
-  databaseRefCurrentUser;
 } => {
-  function initializeApp() {
-    firebase.initializeApp(firebaseConfig);
-  }
-
-  function setCurrentAuthUser(authUser: AuthUserInterface): void {
+  function setCurrentAuthUser(authUser: any | null): void {
     currentAuthUser.value = authUser;
   }
 
-  function signInWithPopup(platform: string): void {
+  async function signInWithPopup(platform: string): Promise<void> {
+    const auth = getAuth();
     if (platform === "google") {
-      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      const provider = new GoogleAuthProvider();
+      await _signInWithPopup(auth, provider);
     }
   }
 
@@ -55,24 +62,16 @@ export const useFirebase = (): {
   }
 
   async function signOut(): Promise<void> {
-    await firebase.auth().signOut();
-  }
-
-  function databaseRefCurrentUser() {
-    return firebase
-      .database()
-      .ref("users")
-      .child(currentAuthUser.value?.uid as string);
+    const auth = getAuth();
+    await _signOut(auth);
   }
 
   return {
-    firebase,
-    initializeApp,
+    database,
     setCurrentAuthUser,
     currentAuthUser,
     signInWithPopup,
     signOut,
     convertObjectsCollectionsToArrayCollections,
-    databaseRefCurrentUser,
   };
 };

@@ -3,18 +3,18 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./assets/tailwind.scss";
-import { User as AuthUserInterface } from "@firebase/auth-types";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 //Global components
 import Form from "@/components/common/form/Form.vue";
 
 import { useFirebase } from "@/composables/useFirebase";
-const { initializeApp, firebase, setCurrentAuthUser } = useFirebase();
-initializeApp();
+const { setCurrentAuthUser } = useFirebase();
 let app: Application;
 
-firebase.auth().onAuthStateChanged((authUser: AuthUserInterface) => {
-  setCurrentAuthUser(authUser);
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  setCurrentAuthUser(user);
   if (!app) {
     app = createApp(App);
     app.component("Form", Form); // global registration - can be used anywhere

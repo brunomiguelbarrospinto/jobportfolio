@@ -22,7 +22,6 @@ const lastNames: InputInterface = {
   label: "Apellidos",
   type: "text",
   value: null,
-  required: true,
 };
 
 const dateOfBirth: InputInterface = {
@@ -30,7 +29,6 @@ const dateOfBirth: InputInterface = {
   label: "Fecha de nacimieto",
   type: "date",
   value: null,
-  required: true,
 };
 
 const address: InputInterface = {
@@ -38,7 +36,6 @@ const address: InputInterface = {
   label: "Dirección",
   type: "text",
   value: null,
-  required: true,
 };
 
 const phone: InputInterface = {
@@ -46,14 +43,12 @@ const phone: InputInterface = {
   label: "Teléfono",
   type: "tel",
   value: null,
-  required: true,
 };
 
 const biography: TextareaInterface = {
   id: "biography",
   label: "Biografia",
   value: null,
-  required: true,
   rows: 10,
 };
 

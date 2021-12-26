@@ -2,18 +2,23 @@ import { useFirebase } from "@/composables/useFirebase";
 import SocialNetworkInterface from "@/definitions/entities/SocialNetworksInterface";
 import { Ref, ref, computed } from "vue";
 import { useUser } from "./useUser";
+import { ref as refDB, set, remove, push } from "firebase/database";
+const { user } = useUser();
 
-const { databaseRefCurrentUser, convertObjectsCollectionsToArrayCollections } =
-  useFirebase();
+const {
+  currentAuthUser,
+  database,
+  convertObjectsCollectionsToArrayCollections,
+} = useFirebase();
 
 const isFinished: Ref<boolean> = ref(false);
 const isLoading: Ref<boolean> = ref(false);
 
 export const useSocialNetworks = (): {
+  socialNetworks: Ref<SocialNetworkInterface[] | null>;
   saveSocialNetworks: (data: SocialNetworkInterface) => Promise<void>;
   isLoading: Ref<boolean>;
   isFinished: Ref<boolean>;
-  socialNetworks: Ref<SocialNetworkInterface[]>;
   getSocialNetworkById: (id: string) => SocialNetworkInterface;
   deleteSocialNetwork: (id: string) => Promise<void>;
   updateOrderSocialNetworks: (
@@ -26,23 +31,34 @@ export const useSocialNetworks = (): {
     isFinished.value = false;
     isLoading.value = true;
     if (data.id) {
-      await databaseRefCurrentUser()
-        .child("socialNetworks")
-        .child(data.id)
-        .update(data);
+      await set(
+        refDB(
+          database,
+          "users/" + currentAuthUser.value.uid + "/socialNetworks/" + data.id
+        ),
+        data
+      );
     } else {
-      await databaseRefCurrentUser().child("socialNetworks").push(data);
+      await push(
+        refDB(
+          database,
+          "users/" + currentAuthUser.value.uid + "/socialNetworks"
+        ),
+        data
+      );
     }
     isLoading.value = false;
     isFinished.value = true;
   }
 
-  const { user } = useUser();
-  const socialNetworks = computed((): SocialNetworkInterface[] =>
-    convertObjectsCollectionsToArrayCollections(
-      user.value?.socialNetworks
-    ).sort((a, b) => (a.order > b.order ? 1 : -1))
-  );
+  const socialNetworks = computed((): SocialNetworkInterface[] | null => {
+    if (user.value) {
+      return convertObjectsCollectionsToArrayCollections(
+        user.value.socialNetworks
+      )?.sort((a, b) => (a.order > b.order ? 1 : -1));
+    }
+    return null;
+  });
 
   function getSocialNetworkById(id: string): SocialNetworkInterface {
     return socialNetworks.value?.find(
@@ -54,7 +70,12 @@ export const useSocialNetworks = (): {
     isFinished.value = false;
     isLoading.value = true;
 
-    await databaseRefCurrentUser().child("socialNetworks").child(id).remove();
+    remove(
+      refDB(
+        database,
+        "users/" + currentAuthUser.value.uid + "/socialNetworks/" + id
+      )
+    );
 
     isLoading.value = false;
     isFinished.value = true;
@@ -65,12 +86,14 @@ export const useSocialNetworks = (): {
   ): Promise<void> {
     isFinished.value = false;
     isLoading.value = true;
-
     socialNetworks.forEach((sn, index) => {
-      databaseRefCurrentUser()
-        .child("socialNetworks")
-        .child(sn.id)
-        .update({ ...sn, order: index });
+      set(
+        refDB(
+          database,
+          "users/" + currentAuthUser.value.uid + "/socialNetworks/" + sn.id
+        ),
+        { ...sn, order: index }
+      );
     });
     isLoading.value = false;
     isFinished.value = true;

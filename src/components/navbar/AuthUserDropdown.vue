@@ -20,7 +20,7 @@
 
         <div class="h-8 w-8 rounded-full bg-gray-500">
           <img
-            v-if="aboutMe.photo"
+            v-if="aboutMe"
             ref="profileDropdown"
             @click.prevent="toggleDropdown"
             class="h-full w-full rounded-full"

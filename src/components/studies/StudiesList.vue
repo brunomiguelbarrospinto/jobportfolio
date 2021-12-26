@@ -2,7 +2,7 @@
   <div class="bg-white border p-4">
     <div class="flex justify-between">
       <div>Mis estudios</div>
-      <Button :to="{ name: 'dashboard-studies-create' }">Añadir</Button>
+      <Button :to="{ name: 'dashboard-studies-create' }" text="Añadir" />
     </div>
     <ListItem :key="study.id" v-for="study in studies">
       <template #image>
@@ -37,7 +37,6 @@
         </Dropdown>
       </template>
     </ListItem>
-    {{ studies }}
   </div>
 </template>
 <script lang="ts">
@@ -45,7 +44,7 @@
 
 import { defineComponent } from "vue";
 import Button from "@/components/common/button/Button.vue";
-import { useUser } from "@/composables/useUser";
+import { useStudies } from "@/composables/useStudies";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
@@ -59,7 +58,7 @@ export default defineComponent({
     Icon,
   },
   setup() {
-    const { studies } = useUser();
+    const { studies } = useStudies();
     return {
       studies,
     };

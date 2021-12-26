@@ -1,7 +1,11 @@
 <template>
   <div class="p-5 flex flex-col items-center justify-center relative">
-    <div class="absolute h-full w-full">
-      <img class="h-full w-full object-cover" :src="banner.backgroundImage" />
+    <div class="absolute h-full w-full bg-blue-400">
+      <img
+        v-if="banner?.backgroundImage"
+        class="h-full w-full object-cover"
+        :src="banner.backgroundImage"
+      />
     </div>
     <div
       class="
@@ -48,7 +52,7 @@
         </div>
 
         <div
-          v-if="banner.social"
+          v-if="banner?.social"
           class="
             flex
             items-center
@@ -64,6 +68,7 @@
               v-if="sn.link.length"
               class="
                 mr-4
+                last:mr-0
                 w-6
                 flex
                 items-center
