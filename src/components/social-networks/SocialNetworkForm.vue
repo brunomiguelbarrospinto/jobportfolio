@@ -14,7 +14,7 @@ import SocialNetworkForm from "@/config/SocialNetworkForm";
 import { useSocialNetworks } from "@/composables/useSocialNetworks";
 import useNotifications from "@/composables/useNotifications";
 import { useRouter } from "vue-router";
-
+import SocialNetworkInterface from "@/definitions/entities/SocialNetworksInterface";
 export default defineComponent({
   props: {
     id: {
@@ -34,7 +34,7 @@ export default defineComponent({
       () => socialNetwork.value === undefined
     );
 
-    async function submit(data) {
+    async function submit(data: SocialNetworkInterface) {
       await saveSocialNetworks({ id: props.id, ...data });
       if (isFinished) {
         router.push({ name: "dashboard-social-networks-list" });

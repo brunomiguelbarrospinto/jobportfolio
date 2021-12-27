@@ -8,8 +8,11 @@ import Patreon from "@/components/common/social/Patreon.vue";
 import Github from "@/components/common/social/Github.vue";
 import Gitlab from "@/components/common/social/Gitlab.vue";
 import Behance from "@/components/common/social/Behance.vue";
+import { Component } from "vue";
 
-export function getSocialNetworkIconComponent(name: string): HTMLElement {
+export function getSocialNetworkIconComponent(
+  name: string
+): Component | undefined {
   let component;
 
   if (name === "linkedin") {

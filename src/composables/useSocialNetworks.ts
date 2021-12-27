@@ -55,7 +55,9 @@ export const useSocialNetworks = (): {
     if (user.value) {
       return convertObjectsCollectionsToArrayCollections(
         user.value.socialNetworks
-      )?.sort((a, b) => (a.order > b.order ? 1 : -1));
+      )?.sort((a: SocialNetworkInterface, b: SocialNetworkInterface) =>
+        a.order > b.order ? 1 : -1
+      );
     }
     return null;
   });

@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
 import Button from "@/components/common/button/Button.vue";
-
+import FieldsetInterface from "@/definitions/form/FieldsetInterface";
 import FormInterface from "@/definitions/form/FormInterface";
 import Fieldset from "./Fieldset.vue";
 export default defineComponent({
@@ -46,12 +46,12 @@ export default defineComponent({
     let data = {};
     function onSubmit() {
       if (hasFieldsets.value) {
-        formatData(props.form.fieldsets);
+        formatData(props.form.fieldsets as FieldsetInterface[]);
         context.emit("form:onSubmit", data);
       }
     }
 
-    function formatData(fieldsets) {
+    function formatData(fieldsets: FieldsetInterface[]) {
       data = {};
       fieldsets?.forEach((fieldset) => {
         fieldset.elements.forEach((element) => {

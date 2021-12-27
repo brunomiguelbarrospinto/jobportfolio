@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 
 import {
@@ -25,7 +26,7 @@ const firebaseConfig = {
 const currentAuthUser: Ref<any | null> = ref(null);
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 export const useFirebase = (): {
@@ -34,7 +35,13 @@ export const useFirebase = (): {
   currentAuthUser: Ref<any | null>;
   signInWithPopup: (platform: string) => Promise<void>;
   signOut: () => void;
-  convertObjectsCollectionsToArrayCollections;
+  convertObjectsCollectionsToArrayCollections: (
+    objectCollection:
+      | {
+          [key: string]: any;
+        }
+      | undefined
+  ) => any;
 } => {
   function setCurrentAuthUser(authUser: any | null): void {
     currentAuthUser.value = authUser;
@@ -48,7 +55,13 @@ export const useFirebase = (): {
     }
   }
 
-  function convertObjectsCollectionsToArrayCollections(objectCollection) {
+  function convertObjectsCollectionsToArrayCollections(
+    objectCollection:
+      | {
+          [key: string]: any;
+        }
+      | undefined
+  ): any {
     if (objectCollection) {
       const ids = Object.keys(objectCollection);
       return ids.map((key) => {
@@ -58,7 +71,7 @@ export const useFirebase = (): {
         };
       });
     }
-    return;
+    return null;
   }
 
   async function signOut(): Promise<void> {

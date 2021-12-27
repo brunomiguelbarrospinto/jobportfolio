@@ -27,7 +27,7 @@ interface SocialNetworkInterface {
   id?: string;
   name: SocialNetworkType;
   link: string;
-  order?: number;
+  order: number;
 }
 
 export default SocialNetworkInterface;

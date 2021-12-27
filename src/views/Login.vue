@@ -1,21 +1,7 @@
 <template>
-  <div class="h-screen flex items-center justify-center justify-items-center">
-    <div
-      class="
-        border border-gray-200
-        bg-white
-        text-black
-        w-96
-        h-60
-        rounded-md
-        shadow-sm
-        p-5
-        flex flex-col
-        justify-around
-        items-center
-      "
-    >
-      <img class="w-48" :src="require('@/assets/logo.png')" />
+  <div class="c-login">
+    <div class="c-login__content">
+      <img :src="require('@/assets/logo.png')" />
       Iniciar sesión
       <LoginWithGoogleButton @login="login" />
     </div>
@@ -48,3 +34,14 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+.c-login {
+  @apply h-screen flex items-center justify-center justify-items-center;
+  &__content {
+    @apply border border-gray-200 bg-white text-black w-96 h-60 rounded-md shadow-sm p-5 flex flex-col justify-around items-center;
+    & img {
+      @apply w-48;
+    }
+  }
+}
+</style>
