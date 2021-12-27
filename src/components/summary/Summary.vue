@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import UserInterface from "@/definitions/entities/UserInterface";
+import { UserInterface } from "@/definitions/entities/UserInterface";
 export default defineComponent({
   props: {
     user: {

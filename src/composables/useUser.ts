@@ -1,7 +1,8 @@
 import { ref as refDB, onValue, set, get, child } from "firebase/database";
 
 import { Ref, ref, computed } from "vue";
-import UserInterface, {
+import {
+  UserInterface,
   AboutMeInterface,
   BannerInterface,
 } from "@/definitions/entities/UserInterface";
@@ -39,7 +40,7 @@ export const useUser = (): {
       });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line
   function setBaseUser(authUser: any) {
     set(refDB(database, "users/" + authUser.uid), {
       id: authUser.uid,

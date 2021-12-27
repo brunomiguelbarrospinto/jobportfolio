@@ -1,7 +1,9 @@
 import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
 import { useStudies } from "./useStudies";
-const { banner, aboutMe, courses, experiences } = useUser();
+import { BannerInterface } from "@/definitions/entities/UserInterface";
+import { AboutMeInterface } from "@/definitions/entities/UserInterface";
+const { banner, aboutMe /*courses, experiences*/ } = useUser();
 const { studies } = useStudies();
 interface ToInterface {
   name: string;
@@ -17,7 +19,7 @@ interface ModuleItemInterface {
   level?: ModuleLevelType;
 }
 
-function getPercentOfFillKeysInObject(ob) {
+function getPercentOfFillKeysInObject(ob: BannerInterface | AboutMeInterface) {
   if (!ob) {
     return 0;
   }

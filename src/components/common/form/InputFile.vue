@@ -32,13 +32,14 @@ export default defineComponent({
     },
   },
   methods: {
-    input(event) {
-      if (event.target.files.length) {
+    input(event: Event) {
+      let file = (event?.target as HTMLInputElement)?.files?.[0];
+      if (file) {
         var reader = new FileReader();
         reader.onload = () => {
           this.$emit("update:modelValue", reader.result);
         };
-        reader.readAsDataURL(event.target.files[0]);
+        reader.readAsDataURL(file);
       }
     },
   },

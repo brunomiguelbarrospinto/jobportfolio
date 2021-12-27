@@ -1,5 +1,5 @@
 import { Ref, ref } from "vue";
-import UserInterface from "@/definitions/entities/userInterface";
+import { UserInterface } from "@/definitions/entities/UserInterface";
 import { useFirebase } from "./useFirebase";
 import { ref as refDB, onValue } from "firebase/database";
 
@@ -19,7 +19,7 @@ export const useProfile = (): {
         const users = convertObjectsCollectionsToArrayCollections(
           snapshot.val()
         );
-        profile.value = users.find((u) => u.email === email);
+        profile.value = users.find((u: UserInterface) => u.email === email);
       },
       {
         onlyOnce: true,

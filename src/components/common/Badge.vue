@@ -2,11 +2,20 @@
   <span class="text-xs px-1 rounded" :class="typeClasses"><slot /></span>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+
+type typeClasses =
+  | "default"
+  | "info"
+  | "default"
+  | "success"
+  | "warning"
+  | "danger";
+
 export default defineComponent({
   props: {
     type: {
-      type: String,
+      type: String as PropType<typeClasses>,
       default: "default",
     },
   },

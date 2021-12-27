@@ -2,7 +2,7 @@
   <component v-if="isMounted && heroicon" :class="classList" :is="heroicon" />
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted, computed } from "vue";
+import { defineComponent, ref, onMounted, computed, PropType } from "vue";
 import * as SolidIcons from "@heroicons/vue/solid";
 import * as OutlineIcons from "@heroicons/vue/outline";
 
@@ -12,12 +12,13 @@ export const outlineIconNames = Object.keys(OutlineIcons);
 export const iconNames = [...new Set([...solidIconNames, ...outlineIconNames])];
 export const sizes = ["xs", "sm", "md", "lg", "xl"];
 
+type IconTypes = "solid" | "outline";
 export default defineComponent({
   props: {
     // https://heroicons.com
     // https://github.com/tailwindlabs/heroicons
     name: {
-      type: String,
+      type: String as PropType<IconTypes>,
       validator: (value: string) => iconNames.includes(value),
     }, // Prop "name" must be in PascalCase like "ArrowSmLeft"
     type: {
@@ -37,12 +38,11 @@ export default defineComponent({
     const isMounted = ref(false);
     let heroicon;
     if (props.name) {
+      // eslint-disable-next-line
       heroicon =
         props.type === "solid"
           ? SolidIcons[props.name]()
           : OutlineIcons[props.name]();
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      //require(`@heroicons/vue/${props.type}/${props.name}`)();
     }
     const classList = computed(() => {
       const { size } = props;

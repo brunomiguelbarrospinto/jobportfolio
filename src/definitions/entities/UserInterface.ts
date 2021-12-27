@@ -20,8 +20,9 @@ export interface BannerInterface {
   subTitle: string;
   title: string;
 }
-export default interface User {
+export interface UserInterface {
   id: string;
+  email: string;
   aboutMe?: AboutMeInterface;
   banner?: BannerInterface;
   socialNetworks?: SocialNetworkInterface[];

@@ -1,9 +1,8 @@
 <template>
   <nav class="text-black font-semibold my-8" aria-label="Breadcrumb">
-    <ol class="list-none p-0 inline-flex">
+    <div class="list-none p-0 inline-flex">
       <router-link
         :to="crumb.path"
-        tag="li"
         v-for="(crumb, index) in crumbs"
         :key="'crumb-' + index"
         class="flex items-center"
@@ -17,7 +16,7 @@
           {{ crumb.text }}
         </span>
       </router-link>
-    </ol>
+    </div>
   </nav>
 </template>
 
