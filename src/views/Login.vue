@@ -1,7 +1,7 @@
 <template>
   <div class="c-login">
     <div class="c-login__content">
-      <img :src="require('@/assets/logo.png')" />
+      <img class="c-login__content__logo" :src="require('@/assets/logo.png')" />
       Iniciar sesión
       <LoginWithGoogleButton @login="login" />
     </div>
@@ -39,7 +39,7 @@ export default defineComponent({
   @apply h-screen flex items-center justify-center justify-items-center;
   &__content {
     @apply border border-gray-200 bg-white text-black w-96 h-60 rounded-md shadow-sm p-5 flex flex-col justify-around items-center;
-    & img {
+    &__logo {
       @apply w-48;
     }
   }
