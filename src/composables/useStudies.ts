@@ -3,7 +3,7 @@ import { useFirebase } from "@/composables/useFirebase";
 import StudyInterface from "@/definitions/entities/StudyInterface";
 import { useUser } from "@/composables/useUser";
 import { Ref, ref, computed } from "vue";
-import { ref as refDB, set, push } from "firebase/database";
+import { ref as refDB, set, push, remove } from "firebase/database";
 
 const {
   currentAuthUser,
@@ -21,10 +21,14 @@ export const useStudies = (): {
   isLoading: Ref<boolean>;
   isFinished: Ref<boolean>;
   saveStudy: (data: StudyInterface) => Promise<void>;
+  deleteStudy: (id: string) => Promise<void>;
   studies: Ref<StudyInterface[] | undefined>;
+  updateOrderStudies: (studies: StudyInterface[]) => Promise<void>;
 } => {
   const studies = computed((): StudyInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.studies)
+    convertObjectsCollectionsToArrayCollections(user.value?.studies)?.sort(
+      (a: StudyInterface, b: StudyInterface) => (a.order > b.order ? 1 : -1)
+    )
   );
 
   function getStudyById(id: string): StudyInterface {
@@ -51,5 +55,41 @@ export const useStudies = (): {
     isFinished.value = true;
   }
 
-  return { getStudyById, isLoading, isFinished, saveStudy, studies };
+  async function deleteStudy(id: string) {
+    isFinished.value = false;
+    isLoading.value = true;
+
+    remove(
+      refDB(database, "users/" + currentAuthUser.value.uid + "/studies/" + id)
+    );
+
+    isLoading.value = false;
+    isFinished.value = true;
+  }
+
+  async function updateOrderStudies(studies: StudyInterface[]): Promise<void> {
+    isFinished.value = false;
+    isLoading.value = true;
+    studies.forEach(async (s, index) => {
+      await set(
+        refDB(
+          database,
+          "users/" + currentAuthUser.value.uid + "/studies/" + s.id
+        ),
+        { ...s, order: index }
+      );
+    });
+    isLoading.value = false;
+    isFinished.value = true;
+  }
+
+  return {
+    getStudyById,
+    isLoading,
+    isFinished,
+    saveStudy,
+    studies,
+    deleteStudy,
+    updateOrderStudies,
+  };
 };

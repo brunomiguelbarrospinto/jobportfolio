@@ -1,8 +1,8 @@
 <template>
   <Modal :isOpen="isOpen" type="warning">
-    <template #title>Desea eliminar la red social?</template>
+    <template #title>Desea eliminar el estudio?</template>
     <template #content>
-      Se eliminara el la red social permanentemente y no podra recuperar la
+      Se eliminara el estudio permanentemente y no podra recuperar la
       informacion.
     </template>
     <template #footer>

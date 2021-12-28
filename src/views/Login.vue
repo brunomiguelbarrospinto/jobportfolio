@@ -22,7 +22,7 @@ export default defineComponent({
 
     watch(currentAuthUser, (value) => {
       if (value) {
-        router.push({ name: "dashboard" });
+        router.push({ name: "dashboard-home" });
       }
     });
     async function login(platform: string) {
