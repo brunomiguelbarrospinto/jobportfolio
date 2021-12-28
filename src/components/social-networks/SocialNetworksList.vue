@@ -96,8 +96,6 @@ export default defineComponent({
     draggable,
   },
   setup() {
-    const drag = ref(false);
-    const sort = ref(true);
     const { pushNotification } = useNotifications();
 
     const {
@@ -106,6 +104,7 @@ export default defineComponent({
       isFinished,
       updateOrderSocialNetworks,
     } = useSocialNetworks();
+
     const isOpen = ref(false);
     const id = ref("");
     async function submit() {
@@ -121,12 +120,14 @@ export default defineComponent({
         });
       }
     }
+
+    const drag = ref(false);
+    const sort = ref(true);
+
     async function updateOrder() {
       if (elementsToOrder.value) {
         await updateOrderSocialNetworks(elementsToOrder.value);
         if (isFinished) {
-          isOpen.value = false;
-          id.value = "";
           pushNotification({
             id: "",
             title: "Orden actualizado",
