@@ -1,10 +1,13 @@
 import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
 import { useStudies } from "./useStudies";
+import { useCourses } from "./useCourses";
+
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
-const { banner, aboutMe /*courses, experiences*/ } = useUser();
+const { banner, aboutMe } = useUser();
 const { studies } = useStudies();
+const { courses } = useCourses();
 interface ToInterface {
   name: string;
 }
@@ -39,7 +42,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const percentBanner = getPercentOfFillKeysInObject(banner.value);
     const percentAboutMe = getPercentOfFillKeysInObject(aboutMe.value);
     const countStudies = studies.value?.length || 0;
-    // const countCourses = courses.value?.length || 0;
+    const countCourses = courses.value?.length || 0;
     // const countExperiences = experiences.value?.length || 0;
     return [
       {
@@ -74,13 +77,13 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         count: studies.value?.length,
         level: countStudies < 1 ? "medium" : "hight",
       },
-      // {
-      //   text: "Cursos",
-      //   to: { name: "dashboard-banner" },
-      //   iconName: "BadgeCheckIcon",
-      //   count: courses.value?.length,
-      //   level: countCourses < 1 ? "medium" : "hight",
-      // },
+      {
+        text: "Cursos",
+        to: { name: "dashboard-courses-list" },
+        iconName: "BadgeCheckIcon",
+        count: courses.value?.length,
+        level: countCourses < 1 ? "medium" : "hight",
+      },
       // {
       //   text: "Experiencias",
       //   to: { name: "dashboard-banner" },

@@ -40,10 +40,10 @@ export default defineComponent({
     onMounted(async () => {
       if (currentAuthUser?.value) {
         await getUserById(currentAuthUser.value.uid);
-        if (!user.value) {
-          await setBaseUser(currentAuthUser.value);
-          await getUserById(currentAuthUser.value.uid);
-        }
+        // if (!user.value) {
+        //   await setBaseUser(currentAuthUser.value);
+        //   await getUserById(currentAuthUser.value.uid);
+        // }
       }
     });
     return { currentAuthUser, getUserById, user };

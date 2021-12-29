@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import SocialNetworksRoutes from "./social-networks";
 import StudiesRoutes from "./studies";
+import CoursesRoutes from "./courses";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -55,6 +56,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       SocialNetworksRoutes,
       StudiesRoutes,
+      CoursesRoutes,
     ],
   },
 ];
