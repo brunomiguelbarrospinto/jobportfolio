@@ -1,5 +1,5 @@
 export default interface CourseInterface {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   order: number;
