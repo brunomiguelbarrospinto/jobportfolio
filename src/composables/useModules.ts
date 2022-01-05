@@ -2,12 +2,14 @@ import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
 import { useStudies } from "./useStudies";
 import { useCourses } from "./useCourses";
+import { useExperiences } from "./useExperiences";
 
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
 const { banner, aboutMe } = useUser();
 const { studies } = useStudies();
 const { courses } = useCourses();
+const { experiences } = useExperiences();
 interface ToInterface {
   name: string;
 }

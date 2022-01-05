@@ -9,4 +9,5 @@ export default interface ExperienceInterface {
   current: boolean;
   startDate: string;
   endDate: string;
+  order: number;
 }
