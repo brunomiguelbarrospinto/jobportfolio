@@ -1,6 +1,6 @@
 <template>
   <Modal :isOpen="isOpen" type="warning">
-    <template #title>Desea eliminar la experiencia?</template>
+    <template #title>Desea eliminar el proyecto?</template>
     <template #content>
       Se eliminara el curso permanentemente y no podra recuperar la informacion.
     </template>
