@@ -1,8 +1,8 @@
 export default interface ExperienceInterface {
-  id: string;
+  id?: string;
   company: string;
-  url: string;
-  logo: string;
+  url?: string;
+  logo?: string;
   position: string;
   location: string;
   description: string;

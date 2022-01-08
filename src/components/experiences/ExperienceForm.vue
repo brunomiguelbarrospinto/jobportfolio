@@ -1,13 +1,17 @@
 <template>
   <div class="bg-white border p-4">
-    <Form :form="CourseForm(isNew)" @form:onSubmit="submit" :values="course" />
+    <Form
+      :form="ExperienceForm(isNew)"
+      @form:onSubmit="submit"
+      :values="experience"
+    />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import CourseForm from "@/config/CourseForm";
-import CourseInterface from "@/definitions/entities/CourseInterface";
-import { useCourses } from "@/composables/useCourses";
+import ExperienceForm from "@/config/ExperienceForm";
+import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
+import useExperiences from "@/composables/useExperiences";
 import useNotifications from "@/composables/useNotifications";
 import { useRouter } from "vue-router";
 export default defineComponent({
@@ -20,14 +24,15 @@ export default defineComponent({
   setup(props) {
     const { pushNotification } = useNotifications();
     const router = useRouter();
-    const { getCourseById, isLoading, isFinished, saveCourse } = useCourses();
-    const course = computed(() => getCourseById(props.id));
-    const isNew = computed(() => course.value === undefined);
+    const { getExperienceById, isLoading, isFinished, saveExperience } =
+      useExperiences();
+    const experience = computed(() => getExperienceById(props.id));
+    const isNew = computed(() => experience.value === undefined);
 
-    async function submit(data: CourseInterface) {
-      await saveCourse({ id: props.id, ...data });
+    async function submit(data: ExperienceInterface) {
+      await saveExperience({ id: props.id, ...data });
       if (isFinished) {
-        router.push({ name: "dashboard-courses-list" });
+        router.push({ name: "dashboard-experiences-list" });
         pushNotification({
           id: "",
           title: props.id ? "Actualizado" : "Guardado",
@@ -37,7 +42,7 @@ export default defineComponent({
       }
     }
 
-    return { course, isNew, CourseForm, submit, isLoading, isFinished };
+    return { experience, isNew, ExperienceForm, submit, isLoading, isFinished };
   },
 });
 </script>

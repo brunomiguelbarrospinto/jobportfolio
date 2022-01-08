@@ -15,22 +15,22 @@
         :sort="sort"
         @change="updateOrder"
       >
-        <template #item="{ element: course }">
+        <template #item="{ element }">
           <ListItem>
             <template #image>
               <img
-                v-if="course.image"
+                v-if="element.logo"
                 class="w-8 h-8"
-                :src="course.image"
+                :src="element.logo"
                 alt=""
               />
-              <template v-else>{{ course.name[0] }}</template>
+              <template v-else>{{ element.company[0] }}</template>
             </template>
             <template #title>
-              {{ course.name }}
+              {{ element.company }}
             </template>
             <template #subtitle>
-              {{ course.description }}
+              {{ element.description }}
             </template>
             <template #button>
               <Dropdown>
@@ -41,15 +41,15 @@
                   <DropdownMenuItem
                     is="router-link"
                     :to="{
-                      name: 'dashboard-courses-edit',
-                      params: { id: course.id },
+                      name: 'dashboard-experiences-edit',
+                      params: { id: element.id },
                     }"
                   >
                     Editar
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     @click="
-                      id = course.id;
+                      id = element.id;
                       isOpen = true;
                     "
                   >
@@ -75,7 +75,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
 import Button from "@/components/common/button/Button.vue";
-import { useCourses } from "@/composables/useCourses";
+import useExperiences from "@/composables/useExperiences";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
@@ -83,7 +83,7 @@ import Icon from "@/components/common/Icon.vue";
 import useNotifications from "@/composables/useNotifications";
 import ExperienceModalDelete from "./ExperienceModalDelete.vue";
 import draggable from "vuedraggable";
-import CourseInterface from "@/definitions/entities/CourseInterface";
+import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 
 export default defineComponent({
   components: {
@@ -96,21 +96,25 @@ export default defineComponent({
     draggable,
   },
   setup() {
-    const { courses, deleteCourse, isFinished, updateOrderCourses } =
-      useCourses();
+    const {
+      experiences,
+      deleteExperience,
+      isFinished,
+      updateOrderExperiences,
+    } = useExperiences();
     const isOpen = ref(false);
     const id = ref("");
     const { pushNotification } = useNotifications();
 
     async function submit() {
-      await deleteCourse(id.value);
+      await deleteExperience(id.value);
       if (isFinished) {
         isOpen.value = false;
         id.value = "";
         pushNotification({
           id: "",
           title: "Eliminado",
-          description: "Curso eliminado",
+          description: "Experiencia eliminada",
           type: "success",
         });
       }
@@ -121,21 +125,21 @@ export default defineComponent({
 
     async function updateOrder() {
       if (elementsToOrder.value) {
-        await updateOrderCourses(elementsToOrder.value);
+        await updateOrderExperiences(elementsToOrder.value);
         if (isFinished) {
           pushNotification({
             id: "",
             title: "Orden actualizado",
-            description: "Tus cursos se han ordenado",
+            description: "Tus experiencias se han ordenado",
             type: "success",
           });
         }
       }
     }
 
-    const elements = computed((): CourseInterface[] | null =>
-      courses.value
-        ? courses.value.map((element) => {
+    const elements = computed((): ExperienceInterface[] | null =>
+      experiences.value
+        ? experiences.value.map((element) => {
             return {
               ...element,
               id: element.id,
@@ -150,7 +154,7 @@ export default defineComponent({
       elementsToOrder.value = value;
     });
     return {
-      courses,
+      experiences,
       isOpen,
       id,
       submit,

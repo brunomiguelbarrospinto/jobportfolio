@@ -16,8 +16,8 @@ const { user } = useUser();
 const isFinished: Ref<boolean> = ref(false);
 const isLoading: Ref<boolean> = ref(false);
 
-export const useExperiences = (): {
-  getExperienceById: (id: string) => CourseInExperienceInterfaceterface;
+const useExperiences = (): {
+  getExperienceById: (id: string) => ExperienceInterface;
   isLoading: Ref<boolean>;
   isFinished: Ref<boolean>;
   saveExperience: (data: ExperienceInterface) => Promise<void>;
@@ -26,7 +26,7 @@ export const useExperiences = (): {
   updateOrderExperiences: (courses: ExperienceInterface[]) => Promise<void>;
 } => {
   const experiences = computed((): ExperienceInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.courses)?.sort(
+    convertObjectsCollectionsToArrayCollections(user.value?.experiences)?.sort(
       (a: ExperienceInterface, b: ExperienceInterface) =>
         a.order > b.order ? 1 : -1
     )
@@ -38,7 +38,9 @@ export const useExperiences = (): {
   async function saveExperience(data: ExperienceInterface): Promise<void> {
     isFinished.value = false;
     isLoading.value = true;
+
     if (data.id) {
+      console.log(data);
       await set(
         refDB(
           database,
@@ -63,7 +65,7 @@ export const useExperiences = (): {
     remove(
       refDB(
         database,
-        "users/" + currentAuthUser.value.uid + "/experience/" + id
+        "users/" + currentAuthUser.value.uid + "/experiences/" + id
       )
     );
 
@@ -99,3 +101,5 @@ export const useExperiences = (): {
     updateOrderExperiences,
   };
 };
+
+export default useExperiences;
