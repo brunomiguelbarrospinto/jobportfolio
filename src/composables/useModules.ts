@@ -2,12 +2,14 @@ import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
 import { useStudies } from "./useStudies";
 import { useCourses } from "./useCourses";
+import useExperiences from "./useExperiences";
 
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
 const { banner, aboutMe } = useUser();
 const { studies } = useStudies();
 const { courses } = useCourses();
+const { experiences } = useExperiences();
 interface ToInterface {
   name: string;
 }
@@ -43,7 +45,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const percentAboutMe = getPercentOfFillKeysInObject(aboutMe.value);
     const countStudies = studies.value?.length || 0;
     const countCourses = courses.value?.length || 0;
-    // const countExperiences = experiences.value?.length || 0;
+    const countExperiences = experiences.value?.length || 0;
     return [
       {
         text: "Banner",
@@ -84,18 +86,18 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         count: courses.value?.length,
         level: countCourses < 1 ? "medium" : "hight",
       },
-      // {
-      //   text: "Experiencias",
-      //   to: { name: "dashboard-banner" },
-      //   iconName: "BriefcaseIcon",
-      //   count: experiences.value?.length,
-      //   level:
-      //     countExperiences <= 1
-      //       ? "low"
-      //       : countExperiences < 2
-      //       ? "medium"
-      //       : "hight",
-      // },
+      {
+        text: "Experiencias",
+        to: { name: "dashboard-experiences-list" },
+        iconName: "BriefcaseIcon",
+        count: experiences.value?.length,
+        level:
+          countExperiences <= 1
+            ? "low"
+            : countExperiences < 2
+            ? "medium"
+            : "hight",
+      },
     ];
   });
 
