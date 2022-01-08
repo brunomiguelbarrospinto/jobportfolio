@@ -3,6 +3,7 @@ import SocialNetworksRoutes from "./social-networks";
 import StudiesRoutes from "./studies";
 import CoursesRoutes from "./courses";
 import ExperiencesRoutes from "./experiences";
+import ProjectsRoutes from "./projects";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -59,6 +60,7 @@ const routes: Array<RouteRecordRaw> = [
       StudiesRoutes,
       CoursesRoutes,
       ExperiencesRoutes,
+      ProjectsRoutes,
     ],
   },
 ];
