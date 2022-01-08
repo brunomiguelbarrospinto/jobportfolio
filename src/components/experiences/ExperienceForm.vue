@@ -30,7 +30,11 @@ export default defineComponent({
     const isNew = computed(() => experience.value === undefined);
 
     async function submit(data: ExperienceInterface) {
-      await saveExperience({ id: props.id, ...data });
+      await saveExperience({
+        id: props.id,
+        ...data,
+        order: experience.value?.order ?? 0,
+      });
       if (isFinished) {
         router.push({ name: "dashboard-experiences-list" });
         pushNotification({

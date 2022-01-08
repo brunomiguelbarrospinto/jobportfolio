@@ -25,7 +25,11 @@ export default defineComponent({
     const isNew = computed(() => course.value === undefined);
 
     async function submit(data: CourseInterface) {
-      await saveCourse({ id: props.id, ...data });
+      await saveCourse({
+        id: props.id,
+        ...data,
+        order: course.value?.order ?? 0,
+      });
       if (isFinished) {
         router.push({ name: "dashboard-courses-list" });
         pushNotification({

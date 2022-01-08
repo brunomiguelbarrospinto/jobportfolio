@@ -35,7 +35,11 @@ export default defineComponent({
     );
 
     async function submit(data: SocialNetworkInterface) {
-      await saveSocialNetworks({ id: props.id, ...data });
+      await saveSocialNetworks({
+        id: props.id,
+        ...data,
+        order: socialNetwork.value?.order ?? 0,
+      });
       if (isFinished) {
         router.push({ name: "dashboard-social-networks-list" });
         pushNotification({

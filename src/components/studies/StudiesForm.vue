@@ -29,7 +29,11 @@ export default defineComponent({
     const isNewStudy = computed(() => study.value === undefined);
 
     async function submit(data: StudyInterface) {
-      await saveStudy({ id: props.id, ...data });
+      await saveStudy({
+        id: props.id,
+        ...data,
+        order: study.value?.order ?? 0,
+      });
       if (isFinished) {
         router.push({ name: "dashboard-studies-list" });
         pushNotification({
