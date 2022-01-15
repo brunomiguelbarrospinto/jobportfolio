@@ -3,6 +3,7 @@ import { useUser } from "./useUser";
 import { useStudies } from "./useStudies";
 import { useCourses } from "./useCourses";
 import useExperiences from "./useExperiences";
+import useProjects from "./useProjects";
 
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
@@ -10,6 +11,7 @@ const { banner, aboutMe } = useUser();
 const { studies } = useStudies();
 const { courses } = useCourses();
 const { experiences } = useExperiences();
+const { projects } = useProjects();
 interface ToInterface {
   name: string;
 }
@@ -46,6 +48,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const countStudies = studies.value?.length || 0;
     const countCourses = courses.value?.length || 0;
     const countExperiences = experiences.value?.length || 0;
+    const countProjects = projects.value?.length || 0;
     return [
       {
         text: "Banner",
@@ -76,27 +79,35 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         text: "Estudios",
         to: { name: "dashboard-studies-list" },
         iconName: "AcademicCapIcon",
-        count: studies.value?.length,
+        count: countStudies,
         level: countStudies < 1 ? "medium" : "hight",
       },
       {
         text: "Cursos",
         to: { name: "dashboard-courses-list" },
         iconName: "BadgeCheckIcon",
-        count: courses.value?.length,
+        count: countCourses,
         level: countCourses < 1 ? "medium" : "hight",
       },
       {
         text: "Experiencias",
         to: { name: "dashboard-experiences-list" },
         iconName: "BriefcaseIcon",
-        count: experiences.value?.length,
+        count: countExperiences,
         level:
           countExperiences <= 1
             ? "low"
             : countExperiences < 2
             ? "medium"
             : "hight",
+      },
+      {
+        text: "Proyectos",
+        to: { name: "dashboard-projects-list" },
+        iconName: "BeakerIcon",
+        count: countProjects,
+        level:
+          countProjects <= 1 ? "low" : countProjects < 2 ? "medium" : "hight",
       },
     ];
   });

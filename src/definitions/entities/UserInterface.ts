@@ -2,6 +2,7 @@ import SocialNetworkInterface from "./SocialNetworksInterface";
 import StudyInterface from "./StudyInterface";
 import CourseInterface from "./CourseInterface";
 import ExperienceInterface from "./ExperienceInterface";
+import ProjectInterface from "./ProjectInterface";
 
 export interface AboutMeInterface {
   name: string;
@@ -29,4 +30,5 @@ export interface UserInterface {
   studies?: StudyInterface[];
   courses?: CourseInterface[];
   experiences?: ExperienceInterface[];
+  projects?: ProjectInterface[];
 }
