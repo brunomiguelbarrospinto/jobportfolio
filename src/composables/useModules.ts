@@ -103,8 +103,8 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
       },
       {
         text: "Proyectos",
-        to: { name: "dashboard-experiences-list" },
-        iconName: "BriefcaseIcon",
+        to: { name: "dashboard-projects-list" },
+        iconName: "BeakerIcon",
         count: countProjects,
         level:
           countProjects <= 1 ? "low" : countProjects < 2 ? "medium" : "hight",

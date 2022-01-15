@@ -2,8 +2,8 @@
   <div>
     <div class="bg-white border p-4">
       <div class="flex justify-between">
-        <div>Mis experiencias</div>
-        <Button :to="{ name: 'dashboard-experiences-create' }" text="Añadir" />
+        <div>Mis proyectos</div>
+        <Button :to="{ name: 'dashboard-projects-create' }" text="Añadir" />
       </div>
 
       <draggable
@@ -62,7 +62,7 @@
         </template>
       </draggable>
     </div>
-    <ProjectModalDelete
+    <ProjectsModalDelete
       :isOpen="isOpen"
       @close="
         isOpen = false;
@@ -75,15 +75,15 @@
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
 import Button from "@/components/common/button/Button.vue";
-import useExperiences from "@/composables/useExperiences";
+import useProjects from "@/composables/useProjects";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
 import Icon from "@/components/common/Icon.vue";
 import useNotifications from "@/composables/useNotifications";
-import ProjectModalDelete from "./ProjectModalDelete.vue";
+import ProjectsModalDelete from "./ProjectsModalDelete.vue";
 import draggable from "vuedraggable";
-import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
+import ProjectInterface from "@/definitions/entities/ProjectInterface";
 
 export default defineComponent({
   components: {
@@ -92,29 +92,25 @@ export default defineComponent({
     Dropdown,
     DropdownMenuItem,
     Icon,
-    ProjectModalDelete,
+    ProjectsModalDelete,
     draggable,
   },
   setup() {
-    const {
-      experiences,
-      deleteExperience,
-      isFinished,
-      updateOrderExperiences,
-    } = useExperiences();
+    const { projects, deleteProject, isFinished, updateOrderProjects } =
+      useProjects();
     const isOpen = ref(false);
     const id = ref("");
     const { pushNotification } = useNotifications();
 
     async function submit() {
-      await deleteExperience(id.value);
+      await deleteProject(id.value);
       if (isFinished) {
         isOpen.value = false;
         id.value = "";
         pushNotification({
           id: "",
           title: "Eliminado",
-          description: "Experiencia eliminada",
+          description: "Proyecto eliminada",
           type: "success",
         });
       }
@@ -125,21 +121,21 @@ export default defineComponent({
 
     async function updateOrder() {
       if (elementsToOrder.value) {
-        await updateOrderExperiences(elementsToOrder.value);
+        await updateOrderProjects(elementsToOrder.value);
         if (isFinished) {
           pushNotification({
             id: "",
             title: "Orden actualizado",
-            description: "Tus experiencias se han ordenado",
+            description: "Tus proyectos se han ordenado",
             type: "success",
           });
         }
       }
     }
 
-    const elements = computed((): ExperienceInterface[] | null =>
-      experiences.value
-        ? experiences.value.map((element) => {
+    const elements = computed((): ProjectInterface[] | null =>
+      projects.value
+        ? projects.value.map((element) => {
             return {
               ...element,
               id: element.id,
@@ -154,7 +150,7 @@ export default defineComponent({
       elementsToOrder.value = value;
     });
     return {
-      experiences,
+      projects,
       isOpen,
       id,
       submit,
