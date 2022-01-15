@@ -29,4 +29,5 @@ export interface UserInterface {
   studies?: StudyInterface[];
   courses?: CourseInterface[];
   experiences?: ExperienceInterface[];
+  projects?: ExperienceInterface[];
 }
