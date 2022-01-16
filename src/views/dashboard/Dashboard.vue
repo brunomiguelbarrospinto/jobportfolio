@@ -1,19 +1,17 @@
 <template>
-  <TransitionComponent>
-    <Loading v-if="!user" />
-    <div v-else>
-      <Navbar />
-      <div class="mx-auto max-w-4xl">
-        <Breadcrumbs />
-        <router-view v-slot="{ Component }">
-          <TransitionComponent>
-            <component :is="Component" />
-          </TransitionComponent>
-        </router-view>
-      </div>
-      <Summary :user="user" />
+  <Loading v-if="!user" />
+  <div v-else>
+    <Navbar />
+    <div class="mx-auto max-w-4xl">
+      <Breadcrumbs />
+      <router-view v-slot="{ Component }">
+        <TransitionComponent>
+          <component :is="Component" />
+        </TransitionComponent>
+      </router-view>
     </div>
-  </TransitionComponent>
+    <Summary :user="user" />
+  </div>
 </template>
 
 <script lang="ts">
