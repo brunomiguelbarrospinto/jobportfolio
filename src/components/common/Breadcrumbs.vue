@@ -1,21 +1,21 @@
 <template>
   <nav class="text-black font-semibold my-8" aria-label="Breadcrumb">
     <div class="list-none p-0 inline-flex">
-      <router-link
-        :to="crumb.path"
-        v-for="(crumb, index) in crumbs"
-        :key="'crumb-' + index"
-        class="flex items-center"
-      >
-        <Icon
-          v-if="index > 0"
-          name="ChevronRightIcon"
-          class="fill-current w-3 h-3 mx-3"
-        />
-        <span :class="{ 'text-gray-500': crumbs.length - 1 === index }">
+      <template :key="'crumb-' + index" v-for="(crumb, index) in crumbs">
+        <router-link
+          v-if="crumbs.length - 1 !== index"
+          :to="crumb.to"
+          class="flex items-center"
+        >
+          <span>
+            {{ crumb.text }}
+          </span>
+          <Icon name="ChevronRightIcon" class="fill-current w-3 h-3 mx-3" />
+        </router-link>
+        <span v-else class="text-gray-500">
           {{ crumb.text }}
         </span>
-      </router-link>
+      </template>
     </div>
   </nav>
 </template>
