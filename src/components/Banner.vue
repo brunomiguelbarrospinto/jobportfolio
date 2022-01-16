@@ -90,15 +90,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useUser } from "@/composables/useUser";
-import { useSocialNetworks } from "@/composables/useSocialNetworks";
+import { defineComponent, PropType, computed } from "vue";
+import { UserInterface } from "@/definitions/entities/UserInterface";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 
 export default defineComponent({
-  setup() {
-    const { aboutMe, banner } = useUser();
-    const { socialNetworks } = useSocialNetworks();
+  props: {
+    user: {
+      type: Object as PropType<UserInterface>,
+      required: true,
+    },
+  },
+  setup(props) {
+    const aboutMe = computed(() => props.user.aboutMe);
+    const banner = computed(() => props.user.banner);
+    const socialNetworks = computed(() => props.user.socialNetworks);
+
     return {
       aboutMe,
       banner,
