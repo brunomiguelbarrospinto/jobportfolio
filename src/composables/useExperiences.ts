@@ -40,7 +40,6 @@ const useExperiences = (): {
     isLoading.value = true;
 
     if (data.id) {
-      console.log(data);
       await set(
         refDB(
           database,

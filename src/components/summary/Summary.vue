@@ -1,13 +1,8 @@
 <template>
   <div class="container mx-auto p-20 max-w-6xl">
-    <Banner :user="user" class="mb-5" />
-    <AboutMe :user="user" class="mb-5" />
+    <Banner :user="user" class="mb-10" />
+    <AboutMe :user="user" class="mb-10" />
     <Experiences :user="user" />
-
-    <details>
-      <summary>User</summary>
-      {{ user }}
-    </details>
   </div>
 </template>
 

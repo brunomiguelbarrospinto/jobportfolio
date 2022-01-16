@@ -8,6 +8,7 @@ export default interface ExperienceInterface {
   description: string;
   current: boolean;
   startDate: string;
-  endDate: string;
+  finishDate: string;
   order: number;
+  brandColor?: string;
 }

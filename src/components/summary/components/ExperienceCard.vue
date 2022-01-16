@@ -3,7 +3,7 @@
     :href="experience.url"
     target="_blank"
     class="c-experience-card"
-    :style="`border: 2px solid ${experience.brandColor}`"
+    :style="`--brand-color: ${experience.brandColor}; --hover-color: ${hoverColor}`"
   >
     <header class="c-experience-card__header">
       <div class="c-experience-card__header__gradient" />
@@ -22,16 +22,25 @@
         <div>
           {{ experience.position }}
         </div>
+        <div class="text-xs">
+          {{ experience.startDate }} -
+          <template v-if="experience.current"
+            ><span class="text-green-500 font-semibold"
+              >actualidad</span
+            ></template
+          >
+          <template v-else>{{ experience.finishDate }}</template>
+        </div>
       </div>
     </header>
-    <div class="c-experience-card__content">
+    <!-- <div class="c-experience-card__content">
       {{ experience.description }}
-    </div>
+    </div> -->
   </a>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 export default defineComponent({
   props: {
@@ -40,21 +49,43 @@ export default defineComponent({
       required: true,
     },
   },
+  setup(props) {
+    function getContrastYIQ(hexcolor) {
+      hexcolor = hexcolor.replace("#", "");
+      var r = parseInt(hexcolor.substr(0, 2), 16);
+      var g = parseInt(hexcolor.substr(2, 2), 16);
+      var b = parseInt(hexcolor.substr(4, 2), 16);
+      var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+      return yiq >= 128 ? "black" : "white";
+    }
+
+    const hoverColor = getContrastYIQ(props.experience.brandColor as string);
+    return {
+      hoverColor,
+    };
+  },
 });
 </script>
 
 <style lang="scss">
 .c-experience-card {
-  @apply border rounded block;
+  @apply border rounded block transition-all duration-200;
+  border: 2px solid var(--brand-color);
+
+  &:hover {
+    background: var(--brand-color);
+    color: var(--hover-color);
+    @apply shadow-md;
+  }
   &__header {
-    @apply w-full relative p-3 pb-0 flex text-black text-sm;
+    @apply w-full relative p-3  flex  text-sm;
 
     // &__gradient {
     //   @apply absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20;
     // }
 
     &__logo {
-      @apply relative mr-4;
+      @apply relative mr-3;
     }
 
     &__content {
