@@ -24,6 +24,13 @@ const logo = (): InputInterface => ({
   value: null,
 });
 
+const brandColor = (): InputInterface => ({
+  id: "brandColor",
+  label: "Brand color",
+  type: "color",
+  value: null,
+});
+
 const position = (): InputInterface => ({
   id: "position",
   label: "Posición",
@@ -88,6 +95,10 @@ export default (isNew: boolean): FormInterface => {
           {
             type: "input",
             data: logo(),
+          },
+          {
+            type: "input",
+            data: brandColor(),
           },
           {
             type: "input",

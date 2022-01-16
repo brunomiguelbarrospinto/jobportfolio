@@ -9,7 +9,7 @@
   <Input
     v-if="
       element.type === 'input' &&
-      ['text', 'tel', 'date'].includes(element.data.type)
+      ['text', 'tel', 'date', 'color'].includes(element.data.type)
     "
     v-model="value"
     :id="element.data.id"

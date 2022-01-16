@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <Banner :user="user" />
+  <div class="container mx-auto p-20 max-w-6xl">
+    <Banner :user="user" class="mb-5" />
+    <AboutMe :user="user" class="mb-5" />
+    <Experiences :user="user" />
 
-    <hr />
-    <h1>Acerca de mi</h1>
-
-    <div v-html="user.aboutMe.biography" />
     <details>
       <summary>User</summary>
       {{ user }}
@@ -17,10 +15,14 @@
 import { defineComponent, PropType } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import Banner from "@/components/Banner.vue";
+import AboutMe from "./components/AboutMe.vue";
+import Experiences from "./components/Experiences.vue";
 
 export default defineComponent({
   components: {
     Banner,
+    AboutMe,
+    Experiences,
   },
   props: {
     user: {
