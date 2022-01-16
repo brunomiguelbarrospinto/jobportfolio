@@ -36,7 +36,7 @@ export default defineComponent({
         order: project.value?.order ?? 0,
       });
       if (isFinished) {
-        router.push({ name: "dashboard-experiences-list" });
+        router.push({ name: "dashboard-projects-list" });
         pushNotification({
           id: "",
           title: props.id ? "Actualizado" : "Guardado",

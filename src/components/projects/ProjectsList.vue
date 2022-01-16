@@ -24,10 +24,10 @@
                 :src="element.logo"
                 alt=""
               />
-              <template v-else>{{ element.company[0] }}</template>
+              <template v-else>{{ element.name[0] }}</template>
             </template>
             <template #title>
-              {{ element.company }}
+              {{ element.name }}
             </template>
             <template #subtitle>
               {{ element.description }}
@@ -41,7 +41,7 @@
                   <DropdownMenuItem
                     is="router-link"
                     :to="{
-                      name: 'dashboard-experiences-edit',
+                      name: 'dashboard-projects-edit',
                       params: { id: element.id },
                     }"
                   >
