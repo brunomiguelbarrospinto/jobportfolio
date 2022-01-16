@@ -1,4 +1,13 @@
-export interface ProjectImageInterface {
+
+
+interface ProjectImage{
+  id?: string;
+  value: string;
+  order?: number;
+}
+
+interface ProjectVideo{
+  id?: string;
   value: string;
   order?: number;
 }
@@ -10,5 +19,6 @@ export default interface ProjectInterface {
   logo?: string;
   description: string;
   order: number;
-  images?: ProjectImageInterface[];
+  images?: ProjectImage[]:
+  videos?: ProjectVideo[];
 }

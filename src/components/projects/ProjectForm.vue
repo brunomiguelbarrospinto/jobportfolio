@@ -1,17 +1,17 @@
 <template>
   <div class="bg-white border p-4">
     <Form
-      :form="ExperienceForm(isNew)"
+      :form="ProjectForm(isNew)"
       @form:onSubmit="submit"
-      :values="experience"
+      :values="project"
     />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import ExperienceForm from "@/config/ExperienceForm";
-import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
-import useExperiences from "@/composables/useExperiences";
+import ProjectForm from "@/config/ProjectForm";
+import ProjectInterface from "@/definitions/entities/ProjectInterface";
+import useProjects from "@/composables/useProjects";
 import useNotifications from "@/composables/useNotifications";
 import { useRouter } from "vue-router";
 export default defineComponent({
@@ -24,19 +24,19 @@ export default defineComponent({
   setup(props) {
     const { pushNotification } = useNotifications();
     const router = useRouter();
-    const { getExperienceById, isLoading, isFinished, saveExperience } =
-      useExperiences();
-    const experience = computed(() => getExperienceById(props.id));
-    const isNew = computed(() => experience.value === undefined);
+    const { getProjectById, isLoading, isFinished, saveProject } =
+      useProjects();
+    const project = computed(() => getProjectById(props.id));
+    const isNew = computed(() => project.value === undefined);
 
-    async function submit(data: ExperienceInterface) {
-      await saveExperience({
+    async function submit(data: ProjectInterface) {
+      await saveProject({
         id: props.id,
         ...data,
-        order: experience.value?.order ?? 0,
+        order: project.value?.order ?? 0,
       });
       if (isFinished) {
-        router.push({ name: "dashboard-experiences-list" });
+        router.push({ name: "dashboard-projects-list" });
         pushNotification({
           id: "",
           title: props.id ? "Actualizado" : "Guardado",
@@ -46,7 +46,7 @@ export default defineComponent({
       }
     }
 
-    return { experience, isNew, ExperienceForm, submit, isLoading, isFinished };
+    return { project, isNew, ProjectForm, submit, isLoading, isFinished };
   },
 });
 </script>

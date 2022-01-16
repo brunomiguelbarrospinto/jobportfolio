@@ -22,7 +22,7 @@ const useProjects = (): {
   saveProject: (data: ProjectInterface) => Promise<void>;
   deleteProject: (id: string) => Promise<void>;
   projects: Ref<ProjectInterface[] | undefined>;
-  updateOrderProjects: (courses: ProjectInterface[]) => Promise<void>;
+  updateOrderProjects: (projects: ProjectInterface[]) => Promise<void>;
 } => {
   const projects = computed((): ProjectInterface[] | undefined =>
     convertObjectsCollectionsToArrayCollections(user.value?.projects)?.sort(
