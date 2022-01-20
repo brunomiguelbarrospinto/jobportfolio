@@ -10,7 +10,7 @@
     >
       <Label
         :text="knowledgeItem.name"
-        class="mr-3 mb-3"
+        class="mr-3 mb-3 hover:shadow-md"
         :bgColor="knowledgeItem.color"
       />
     </a>
