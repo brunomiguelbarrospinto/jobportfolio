@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+import { defineComponent, PropType } from "vue";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 export default defineComponent({
   props: {
@@ -69,7 +69,7 @@ export default defineComponent({
 
 <style lang="scss">
 .c-experience-card {
-  @apply border rounded block transition-all duration-200;
+  @apply border rounded inline-block transition-all duration-200;
   border: 2px solid var(--brand-color);
 
   &:hover {

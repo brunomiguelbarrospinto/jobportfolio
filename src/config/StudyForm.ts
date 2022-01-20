@@ -18,6 +18,13 @@ const institute = (): InputInterface => ({
   required: true,
 });
 
+const url = (): InputInterface => ({
+  id: "url",
+  label: "Web",
+  type: "text",
+  value: null,
+});
+
 const title = (): InputInterface => ({
   id: "title",
   label: "Titulo",
@@ -62,6 +69,10 @@ export default (isNewStudy: boolean): FormInterface => {
           {
             type: "input",
             data: institute(),
+          },
+          {
+            type: "input",
+            data: url(),
           },
           {
             type: "input",

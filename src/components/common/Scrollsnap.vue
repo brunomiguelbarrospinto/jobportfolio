@@ -14,28 +14,51 @@
     </div>
     <!-- LEFT AND RIGHT BUTTONS-->
     <slot
-      v-if="$slots['go-prev'] && !arrivedState.left"
+      v-if="!arrivedState.left && hasScroll"
       name="go-prev"
       :goPrev="goPrev"
-    />
+    >
+      <div class="c-scroll-snap__go-prev" @click="goPrev">
+        <div class="bg" />
+
+        <Icon name="ChevronLeftIcon" />
+      </div>
+    </slot>
     <slot
-      v-if="$slots['go-next'] && !arrivedState.right"
+      v-if="!arrivedState.right && hasScroll"
       name="go-next"
       :goNext="goNext"
-    />
+    >
+      <div class="c-scroll-snap__go-next" @click="goNext">
+        <div class="bg" />
+        <Icon name="ChevronRightIcon" />
+      </div>
+    </slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useScroll } from "@vueuse/core";
-import { ref, computed, defineProps, onMounted } from "vue";
+import { useScroll, useWindowSize } from "@vueuse/core";
+import { ref, computed, defineProps, onMounted, watch } from "vue";
+import Icon from "@/components/common/Icon.vue";
+
 const props = defineProps({
   themeColor: { type: String },
   autoSwap: Boolean,
   indicators: Boolean,
 });
 const container = ref<HTMLElement | null>(null);
-const { x, /*y, isScrolling,, directions,*/ arrivedState } =
+const { width } = useWindowSize();
+
+const hasScroll = ref(
+  container.value?.scrollWidth > container.value?.clientWidth
+);
+
+watch(width, () => {
+  hasScroll.value = container.value?.scrollWidth > container.value?.clientWidth;
+});
+
+const { x, /*y, isScrolling,*/ directions, arrivedState } =
   useScroll(container);
 const childrenQuantity = computed(() => container.value?.children.length);
 const activeChildIndex = ref(0);
@@ -94,22 +117,29 @@ const onScroll = debounce((evt: Event) => {
 
 onMounted(() => {
   container.value?.addEventListener("scroll", onScroll);
+  hasScroll.value = container.value?.scrollWidth > container.value?.clientWidth;
 });
 </script>
 
 <style lang="scss">
-.c-scroll-snap {
+$base-class: ".c-scroll-snap";
+
+#{$base-class} {
   overflow: hidden;
   position: relative;
   &__container {
     scroll-snap-type: x mandatory;
-    display: flex;
-    justify-content: space-between;
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
     margin-bottom: -15px;
+    display: flex;
     > * {
       scroll-snap-align: start;
+      min-width: 300px;
+      margin-right: 20px;
+      &:last-of-type {
+        margin-right: 0px;
+      }
     }
   }
 
@@ -136,6 +166,29 @@ onMounted(() => {
         background: var(--theme-color);
         opacity: 1;
       }
+    }
+  }
+
+  &__go-prev,
+  &__go-next {
+    @apply w-8 absolute top-0 z-10 hidden items-center justify-center h-full cursor-pointer text-white  overflow-hidden;
+
+    .bg {
+      @apply absolute left-0 top-0 right-0 bottom-0 bg-black opacity-40;
+    }
+    svg {
+      @apply relative;
+    }
+  }
+
+  &__go-next {
+    @apply right-0;
+  }
+
+  &:hover {
+    #{$base-class}__go-prev,
+    #{$base-class}__go-next {
+      @apply flex;
     }
   }
 }
