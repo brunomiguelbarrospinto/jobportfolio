@@ -10,7 +10,7 @@
         </TransitionComponent>
       </router-view>
     </div>
-    <Summary :user="user" />
+    <Summary v-if="false" :user="user" />
   </div>
 </template>
 

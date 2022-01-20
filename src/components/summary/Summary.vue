@@ -3,6 +3,7 @@
     <Banner :user="user" class="mb-10" />
     <AboutMe :user="user" class="mb-10" />
     <Studies :user="user" class="mb-10" />
+    <Knowledge :user="user" class="mb-10" />
     <Experiences :user="user" />
   </div>
 </template>
@@ -13,6 +14,7 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import Banner from "@/components/Banner.vue";
 import AboutMe from "./components/AboutMe.vue";
 import Studies from "./components/Studies.vue";
+import Knowledge from "./components/Knowledge.vue";
 import Experiences from "./components/Experiences.vue";
 
 export default defineComponent({
@@ -20,6 +22,7 @@ export default defineComponent({
     Banner,
     AboutMe,
     Studies,
+    Knowledge,
     Experiences,
   },
   props: {

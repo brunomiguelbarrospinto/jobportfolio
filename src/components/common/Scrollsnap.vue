@@ -58,7 +58,7 @@ watch(width, () => {
   hasScroll.value = container.value?.scrollWidth > container.value?.clientWidth;
 });
 
-const { x, /*y, isScrolling,*/ directions, arrivedState } =
+const { x, /*y, isScrolling, directions,*/ arrivedState } =
   useScroll(container);
 const childrenQuantity = computed(() => container.value?.children.length);
 const activeChildIndex = ref(0);

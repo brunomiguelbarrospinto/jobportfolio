@@ -4,6 +4,7 @@ import { useStudies } from "./useStudies";
 import { useCourses } from "./useCourses";
 import useExperiences from "./useExperiences";
 import useProjects from "./useProjects";
+import useKnowledge from "./useKnowledge";
 
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
@@ -12,6 +13,7 @@ const { studies } = useStudies();
 const { courses } = useCourses();
 const { experiences } = useExperiences();
 const { projects } = useProjects();
+const { knowledge } = useKnowledge();
 interface ToInterface {
   name: string;
 }
@@ -49,6 +51,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const countCourses = courses.value?.length || 0;
     const countExperiences = experiences.value?.length || 0;
     const countProjects = projects.value?.length || 0;
+    const countKnowledge = knowledge.value?.length || 0;
     return [
       {
         text: "Banner",
@@ -88,6 +91,13 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         iconName: "BadgeCheckIcon",
         count: countCourses,
         level: countCourses < 1 ? "medium" : "hight",
+      },
+      {
+        text: "Conocimientos",
+        to: { name: "dashboard-knowledge-list" },
+        iconName: "LightBulbIcon",
+        count: countKnowledge,
+        level: countKnowledge < 5 ? "medium" : "hight",
       },
       {
         text: "Experiencias",

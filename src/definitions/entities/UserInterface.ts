@@ -1,6 +1,7 @@
 import SocialNetworkInterface from "./SocialNetworksInterface";
 import StudyInterface from "./StudyInterface";
 import CourseInterface from "./CourseInterface";
+import KnowledgeInterface from "./KnowledgeInterface";
 import ExperienceInterface from "./ExperienceInterface";
 import ProjectInterface from "./ProjectInterface";
 
@@ -29,6 +30,7 @@ export interface UserInterface {
   socialNetworks?: SocialNetworkInterface[];
   studies?: StudyInterface[];
   courses?: CourseInterface[];
+  knowledge?: KnowledgeInterface[];
   experiences?: ExperienceInterface[];
   projects?: ProjectInterface[];
 }

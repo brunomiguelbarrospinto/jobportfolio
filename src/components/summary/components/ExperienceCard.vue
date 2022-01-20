@@ -42,6 +42,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
+import getContrastYIQ from "@/utils/getContrastYIQ";
 export default defineComponent({
   props: {
     experience: {
@@ -50,15 +51,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    function getContrastYIQ(hexcolor) {
-      hexcolor = hexcolor.replace("#", "");
-      var r = parseInt(hexcolor.substr(0, 2), 16);
-      var g = parseInt(hexcolor.substr(2, 2), 16);
-      var b = parseInt(hexcolor.substr(4, 2), 16);
-      var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-      return yiq >= 128 ? "black" : "white";
-    }
-
     const hoverColor = getContrastYIQ(props.experience.brandColor as string);
     return {
       hoverColor,

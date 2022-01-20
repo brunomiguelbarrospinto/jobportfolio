@@ -2,6 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 import SocialNetworksRoutes from "./social-networks";
 import StudiesRoutes from "./studies";
 import CoursesRoutes from "./courses";
+import KnowledgeRoutes from "./knowledge";
 import ExperiencesRoutes from "./experiences";
 import ProjectsRoutes from "./projects";
 
@@ -59,6 +60,7 @@ const routes: Array<RouteRecordRaw> = [
       SocialNetworksRoutes,
       StudiesRoutes,
       CoursesRoutes,
+      KnowledgeRoutes,
       ExperiencesRoutes,
       ProjectsRoutes,
     ],
