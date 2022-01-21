@@ -5,6 +5,7 @@ import CoursesRoutes from "./courses";
 import KnowledgeRoutes from "./knowledge";
 import ExperiencesRoutes from "./experiences";
 import ProjectsRoutes from "./projects";
+import LanguagesRoutes from "./languages";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -63,6 +64,7 @@ const routes: Array<RouteRecordRaw> = [
       KnowledgeRoutes,
       ExperiencesRoutes,
       ProjectsRoutes,
+      LanguagesRoutes,
     ],
   },
 ];

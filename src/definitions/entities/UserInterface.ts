@@ -1,4 +1,5 @@
 import SocialNetworkInterface from "./SocialNetworksInterface";
+import LanguageInterface from "./LanguageInterface";
 import StudyInterface from "./StudyInterface";
 import CourseInterface from "./CourseInterface";
 import KnowledgeInterface from "./KnowledgeInterface";
@@ -27,6 +28,7 @@ export interface UserInterface {
   email: string;
   aboutMe?: AboutMeInterface;
   banner?: BannerInterface;
+  languages: LanguageInterface[];
   socialNetworks?: SocialNetworkInterface[];
   studies?: StudyInterface[];
   courses?: CourseInterface[];

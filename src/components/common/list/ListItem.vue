@@ -1,31 +1,10 @@
 <template>
   <div
-    class="
-      flex
-      items-center
-      pt-2
-      pb-2
-      pr-4
-      pl-4
-      transition-all
-      hover:bg-gray-100 hover:shadow-md
-      border-t
-    "
+    class="flex items-center pt-2 pb-2 pr-4 pl-4 transition-all hover:bg-gray-100 hover:shadow-md border-t"
   >
     <div
       v-if="$slots.image"
-      class="
-        flex-shrink-0
-        w-8
-        h-8
-        flex
-        items-center
-        justify-center
-        rounded-full
-        bg-blue-500
-        text-white
-        mr-4
-      "
+      class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white mr-4"
     >
       <slot name="image" />
     </div>

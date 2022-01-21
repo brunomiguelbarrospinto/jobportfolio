@@ -1,0 +1,118 @@
+[
+  {
+    "id": 1,
+    "name": "{\"es\": \"Español\",\"en\": \"Spanish\"}"
+  },
+  {
+    "id": 2,
+    "name": "{\"es\": \"Inglés\",\"en\": \"English\"}"
+  },
+  {
+    "id": 3,
+    "name": "{\"es\": \"Portugués\",\"en\": \"Portuguese\"}"
+  },
+  {
+    "id": 4,
+    "name": "{\"es\": \"Turco\",\"en\": \"Turkish\"}"
+  },
+  {
+    "id": 5,
+    "name": "{\"es\": \"Sueco\",\"en\": \"Swedish\"}"
+  },
+  {
+    "id": 6,
+    "name": "{\"es\": \"Serbio\",\"en\": \"Serbian\"}"
+  },
+  {
+    "id": 7,
+    "name": "{\"es\": \"Ruso\",\"en\": \"Russian\"}"
+  },
+  {
+    "id": 8,
+    "name": "{\"es\": \"Rumano\",\"en\": \"Romanian\"}"
+  },
+  {
+    "id": 9,
+    "name": "{\"es\": \"Polaco\",\"en\": \"Polish\"}"
+  },
+  {
+    "id": 10,
+    "name": "{\"es\": \"Noruego\",\"en\": \"Norwegian\"}"
+  },
+  {
+    "id": 11,
+    "name": "{\"es\": \"Japonés\",\"en\": \"Japanese\"}"
+  },
+  {
+    "id": 12,
+    "name": "{\"es\": \"Holandés\",\"en\": \"Dutch\"}"
+  },
+  {
+    "id": 13,
+    "name": "{\"es\": \"Húngaro\",\"en\": \"Hungarian\"}"
+  },
+  {
+    "id": 14,
+    "name": "{\"es\": \"Gallego\",\"en\": \"Galician\"}"
+  },
+  {
+    "id": 15,
+    "name": "{\"es\": \"Finlandés\",\"en\": \"Finnish\"}"
+  },
+  {
+    "id": 16,
+    "name": "{\"es\": \"Euskera\",\"en\": \"Euskera\"}"
+  },
+  {
+    "id": 17,
+    "name": "{\"es\": \"Esloveno\",\"en\": \"Slovenian\"}"
+  },
+  {
+    "id": 18,
+    "name": "{\"es\": \"Eslovaco\",\"en\": \"Slovak\"}"
+  },
+  {
+    "id": 19,
+    "name": "{\"es\": \"Danes\",\"en\": \"Danish\"}"
+  },
+  {
+    "id": 20,
+    "name": "{\"es\": \"Croata\",\"en\": \"Croatian\"}"
+  },
+  {
+    "id": 21,
+    "name": "{\"es\": \"Chino\",\"en\": \"Chinese\"}"
+  },
+  {
+    "id": 22,
+    "name": "{\"es\": \"Checo\",\"en\": \"Czech\"}"
+  },
+  {
+    "id": 23,
+    "name": "{\"es\": \"Árabe\",\"en\": \"Arab\"}"
+  },
+  {
+    "id": 24,
+    "name": "{\"es\": \"Albanés\",\"en\": \"Albanian\"}"
+  },
+  {
+    "id": 25,
+    "name": "{\"es\": \"Italiano\",\"en\": \"Italian\"}"
+  },
+  {
+    "id": 26,
+    "name": "{\"es\": \"Alemán\",\"en\": \"German\"}"
+  },
+  {
+    "id": 27,
+    "name": "{\"es\": \"Francés\",\"en\": \"French\"}"
+  },
+  {
+    "id": 28,
+    "name": "{\"es\": \"Catalán\",\"en\": \"Catalan\"}"
+  },
+  {
+    "id": 29,
+    "name": "{\"es\": \"Brasilero\",\"en\": \"Brazilian\"}"
+  }
+]

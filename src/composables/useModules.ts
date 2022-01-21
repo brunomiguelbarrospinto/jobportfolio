@@ -5,6 +5,7 @@ import { useCourses } from "./useCourses";
 import useExperiences from "./useExperiences";
 import useProjects from "./useProjects";
 import useKnowledge from "./useKnowledge";
+import useLanguages from "./useLanguages";
 
 import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
@@ -14,6 +15,7 @@ const { courses } = useCourses();
 const { experiences } = useExperiences();
 const { projects } = useProjects();
 const { knowledge } = useKnowledge();
+const { languages } = useLanguages();
 interface ToInterface {
   name: string;
 }
@@ -52,6 +54,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
     const countExperiences = experiences.value?.length || 0;
     const countProjects = projects.value?.length || 0;
     const countKnowledge = knowledge.value?.length || 0;
+    const countLanguages = languages.value?.length || 0;
     return [
       {
         text: "Banner",
@@ -77,6 +80,13 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         text: "Redes sociales",
         to: { name: "dashboard-social-networks-list" },
         iconName: "GlobeAltIcon",
+      },
+      {
+        text: "Idiomas",
+        to: { name: "dashboard-languages-list" },
+        iconName: "TranslateIcon",
+        count: countLanguages,
+        level: countLanguages < 1 ? "medium" : "hight",
       },
       {
         text: "Estudios",
