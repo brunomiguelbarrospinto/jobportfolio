@@ -1,5 +1,4 @@
 <template>
-  <Label :for="id" v-if="label" :label="label" />
   <select
     :id="id"
     :value="modelValue"
@@ -28,16 +27,11 @@ import { defineComponent } from "vue";
 import Label from "./Label.vue";
 
 export default defineComponent({
-  components: {
-    Label,
-  },
   props: {
     id: {
       type: String,
     },
-    label: {
-      type: String,
-    },
+
     options: {
       type: Array,
     },

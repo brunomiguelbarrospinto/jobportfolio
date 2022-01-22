@@ -1,4 +1,4 @@
-function getContrastYIQ(color: string) {
+function getContrastYIQ(color: string): string {
   const hexcolor = color.replace("#", "") as string;
   const r = parseInt(hexcolor.substr(0, 2), 16);
   const g = parseInt(hexcolor.substr(2, 2), 16);

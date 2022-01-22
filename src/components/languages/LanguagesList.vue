@@ -17,7 +17,7 @@
       >
         <template #item="{ element }">
           <ListItem>
-            <template #title> {{ element.languageId }} </template>
+            <template #title> {{ element.name }} </template>
             <template #subtitle>
               {{ element.description }}
             </template>

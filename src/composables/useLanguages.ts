@@ -3,6 +3,7 @@ import LanguageInterface from "@/definitions/entities/LanguageInterface";
 import { useUser } from "@/composables/useUser";
 import { Ref, ref, computed } from "vue";
 import { ref as refDB, set, push, remove } from "firebase/database";
+import LanguageClass from "@/models/LanguageModel";
 
 const {
   currentAuthUser,
@@ -25,10 +26,11 @@ const useLanguages = (): {
   updateOrderLanguages: (courses: LanguageInterface[]) => Promise<void>;
 } => {
   const languages = computed((): LanguageInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.languages)?.sort(
-      (a: LanguageInterface, b: LanguageInterface) =>
+    convertObjectsCollectionsToArrayCollections(user.value?.languages)
+      .map((l) => new LanguageClass(l))
+      ?.sort((a: LanguageInterface, b: LanguageInterface) =>
         a.order > b.order ? 1 : -1
-    )
+      )
   );
 
   function getLanguageById(id: string): LanguageInterface {

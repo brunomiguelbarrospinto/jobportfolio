@@ -1,6 +1,6 @@
 export default interface KnowledgeInterface {
   id?: string;
-  languageId: string;
+  languageId: number;
   description?: string;
   order: number;
 }

@@ -1,25 +1,20 @@
 import FormInterface from "@/definitions/form/FormInterface";
 import InputInterface from "@/definitions/form/InputInterface";
+import SelectInterface from "@/definitions/form/SelectInterface";
+import languages from "@/data/languages.json";
 
-const company = (): InputInterface => ({
-  id: "name",
-  label: "ad",
-  type: "text",
+const language = (): SelectInterface => ({
+  id: "languageId",
+  label: "Idioma",
   value: null,
   required: true,
+  options: languages.map((l) => ({ value: l.id, text: l.name.es })),
 });
 
-const url = (): InputInterface => ({
-  id: "url",
-  label: "Link",
+const description = (): InputInterface => ({
+  id: "description",
+  label: "Descripción",
   type: "text",
-  value: null,
-});
-
-const color = (): InputInterface => ({
-  id: "color",
-  label: "Color",
-  type: "color",
   value: null,
 });
 
@@ -27,19 +22,15 @@ export default (isNew: boolean): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: isNew ? "Nueva experiencia" : "Editar experiencia",
+        legend: isNew ? "Nuevo idioma" : "Editar idioma",
         elements: [
           {
-            type: "input",
-            data: company(),
+            type: "select",
+            data: language(),
           },
           {
             type: "input",
-            data: url(),
-          },
-          {
-            type: "input",
-            data: color(),
+            data: description(),
           },
         ],
       },
