@@ -1,22 +1,12 @@
 <template>
   <textarea
     :id="id"
-    class="
-      block
-      text-xs
-      w-full
-      px-2
-      py-1
-      border border-gray-200
-      rounded-sm
-      focus:outline-none focus:border-blue-500
-      transition-colors
-      mb-5
-    "
+    class="block text-xs w-full px-2 py-1 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-500 transition-colors mb-5"
     v-bind="$attrs"
     :placeholder="placeholder"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
+    :rows="rows"
   />
 </template>
 
@@ -28,12 +18,15 @@ export default defineComponent({
     id: {
       type: String,
     },
-
     placeholder: {
       type: String,
     },
     modelValue: {
       type: [String, Number],
+    },
+    rows: {
+      type: Number,
+      default: 4,
     },
   },
 });

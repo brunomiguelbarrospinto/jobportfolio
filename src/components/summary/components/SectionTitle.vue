@@ -1,5 +1,5 @@
 <template>
-  <div class="text-2xl mb-3 font-medium"><slot /></div>
+  <div class="text-2xl mb-6 font-medium"><slot /></div>
 </template>
 
 <script lang="ts">

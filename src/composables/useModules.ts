@@ -1,5 +1,6 @@
 import { computed, Ref } from "vue";
 import { useUser } from "./useUser";
+import { useSocialNetworks } from "./useSocialNetworks";
 import { useStudies } from "./useStudies";
 import { useCourses } from "./useCourses";
 import useExperiences from "./useExperiences";
@@ -11,6 +12,7 @@ import { BannerInterface } from "@/definitions/entities/UserInterface";
 import { AboutMeInterface } from "@/definitions/entities/UserInterface";
 const { banner, aboutMe } = useUser();
 const { studies } = useStudies();
+const { socialNetworks } = useSocialNetworks();
 const { courses } = useCourses();
 const { experiences } = useExperiences();
 const { projects } = useProjects();
@@ -49,6 +51,7 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
   const modules = computed((): ModuleItemInterface[] => {
     const percentBanner = getPercentOfFillKeysInObject(banner.value);
     const percentAboutMe = getPercentOfFillKeysInObject(aboutMe.value);
+    const countSocialNetworks = socialNetworks.value?.length || 0;
     const countStudies = studies.value?.length || 0;
     const countCourses = courses.value?.length || 0;
     const countExperiences = experiences.value?.length || 0;
@@ -80,6 +83,8 @@ export const useModules = (): { modules: Ref<ModuleItemInterface[]> } => {
         text: "Redes sociales",
         to: { name: "dashboard-social-networks-list" },
         iconName: "GlobeAltIcon",
+        count: countSocialNetworks,
+        level: countSocialNetworks < 1 ? "medium" : "hight",
       },
       {
         text: "Idiomas",

@@ -13,7 +13,7 @@
       :disabled="isLoading"
       :isLoading="isLoading"
       type="submit"
-      :text="isLoading ? 'Procesando' : 'Guardar'"
+      :text="buttonText"
       color="primary"
     />
   </form>
@@ -84,10 +84,22 @@ export default defineComponent({
       return syncedForm;
     });
 
+    const buttonText = computed(() => {
+      if (props.isLoading) {
+        return "Procesando";
+      }
+
+      if (props.form.buttonText) {
+        return props.form.buttonText;
+      }
+
+      return "Guardar";
+    });
     return {
       hasFieldsets,
       onSubmit,
       syncedForm,
+      buttonText,
     };
   },
 });

@@ -17,6 +17,12 @@
       >
         <template #item="{ element }">
           <ListItem>
+            <template #image>
+              <img
+                :src="
+                  require(`@/assets/img/languages/${element.languageId}.svg`)
+                "
+            /></template>
             <template #title> {{ element.name }} </template>
             <template #subtitle>
               {{ element.description }}

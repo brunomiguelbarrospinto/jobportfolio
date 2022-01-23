@@ -7,4 +7,5 @@ export default interface FormInterface {
   action?: string;
   fieldsets?: FieldsetInterface[];
   elements?: FormElementInterface[];
+  buttonText?: string;
 }

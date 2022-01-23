@@ -18,11 +18,11 @@ export default defineComponent({
     // https://heroicons.com
     // https://github.com/tailwindlabs/heroicons
     name: {
-      type: String as PropType<IconTypes>,
+      type: String,
       validator: (value: string) => iconNames.includes(value),
     }, // Prop "name" must be in PascalCase like "ArrowSmLeft"
     type: {
-      type: String,
+      type: String as PropType<IconTypes>,
       default: "solid",
       validator: (value: string) => types.includes(value),
     }, // solid || outline

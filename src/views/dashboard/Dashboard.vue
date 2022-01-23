@@ -1,7 +1,16 @@
 <template>
   <Loading v-if="!user" />
   <div v-else>
-    <Navbar />
+    <Navbar>
+      <template #left-section>
+        <router-link :to="{ name: 'dashboard-home' }">
+          <img class="w-32" :src="require('@/assets/logo.png')" />
+        </router-link>
+      </template>
+      <template #right-section>
+        <AuthUserDropdown />
+      </template>
+    </Navbar>
     <div class="mx-auto max-w-4xl">
       <Breadcrumbs />
       <router-view v-slot="{ Component }">
@@ -23,6 +32,7 @@ import Loading from "@/components/loading/Loading.vue";
 import Navbar from "@/components/navbar/Navbar.vue";
 import Breadcrumbs from "@/components/common/Breadcrumbs.vue";
 import Summary from "@/components/summary/Summary.vue";
+import AuthUserDropdown from "@/components/dashboard/AuthUserDropdown.vue";
 
 export default defineComponent({
   components: {
@@ -31,6 +41,7 @@ export default defineComponent({
     Navbar,
     Breadcrumbs,
     Summary,
+    AuthUserDropdown,
   },
   setup() {
     const { currentAuthUser } = useFirebase();
