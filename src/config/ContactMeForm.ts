@@ -7,6 +7,7 @@ const name: InputInterface = {
   label: "Nombre",
   type: "text",
   value: null,
+  required: true,
 };
 
 const email: InputInterface = {
@@ -14,12 +15,14 @@ const email: InputInterface = {
   label: "Email",
   type: "text",
   value: null,
+  required: true,
 };
 const title: InputInterface = {
   id: "title",
   label: "Titulo",
   type: "text",
   value: null,
+  required: true,
 };
 
 const message: TextareaInterface = {
@@ -27,6 +30,7 @@ const message: TextareaInterface = {
   label: "Mensaje",
   value: null,
   rows: 6,
+  required: true,
 };
 
 export default (): FormInterface => {

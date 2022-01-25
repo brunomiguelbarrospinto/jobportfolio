@@ -1,5 +1,5 @@
 <template>
-  <form :key="syncedForm" @submit.prevent="onSubmit">
+  <form @submit.prevent="onSubmit">
     <template v-if="hasFieldsets">
       <Fieldset
         :key="'fieldset-' + key"

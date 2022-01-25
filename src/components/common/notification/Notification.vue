@@ -1,5 +1,5 @@
 <template>
-  <div class="w-80 bg-white border border-gray-200 p-4 rounded-lg shadow-lg">
+  <div class="w-auto bg-white border border-gray-200 p-4 rounded-lg shadow-lg">
     <div class="flex justify-between items-center">
       <div class="flex items-center">
         <div class="w-7 mr-3">

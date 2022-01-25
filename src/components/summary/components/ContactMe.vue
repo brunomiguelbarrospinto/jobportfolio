@@ -52,19 +52,26 @@
       </div>
 
       <div>
-        <Form :form="ContactMeForm()" @form:onSubmit="submit" />
+        <Form
+          ref="formRef"
+          :form="ContactMeForm()"
+          @form:onSubmit="submit"
+          :isLoading="isLoading"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import ContactMeForm from "@/config/ContactMeForm";
 import Icon from "@/components/common/Icon.vue";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
+import emailjs from "@emailjs/browser";
+import useNotifications from "@/composables/useNotifications";
 
 export default defineComponent({
   components: { SectionTitle, Icon },
@@ -74,12 +81,38 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props) {
+    const isLoading = ref(false);
+    const { pushNotification } = useNotifications();
+
     function submit(data: any) {
-      console.log(data);
+      isLoading.value = true;
+      emailjs
+        .send(
+          "service_pnp7245",
+          "template_u7r9akk",
+          { ...data, from_email: data.email, to_email: props.user.email },
+          "user_5g5KswcOcIydJl2rmUdMM"
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.text);
+            isLoading.value = false;
+            pushNotification({
+              id: "",
+              title: "Email enviado a: " + props.user.email,
+              description: "El email ha sido enviado correctamente.",
+              type: "success",
+            });
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+            isLoading.value = false;
+          }
+        );
     }
 
-    return { ContactMeForm, submit, getSocialNetworkIconComponent };
+    return { ContactMeForm, submit, getSocialNetworkIconComponent, isLoading };
   },
 });
 </script>

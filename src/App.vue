@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>TEST AUTO DEPLOY</h1>
     <router-view v-slot="{ Component }">
       <TransitionComponent>
         <component :is="Component" />
