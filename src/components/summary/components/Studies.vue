@@ -21,6 +21,7 @@ import SectionTitle from "./SectionTitle.vue";
 import StudyItem from "./StudyItem.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import Scrollsnap from "@/components/common/Scrollsnap.vue";
+import StudyClass from "@/models/StudyModel";
 
 export default defineComponent({
   components: { SectionTitle, StudyItem, Scrollsnap },
@@ -36,7 +37,7 @@ export default defineComponent({
     const studies = computed(() => {
       const studies = convertObjectsCollectionsToArrayCollections(
         props.user.studies as StudyInterface[]
-      );
+      ).map((s) => new StudyClass(s));
       if (studies.every((e) => !e.order)) {
         studies.reverse();
       }

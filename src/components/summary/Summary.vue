@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mx-auto p-20 max-w-6xl">
+    <div class="container mx-auto max-w-6xl">
       <Banner :user="user" class="mb-20" />
       <AboutMe :user="user" class="mb-20" />
       <Languages :user="user" class="mb-20" />

@@ -15,21 +15,28 @@
           :src="experience.logo"
         />
       </div>
-      <div class="c-experience-card__header__content">
+      <div class="c-study-item__header__content">
         <div class="font-medium">
-          {{ experience.company }}
-        </div>
-        <div>
           {{ experience.position }}
         </div>
+        <div class="mb-1">
+          {{ experience.company }}
+        </div>
         <div class="text-xs">
-          {{ experience.startDate }} -
+          <span class="capitalize">{{ experience.startShortMonthName }}</span>
+          {{ experience.startYear }} -
           <template v-if="experience.current"
             ><span class="text-green-500 font-semibold"
-              >actualidad</span
-            ></template
+              >actualidad
+            </span></template
           >
-          <template v-else>{{ experience.finishDate }}</template>
+          <template v-else>
+            <span class="capitalize">{{
+              experience.finishShortMonthName
+            }}</span>
+            {{ experience.finishYear }}
+          </template>
+          <span class="text-xs font-medium"> ({{ experience.duration }})</span>
         </div>
       </div>
     </header>
@@ -41,12 +48,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
+import ExperienceModel from "@/models/ExperienceModel";
 import getContrastYIQ from "@/utils/getContrastYIQ";
 export default defineComponent({
   props: {
     experience: {
-      type: Object as PropType<ExperienceInterface>,
+      type: Object as PropType<ExperienceModel>,
       required: true,
     },
   },

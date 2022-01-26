@@ -14,17 +14,22 @@
         <div class="font-medium">
           {{ study.title }}
         </div>
-        <div>
+        <div class="mb-1">
           {{ study.institute }}
         </div>
         <div class="text-xs">
-          {{ study.startDate }} -
+          <span class="capitalize">{{ study.startShortMonthName }}</span>
+          {{ study.startYear }} -
           <template v-if="study.current"
             ><span class="text-green-500 font-semibold"
-              >actualidad</span
-            ></template
+              >actualidad
+            </span></template
           >
-          <template v-else>{{ study.finishDate }}</template>
+          <template v-else>
+            <span class="capitalize">{{ study.finishShortMonthName }}</span>
+            {{ study.finishYear }}
+          </template>
+          <span class="text-xs font-medium"> ({{ study.duration }})</span>
         </div>
       </div>
     </header>
@@ -33,11 +38,11 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import StudyInterface from "@/definitions/entities/StudyInterface";
+import StudyModel from "@/models/StudyModel";
 export default defineComponent({
   props: {
     study: {
-      type: Object as PropType<StudyInterface>,
+      type: Object as PropType<StudyModel>,
       required: true,
     },
   },

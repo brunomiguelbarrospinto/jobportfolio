@@ -4,6 +4,7 @@ import StudyInterface from "@/definitions/entities/StudyInterface";
 import { useUser } from "@/composables/useUser";
 import { Ref, ref, computed } from "vue";
 import { ref as refDB, set, push, remove } from "firebase/database";
+import StudyClass from "@/models/StudyModel";
 
 const {
   currentAuthUser,
@@ -22,13 +23,13 @@ export const useStudies = (): {
   isFinished: Ref<boolean>;
   saveStudy: (data: StudyInterface) => Promise<void>;
   deleteStudy: (id: string) => Promise<void>;
-  studies: Ref<StudyInterface[] | undefined>;
+  studies: Ref<StudyClass[] | undefined>;
   updateOrderStudies: (studies: StudyInterface[]) => Promise<void>;
 } => {
-  const studies = computed((): StudyInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.studies)?.sort(
-      (a: StudyInterface, b: StudyInterface) => (a.order > b.order ? 1 : -1)
-    )
+  const studies = computed((): StudyClass[] | undefined =>
+    convertObjectsCollectionsToArrayCollections(user.value?.studies)
+      .map((s) => new StudyClass(s))
+      ?.sort((a: StudyClass, b: StudyClass) => (a.order > b.order ? 1 : -1))
   );
 
   function getStudyById(id: string): StudyInterface {

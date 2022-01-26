@@ -1,25 +1,25 @@
 <template>
-  <div class="pb-5">
-    <Banner :user="user" class="mb-5" />
-    <div class="grid grid-cols-3 gap-5">
+  <div>
+    <div class="grid grid-cols-3 gap-5 pb-5">
       <ModuleCard
         :key="module.text"
         v-for="module in modules"
         :module="module"
       />
     </div>
+    <Summary :user="user" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Banner from "@/components/Banner.vue";
+import Summary from "@/components/summary/Summary.vue";
 import ModuleCard from "@/components/dashboard/home/ModuleCard.vue";
 import { useUser } from "@/composables/useUser";
 
 import { useModules } from "@/composables/useModules";
 export default defineComponent({
   components: {
-    Banner,
+    Summary,
     ModuleCard,
   },
   setup() {
