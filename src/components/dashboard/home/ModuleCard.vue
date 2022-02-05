@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="module.to"
-    class="flex flex-col p-3 border bg-white relative"
+    class="relative flex flex-col border bg-white p-3"
   >
     <span class="absolute -top-3 -right-2">
       <Badge
@@ -29,7 +29,7 @@
         {{ "Total " + module.count }}
       </Badge>
     </span>
-    <Icon :name="module.iconName" class="mb-2 w-8 h-8" />
+    <Icon :name="module.iconName" class="mb-2 h-8 w-8" />
     <div>{{ module.text }}</div>
   </router-link>
 </template>

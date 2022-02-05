@@ -21,21 +21,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import useNotifications from "@/composables/useNotifications";
 import TransitionComponent from "@/components/transition/Transition.vue";
 import Notification from "@/components/common/notification/Notification.vue";
-
-export default defineComponent({
-  components: { TransitionComponent, Notification },
-  setup() {
-    const { notifications, removeNotification } = useNotifications();
-
-    return {
-      notifications,
-      removeNotification,
-    };
-  },
-});
+const { notifications, removeNotification } = useNotifications();
 </script>

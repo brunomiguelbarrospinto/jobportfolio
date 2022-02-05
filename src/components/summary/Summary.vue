@@ -7,6 +7,7 @@
       <Studies :user="user" class="mb-20" />
       <Knowledge :user="user" class="mb-20" />
       <Experiences :user="user" class="mb-20" />
+      <Projects :user="user" class="mb-20" />
       <ContactMe :user="user" class="mb-20" />
     </div>
   </div>
@@ -21,6 +22,7 @@ import Languages from "./components/Languages.vue";
 import Studies from "./components/Studies.vue";
 import Knowledge from "./components/Knowledge.vue";
 import Experiences from "./components/Experiences.vue";
+import Projects from "./components/Projects.vue";
 import ContactMe from "./components/ContactMe.vue";
 
 export default defineComponent({
@@ -31,6 +33,7 @@ export default defineComponent({
     Studies,
     Knowledge,
     Experiences,
+    Projects,
     ContactMe,
   },
   props: {

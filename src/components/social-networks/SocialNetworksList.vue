@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="bg-white border p-4">
-      <div class="flex justify-between items-center mb-4">
+    <div class="border bg-white p-4">
+      <div class="mb-4 flex items-center justify-between">
         <div class="font-semibold">Mis redes sociales</div>
         <Button
           :to="{ name: 'dashboard-social-networks-create' }"

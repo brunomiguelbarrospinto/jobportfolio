@@ -10,7 +10,7 @@
       <div class="c-experience-card__header__logo">
         <img
           v-if="experience.logo"
-          class="rounded-full border-2 border-white w-10 h-10"
+          class="h-10 w-10 rounded-full border-2 border-white"
           alt=""
           :src="experience.logo"
         />
@@ -26,7 +26,7 @@
           <span class="capitalize">{{ experience.startShortMonthName }}</span>
           {{ experience.startYear }} -
           <template v-if="experience.current"
-            ><span class="text-green-500 font-semibold"
+            ><span class="font-semibold text-green-500"
               >actualidad
             </span></template
           >
@@ -68,7 +68,7 @@ export default defineComponent({
 
 <style lang="scss">
 .c-experience-card {
-  @apply border rounded inline-block transition-all duration-200;
+  @apply inline-block rounded border transition-all duration-200;
   border: 2px solid var(--brand-color);
 
   &:hover {
@@ -77,7 +77,7 @@ export default defineComponent({
     @apply shadow-md;
   }
   &__header {
-    @apply w-full relative p-3  flex  text-sm;
+    @apply relative flex w-full  p-3  text-sm;
 
     // &__gradient {
     //   @apply absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20;

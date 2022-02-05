@@ -4,7 +4,7 @@
 
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <div class="flex items-center mb-4">
+        <div class="mb-4 flex items-center">
           <Icon name="PhoneIcon" class="mr-3" />
           <div>
             <span class="text-lg">Telefono</span> <br />
@@ -12,7 +12,7 @@
           </div>
         </div>
 
-        <div class="flex items-center mb-4">
+        <div class="mb-4 flex items-center">
           <Icon name="MailIcon" class="mr-3" />
           <div>
             <span class="text-lg">Email</span> <br />
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="flex items-center mb-4">
+        <div class="mb-4 flex items-center">
           <Icon name="LocationMarkerIcon" class="mr-3" />
           <div>
             <span class="text-lg">Ubicación</span> <br />
@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <div class="flex items-center mb-4">
+        <div class="mb-4 flex items-center">
           <Icon name="GlobeAltIcon" class="mr-3" />
           <div>
             <span class="text-lg">Redes sociales</span> <br />
@@ -40,7 +40,7 @@
             >
               <a
                 v-if="sn.link.length"
-                class="mr-4 last:mr-0 w-6 flex items-center justify-center justify-items-center"
+                class="mr-4 flex w-6 items-center justify-center justify-items-center last:mr-0"
                 :href="sn.link"
                 target="_blank"
               >
@@ -85,6 +85,7 @@ export default defineComponent({
     const isLoading = ref(false);
     const { pushNotification } = useNotifications();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function submit(data: any) {
       isLoading.value = true;
       emailjs

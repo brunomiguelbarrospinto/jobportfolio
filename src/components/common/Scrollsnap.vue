@@ -171,7 +171,7 @@ $base-class: ".c-scroll-snap";
 
   &__go-prev,
   &__go-next {
-    @apply w-8 absolute top-0 z-10 hidden items-center justify-center h-full cursor-pointer text-white  overflow-hidden;
+    @apply absolute top-0 z-10 hidden h-full w-8 cursor-pointer items-center justify-center overflow-hidden  text-white;
 
     .bg {
       @apply absolute left-0 top-0 right-0 bottom-0 bg-black opacity-40;

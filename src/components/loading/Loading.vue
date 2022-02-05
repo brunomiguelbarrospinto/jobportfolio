@@ -1,14 +1,6 @@
 <template>
   <div
-    class="
-      bg-gray-200
-      absolute
-      w-screen
-      h-screen
-      flex
-      items-center
-      justify-center justify-items-center
-    "
+    class="absolute flex h-screen w-screen items-center justify-center justify-items-center bg-gray-200"
   >
     <LoadingIcon />
   </div>

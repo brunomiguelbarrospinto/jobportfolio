@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Label from "./Label.vue";
 
 export default defineComponent({
   props: {
@@ -44,7 +43,7 @@ export default defineComponent({
 
 <style lang="scss">
 .select {
-  @apply block text-xs w-full px-2 py-1  border border-gray-200 rounded-sm focus:outline-none focus:border-blue-500 transition-colors mb-5 capitalize;
+  @apply focus:outline-none mb-5 block w-full rounded-sm  border border-gray-200 px-2 py-1 text-xs capitalize transition-colors focus:border-blue-500;
 
   & .option {
     @apply capitalize;

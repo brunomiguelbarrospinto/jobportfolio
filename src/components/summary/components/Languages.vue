@@ -4,18 +4,18 @@
     <div
       :key="'language-' + language.id"
       v-for="(language, k) in languages"
-      class="inline-flex align-items-center"
+      class="align-items-center inline-flex"
       :class="k > 0 ? 'ml-6' : ''"
     >
       <!-- <span v-if="k > 0"> • </span> -->
       <img
         :src="require(`@/assets/img/languages/${language.languageId}.svg`)"
         width="32"
-        class="inline mr-2"
+        class="mr-2 inline"
       />
       <div>
-        <div class="block -mb-1">{{ language.name }}</div>
-        <span class="text-gray-500 text-xs"> {{ language.description }}</span>
+        <div class="-mb-1 block">{{ language.name }}</div>
+        <span class="text-xs text-gray-500"> {{ language.description }}</span>
       </div>
     </div>
   </div>

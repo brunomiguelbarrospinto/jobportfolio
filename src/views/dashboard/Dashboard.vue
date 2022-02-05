@@ -45,7 +45,7 @@ export default defineComponent({
   },
   setup() {
     const { currentAuthUser } = useFirebase();
-    const { getUserById, user, setBaseUser } = useUser();
+    const { getUserById, user /*setBaseUser*/ } = useUser();
     onMounted(async () => {
       if (currentAuthUser?.value) {
         await getUserById(currentAuthUser.value.uid);

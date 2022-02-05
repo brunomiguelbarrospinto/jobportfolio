@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white border p-4">
+  <div class="border bg-white p-4">
     <Form
       :form="StudyForm(isNewStudy)"
       @form:onSubmit="submit"

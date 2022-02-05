@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-white border p-4">
+    <div class="border bg-white p-4">
       <div class="flex justify-between">
         <div>Mis cursos</div>
         <Button :to="{ name: 'dashboard-courses-create' }" text="Añadir" />
@@ -20,7 +20,7 @@
             <template #image>
               <img
                 v-if="course.image"
-                class="w-8 h-8"
+                class="h-8 w-8"
                 :src="course.image"
                 alt=""
               />

@@ -36,9 +36,9 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .c-login {
-  @apply h-screen flex items-center justify-center justify-items-center;
+  @apply flex h-screen items-center justify-center justify-items-center;
   &__content {
-    @apply border border-gray-200 bg-white text-black w-96 h-60 rounded-md shadow-sm p-5 flex flex-col justify-around items-center;
+    @apply flex h-60 w-96 flex-col items-center justify-around rounded-md border border-gray-200 bg-white p-5 text-black shadow-sm;
     &__logo {
       @apply w-48;
     }

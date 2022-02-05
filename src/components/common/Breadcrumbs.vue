@@ -1,6 +1,6 @@
 <template>
-  <nav class="text-black font-semibold my-8" aria-label="Breadcrumb">
-    <div class="list-none p-0 inline-flex">
+  <nav class="my-8 font-semibold text-black" aria-label="Breadcrumb">
+    <div class="inline-flex list-none p-0">
       <template :key="'crumb-' + index" v-for="(crumb, index) in crumbs">
         <router-link
           v-if="crumbs.length - 1 !== index"
@@ -10,7 +10,7 @@
           <span>
             {{ crumb.text }}
           </span>
-          <Icon name="ChevronRightIcon" class="fill-current w-3 h-3 mx-3" />
+          <Icon name="ChevronRightIcon" class="mx-3 h-3 w-3 fill-current" />
         </router-link>
         <span v-else class="text-gray-500">
           {{ crumb.text }}

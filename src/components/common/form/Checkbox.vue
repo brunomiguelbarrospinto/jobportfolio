@@ -4,7 +4,7 @@
     v-bind="$attrs"
     :checked="modelValue"
     @change="$emit('update:modelValue', $event.target.checked)"
-    class="block mb-5"
+    class="mb-5 block"
   />
 </template>
 

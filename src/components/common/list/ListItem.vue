@@ -1,19 +1,19 @@
 <template>
   <div
-    class="flex items-center pt-2 pb-2 pr-4 pl-4 transition-all hover:bg-gray-100 hover:shadow-md border-t"
+    class="flex items-center border-t pt-2 pb-2 pr-4 pl-4 transition-all hover:bg-gray-100 hover:shadow-md"
   >
     <div
       v-if="$slots.image"
-      class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white mr-4"
+      class="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white"
     >
       <slot name="image" />
     </div>
 
-    <div class="flex-initial flex-shrink-1 w-full truncate">
-      <div class="text-sm font-medium text-gray-900 truncate">
+    <div class="flex-shrink-1 w-full flex-initial truncate">
+      <div class="truncate text-sm font-medium text-gray-900">
         <slot name="title" />
       </div>
-      <div class="text-xs text-gray-500 truncate">
+      <div class="truncate text-xs text-gray-500">
         <slot name="subtitle" />
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <span
-    class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded"
+    class="inline-block rounded py-1 px-2 text-xs font-semibold uppercase"
     :style="`color:${textColor};background-color: ${bgColor}`"
   >
     {{ text }}

@@ -1,8 +1,8 @@
 <template>
-  <div class="w-auto bg-white border border-gray-200 p-4 rounded-lg shadow-lg">
-    <div class="flex justify-between items-center">
+  <div class="w-auto rounded-lg border border-gray-200 bg-white p-4 shadow-lg">
+    <div class="flex items-center justify-between">
       <div class="flex items-center">
-        <div class="w-7 mr-3">
+        <div class="mr-3 w-7">
           <Icon
             v-if="type === 'info'"
             name="InformationCircleIcon"
@@ -25,11 +25,11 @@
           </div>
         </div>
       </div>
-      <div class="w-5 ml-3">
+      <div class="ml-3 w-5">
         <Icon
           @click="$emit('close')"
           name="XIcon"
-          class="text-gray-400 cursor-pointer hover:text-gray-500"
+          class="cursor-pointer text-gray-400 hover:text-gray-500"
         />
       </div>
     </div>

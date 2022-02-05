@@ -1,17 +1,6 @@
 <template>
   <input
-    class="
-      block
-      text-xs
-      w-full
-      px-2
-      py-1
-      border border-gray-200
-      rounded-sm
-      focus:outline-none focus:border-blue-500
-      transition-colors
-      mb-5
-    "
+    class="focus:outline-none mb-5 block w-full rounded-sm border border-gray-200 px-2 py-1 text-xs transition-colors focus:border-blue-500"
     :id="id"
     v-bind="$attrs"
     @input="input($event)"

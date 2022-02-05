@@ -7,7 +7,7 @@
   >
     <svg
       v-if="isLoading"
-      class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+      class="-ml-1 mr-2 h-4 w-4 animate-spin text-white"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ $selector: ".button";
 
 #{$selector} {
   // Basic
-  @apply cursor-pointer box-border;
+  @apply box-border cursor-pointer;
   // Display
   @apply flex items-center justify-center;
   // Text
@@ -139,7 +139,7 @@ $selector: ".button";
   // Disabled
   &[disabled="disabled"],
   &:disabled {
-    @apply opacity-50 pointer-events-none;
+    @apply pointer-events-none opacity-50;
   }
 
   // Sizes
@@ -201,19 +201,19 @@ $selector: ".button";
 
   // Hover
   &:hover {
-    @apply hover:bg-gray-200 hover:text-#{$default-hover-color};
+    @apply hover:text-#{$default-hover-color} hover:bg-gray-200;
   }
 
   // Focus
 
   &:focus {
-    @apply focus:bg-gray-300  focus:text-#{$default-focus-color};
+    @apply focus:text-#{$default-focus-color}  focus:bg-gray-300;
   }
 
   // Variants
 
   &--outline {
-    @apply border-2 border-#{$default-color};
+    @apply border-#{$default-color} border-2;
     @apply bg-transparent;
 
     &:hover {

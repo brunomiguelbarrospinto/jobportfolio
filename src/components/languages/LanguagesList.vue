@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-white border p-4">
+    <div class="border bg-white p-4">
       <div class="flex justify-between">
         <div>Mis idiomas</div>
         <Button :to="{ name: 'dashboard-languages-create' }" text="Añadir" />

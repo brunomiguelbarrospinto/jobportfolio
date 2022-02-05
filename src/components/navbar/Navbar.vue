@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="sticky top-0 w-full z-20 bg-white border border-gray-200 border-b"
+    class="sticky top-0 z-20 w-full border border-b border-gray-200 bg-white"
   >
     <div class="flex items-center justify-between p-3">
       <slot name="left-section"></slot>

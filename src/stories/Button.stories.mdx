@@ -166,7 +166,7 @@ Button accept a two props for icons, `leftIcon` and `rightIcon`
 Button accept different boolean props `isText` `isOutline` `isCircle`
 
 <Canvas>
-<Story
+  <Story
     name="Variant default"
     args={{
       text: "Default button",
@@ -178,7 +178,7 @@ Button accept different boolean props `isText` `isOutline` `isCircle`
     name="Variant text"
     args={{
       text: "Text button",
-      isText: true
+      isText: true,
     }}
   >
     {Template.bind({})}
@@ -187,12 +187,11 @@ Button accept different boolean props `isText` `isOutline` `isCircle`
     name="Variant outline"
     args={{
       text: "Outline button",
-      isOutline: true
+      isOutline: true,
     }}
   >
     {Template.bind({})}
   </Story>
-  
 </Canvas>
 
 ### Circle
@@ -200,11 +199,11 @@ Button accept different boolean props `isText` `isOutline` `isCircle`
 Button accept boolean prop `isCircle` to use in combination with icons
 
 <Canvas>
-<Story
+  <Story
     name="Circle"
     args={{
       leftIcon: "ThumbUpIcon",
-      isCircle: true
+      isCircle: true,
     }}
   >
     {Template.bind({})}

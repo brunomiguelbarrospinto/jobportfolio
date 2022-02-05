@@ -1,5 +1,5 @@
 <template>
-  <label class="text-xs inline-flex align-center cursor-pointer font-semibold">
+  <label class="align-center inline-flex cursor-pointer text-xs font-semibold">
     <template v-if="label">{{ label }}</template>
     <slot />
   </label>
