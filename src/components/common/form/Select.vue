@@ -43,7 +43,7 @@ export default defineComponent({
 
 <style lang="scss">
 .select {
-  @apply focus:outline-none mb-5 block w-full rounded-sm  border border-gray-200 px-2 py-1 text-xs capitalize transition-colors focus:border-blue-500;
+  @apply mb-5 block w-full rounded-sm border  border-gray-200 px-2 py-1 text-xs capitalize transition-colors focus:border-blue-500 focus:outline-none;
 
   & .option {
     @apply capitalize;

@@ -1,7 +1,6 @@
 module.exports = {
   important: true,
-  purge: { content: ["./public/**/*.html", "./src/**/*.vue"] },
-  darkMode: false, // or 'media' or 'class'
+  content: ["./public/**/*.html", "./src/**/*.vue"],
   theme: {
     cursor: {
       pointer: "pointer",
