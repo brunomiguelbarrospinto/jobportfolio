@@ -1,12 +1,10 @@
-
-
-interface ProjectImage{
+interface ProjectImage {
   id?: string;
   value: string;
   order?: number;
 }
 
-interface ProjectVideo{
+interface ProjectVideo {
   id?: string;
   value: string;
   order?: number;
@@ -19,6 +17,6 @@ export default interface ProjectInterface {
   logo?: string;
   description: string;
   order: number;
-  images?: ProjectImage[]:
+  images?: ProjectImage[];
   videos?: ProjectVideo[];
 }

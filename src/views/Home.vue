@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="../assets/logo.png"
+      class="shadow-cyan-500/50 shadow-lg"
+    />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
 
     <p :key="c.id" v-for="c in countries">
