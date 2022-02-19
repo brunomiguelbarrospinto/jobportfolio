@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { useScroll, useWindowSize } from "@vueuse/core";
-import { ref, computed, defineProps, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import Icon from "@/components/common/Icon.vue";
 
 const props = defineProps({

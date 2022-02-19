@@ -2,7 +2,7 @@
   <Dropdown>
     <template #activator>
       <button
-        class="focus:outline-none flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+        class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
         id="user-menu"
         aria-haspopup="true"
       >
