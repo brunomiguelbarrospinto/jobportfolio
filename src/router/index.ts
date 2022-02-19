@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import DashboardRoutes from "./dashboard/index";
+import ProfileRoutes from "./profile/index";
 import Home from "../views/Home.vue";
 import { useFirebase } from "@/composables/useFirebase";
 const { currentAuthUser } = useFirebase();
@@ -17,20 +18,13 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
   },
   ...DashboardRoutes,
-  {
-    path: "/profile/:email",
-    name: "profile",
-    props: true,
-    component: () =>
-      import(/* webpackChunkName: "profile" */ "@/views/Profile.vue"),
-
-    meta: { isPublic: true },
-  },
+  ...ProfileRoutes,
 ];
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,

@@ -1,7 +1,21 @@
 <template>
   <div>
     <Navbar class="sticky">
-      <template #left-section>asd</template>
+      <template #left-section>
+        <div class="flex items-center">
+          <div class="h-8 w-8 rounded-full bg-gray-500">
+            <img
+              v-if="user.aboutMe"
+              ref="profileDropdown"
+              @click.prevent="toggleDropdown"
+              class="h-full w-full rounded-full"
+              :src="user.aboutMe.photo"
+              alt=""
+            />
+          </div>
+          <div class="ml-3">{{ user.aboutMe.name }}</div>
+        </div></template
+      >
       <template #right-section> </template>
     </Navbar>
     <Navbar>
