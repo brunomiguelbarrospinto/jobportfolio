@@ -5,6 +5,8 @@ import store from "./store";
 import "./assets/tailwind.scss";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+import jobportfolioComponents from "jobportfolio-components/dist/library.mjs";
+
 //Global components
 import Form from "@/components/common/form/Form.vue";
 
@@ -18,6 +20,7 @@ onAuthStateChanged(auth, (user) => {
   if (!app) {
     app = createApp(App);
     app.component("Form", Form); // global registration - can be used anywhere
+    app.use(jobportfolioComponents); // global registration - can be used anywhere
     app.use(store).use(router).mount("#app");
   }
 });

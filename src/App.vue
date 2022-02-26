@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Textarea />
     <router-view v-slot="{ Component }">
       <TransitionComponent>
         <component :is="Component" />
