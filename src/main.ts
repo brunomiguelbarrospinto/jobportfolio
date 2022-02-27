@@ -5,6 +5,9 @@ import store from "./store";
 import "./assets/tailwind.scss";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+import LogRocket from "logrocket";
+LogRocket.init("hsxssp/jobportfolio");
+
 import jobportfolioComponents from "jobportfolio-components/dist/library.mjs";
 
 //Global components

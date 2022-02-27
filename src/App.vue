@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Textarea />
+    <Textarea /> logrocket
     <router-view v-slot="{ Component }">
       <TransitionComponent>
         <component :is="Component" />
