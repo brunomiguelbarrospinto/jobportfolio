@@ -1,6 +1,7 @@
 <template>
   <div>
     <Textarea /> logrocket
+    <button @click="trowError">Trow error</button>
     <router-view v-slot="{ Component }">
       <TransitionComponent>
         <component :is="Component" />
@@ -27,4 +28,8 @@ import useNotifications from "@/composables/useNotifications";
 import TransitionComponent from "@/components/transition/Transition.vue";
 import Notification from "@/components/common/notification/Notification.vue";
 const { notifications, removeNotification } = useNotifications();
+
+function trowError() {
+  throw new Error("I'm Evil");
+}
 </script>
