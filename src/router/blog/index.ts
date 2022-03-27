@@ -6,6 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "blog",
     component: () =>
       import(/* webpackChunkName: "blog" */ "@/views/blog/Blog.vue"),
+    meta: { isPublic: true },
     children: [
       {
         path: "",
