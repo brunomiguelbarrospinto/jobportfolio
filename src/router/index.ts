@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import DashboardRoutes from "./dashboard/index";
 import ProfileRoutes from "./profile/index";
-import Home from "../views/Home.vue";
+import BlogRoutes from "./blog/index";
 import { useFirebase } from "@/composables/useFirebase";
 const { currentAuthUser } = useFirebase();
 
@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: Home,
+    component: () => import(/* webpackChunkName: "login" */ "@/views/Home.vue"),
   },
   {
     path: "/login",
@@ -19,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   ...DashboardRoutes,
   ...ProfileRoutes,
+  ...BlogRoutes,
 ];
 
 const router = createRouter({

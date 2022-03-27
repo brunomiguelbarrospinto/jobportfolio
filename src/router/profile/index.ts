@@ -19,26 +19,6 @@ const routes: Array<RouteRecordRaw> = [
           ),
         meta: { isPublic: true },
       },
-      {
-        path: "blog",
-        name: "profile-blog-index",
-        component: () =>
-          import(
-            /* webpackChunkName: "dashboard-home" */ "@/views/profile/blog/Index.vue"
-          ),
-        meta: { isPublic: true },
-        children: [
-          {
-            path: "",
-            name: "profile-blog",
-            component: () =>
-              import(
-                /* webpackChunkName: "dashboard-home" */ "@/views/profile/blog/Blog.vue"
-              ),
-            meta: { isPublic: true },
-          },
-        ],
-      },
     ],
   },
 ];
