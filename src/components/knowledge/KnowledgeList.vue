@@ -3,7 +3,10 @@
     <div class="border bg-white p-4">
       <div class="flex justify-between">
         <div>Mis conocimientos</div>
-        <Button :to="{ name: 'dashboard-knowledge-create' }" text="Añadir" />
+        <ButtonComponent
+          :to="{ name: 'dashboard-knowledge-create' }"
+          text="Añadir"
+        />
       </div>
 
       <draggable
@@ -62,7 +65,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
-import Button from "@/components/common/button/Button.vue";
+
 import useKnowledge from "@/composables/useKnowledge";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -75,7 +78,6 @@ import KnowledgeInterface from "@/definitions/entities/KnowledgeInterface";
 
 export default defineComponent({
   components: {
-    Button,
     ListItem,
     Dropdown,
     DropdownMenuItem,

@@ -3,7 +3,7 @@
     <div class="border bg-white p-4">
       <div class="mb-4 flex items-center justify-between">
         <div class="font-semibold">Mis redes sociales</div>
-        <Button
+        <ButtonComponent
           :to="{ name: 'dashboard-social-networks-create' }"
           text="Añadir"
         />
@@ -73,7 +73,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
-import Button from "@/components/common/button/Button.vue";
+
 import { useSocialNetworks } from "@/composables/useSocialNetworks";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -87,7 +87,6 @@ import SocialNetworkInterface from "@/definitions/entities/SocialNetworksInterfa
 
 export default defineComponent({
   components: {
-    Button,
     ListItem,
     Dropdown,
     DropdownMenuItem,

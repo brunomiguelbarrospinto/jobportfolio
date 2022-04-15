@@ -6,7 +6,7 @@
     >
       {{ fieldset.legend }}
     </legend>
-    <Button
+    <ButtonComponent
       v-if="fieldset.sortable"
       class="ml-auto"
       leftIcon="SortDescendingIcon"
@@ -34,7 +34,7 @@
             />
           </div>
           <div v-if="sort">
-            <Button
+            <ButtonComponent
               v-if="fieldset.sortable"
               class="ml-auto cursor-grab"
               :leftIcon="index === 0 ? 'ArrowSmDownIcon' : 'SwitchVerticalIcon'"
@@ -54,12 +54,11 @@ import FieldsetInterface from "@/definitions/form/FieldsetInterface";
 import FormElementInterface from "@/definitions/form/FormElementInterface";
 import { defineComponent, PropType, ref } from "vue";
 import FormElement from "./FormElement.vue";
-import Button from "@/components/common/button/Button.vue";
+
 export default defineComponent({
   components: {
     FormElement,
     draggable,
-    Button,
   },
   props: {
     fieldset: { type: Object as PropType<FieldsetInterface>, required: true },

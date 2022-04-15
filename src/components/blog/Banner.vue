@@ -1,13 +1,13 @@
 <template>
-  <div class="py-20 bg-white">
+  <div class="bg-white py-20">
     <div class="container mx-auto max-w-screen-xl">
       <div class="grid grid-cols-2 gap-20">
         <div class="grid place-content-center">
-          <h1 class="text-5xl font-extrabold leading-normal text-gray-800 mb-6">
+          <h1 class="mb-6 text-5xl font-extrabold leading-normal text-gray-800">
             Hola, Soy <span class="text-red-400">Bruno Barros</span>.<br />
             Web Developer
           </h1>
-          <h4 class="text-slate-500 font-extrabold mb-8">
+          <h4 class="mb-8 font-extrabold text-slate-500">
             Actualmente especializándome en tecnologías relacionadas con el
             mundo Frontend como
             <a
@@ -39,18 +39,14 @@
             >.
           </h4>
           <div>
-            <button
-              class="bg-red-400 text-white px-5 py-3 rounded-full text-sm mr-6"
-            >
-              Contactame
-            </button>
+            <ButtonComponent text="Contactame" leftIcon="MailIcon" />
             <button class="text-slate-500">Acerca de mi</button>
           </div>
         </div>
         <div class="">
           <img
             src="https://picsum.photos/350/350"
-            class="rounded-full mx-auto"
+            class="mx-auto rounded-full"
           />
         </div>
       </div>

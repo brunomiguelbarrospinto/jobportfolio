@@ -3,7 +3,10 @@
     <div class="border bg-white p-4">
       <div class="flex justify-between">
         <div>Mis estudios</div>
-        <Button :to="{ name: 'dashboard-studies-create' }" text="Añadir" />
+        <ButtonComponent
+          :to="{ name: 'dashboard-studies-create' }"
+          text="Añadir"
+        />
       </div>
 
       <draggable
@@ -76,7 +79,7 @@
 // TODO: create list components, create useStudies to get, create, update amd delete studies
 
 import { defineComponent, ref, computed, watch } from "vue";
-import Button from "@/components/common/button/Button.vue";
+
 import { useStudies } from "@/composables/useStudies";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -89,7 +92,6 @@ import StudyInterface from "@/definitions/entities/StudyInterface";
 
 export default defineComponent({
   components: {
-    Button,
     ListItem,
     Dropdown,
     DropdownMenuItem,
