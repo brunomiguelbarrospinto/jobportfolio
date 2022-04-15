@@ -3,7 +3,10 @@
     <div class="border bg-white p-4">
       <div class="flex justify-between">
         <div>Mis cursos</div>
-        <Button :to="{ name: 'dashboard-courses-create' }" text="Añadir" />
+        <ButtonComponent
+          :to="{ name: 'dashboard-courses-create' }"
+          text="Añadir"
+        />
       </div>
 
       <draggable
@@ -74,7 +77,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
-import Button from "@/components/common/button/Button.vue";
+
 import { useCourses } from "@/composables/useCourses";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -87,7 +90,6 @@ import CourseInterface from "@/definitions/entities/CourseInterface";
 
 export default defineComponent({
   components: {
-    Button,
     ListItem,
     Dropdown,
     DropdownMenuItem,

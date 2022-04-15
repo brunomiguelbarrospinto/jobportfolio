@@ -7,9 +7,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import LogRocket from "logrocket";
 LogRocket.init("hsxssp/jobportfolio");
-
-import jobportfolioComponents from "jobportfolio-components/dist/library.mjs";
-
+import { ButtonComponent } from "vue-vite-components";
+import "vue-vite-components/dist/style.css";
 //Global components
 import Form from "@/components/common/form/Form.vue";
 
@@ -23,7 +22,7 @@ onAuthStateChanged(auth, (user) => {
   if (!app) {
     app = createApp(App);
     app.component("Form", Form); // global registration - can be used anywhere
-    app.use(jobportfolioComponents); // global registration - can be used anywhere
+    app.component("ButtonComponent", ButtonComponent); // global registration - can be used anywhere
     app.use(store).use(router).mount("#app");
   }
 });
