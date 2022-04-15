@@ -21,7 +21,6 @@
     "dayjs": "^1.10.7",
     "firebase": "^9.6.1",
     "highlight.js": "^11.5.0",
-    "jobportfolio-components": "^0.0.5",
     "logrocket": "^2.2.0",
     "prismjs": "^1.27.0",
     "sanity-blocks-vue-component": "^1.0.1",
