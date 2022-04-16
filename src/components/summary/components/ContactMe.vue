@@ -5,7 +5,7 @@
     <div class="grid grid-cols-2 gap-4">
       <div>
         <div class="mb-4 flex items-center">
-          <Icon name="PhoneIcon" class="mr-3" />
+          <IconComponent name="PhoneIcon" class="mr-3" />
           <div>
             <span class="text-lg">Telefono</span> <br />
             <span class="text-sm text-gray-500">{{ user.aboutMe?.phone }}</span>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="mb-4 flex items-center">
-          <Icon name="MailIcon" class="mr-3" />
+          <IconComponent name="MailIcon" class="mr-3" />
           <div>
             <span class="text-lg">Email</span> <br />
             <span class="text-sm text-gray-500">{{ user.email }}</span>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-4 flex items-center">
-          <Icon name="LocationMarkerIcon" class="mr-3" />
+          <IconComponent name="LocationMarkerIcon" class="mr-3" />
           <div>
             <span class="text-lg">Ubicación</span> <br />
             <span class="text-sm text-gray-500">{{
@@ -31,7 +31,7 @@
         </div>
 
         <div class="mb-4 flex items-center">
-          <Icon name="GlobeAltIcon" class="mr-3" />
+          <IconComponent name="GlobeAltIcon" class="mr-3" />
           <div>
             <span class="text-lg">Redes sociales</span> <br />
             <template
@@ -68,13 +68,12 @@ import { defineComponent, PropType, ref } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import ContactMeForm from "@/config/ContactMeForm";
-import Icon from "@/components/common/Icon.vue";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 import emailjs from "@emailjs/browser";
 import useNotifications from "@/composables/useNotifications";
 
 export default defineComponent({
-  components: { SectionTitle, Icon },
+  components: { SectionTitle },
   props: {
     user: {
       type: Object as PropType<UserInterface>,

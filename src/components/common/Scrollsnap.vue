@@ -21,7 +21,7 @@
       <div class="c-scroll-snap__go-prev" @click="goPrev">
         <div class="bg" />
 
-        <Icon name="ChevronLeftIcon" />
+        <IconComponent name="ChevronLeftIcon" />
       </div>
     </slot>
     <slot
@@ -31,7 +31,7 @@
     >
       <div class="c-scroll-snap__go-next" @click="goNext">
         <div class="bg" />
-        <Icon name="ChevronRightIcon" />
+        <IconComponent name="ChevronRightIcon" />
       </div>
     </slot>
   </div>
@@ -40,7 +40,6 @@
 <script setup lang="ts">
 import { useScroll, useWindowSize } from "@vueuse/core";
 import { ref, computed, onMounted, watch } from "vue";
-import Icon from "@/components/common/Icon.vue";
 
 const props = defineProps({
   themeColor: { type: String },
