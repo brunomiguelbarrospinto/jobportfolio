@@ -29,19 +29,17 @@
         {{ "Total " + module.count }}
       </Badge>
     </span>
-    <Icon :name="module.iconName" class="mb-2 h-8 w-8" />
+    <IconComponent :name="module.iconName" class="mb-2 h-8 w-8" />
     <div>{{ module.text }}</div>
   </router-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Icon from "@/components/common/Icon.vue";
 import Badge from "@/components/common/Badge.vue";
 
 export default defineComponent({
   components: {
-    Icon,
     Badge,
   },
   props: {

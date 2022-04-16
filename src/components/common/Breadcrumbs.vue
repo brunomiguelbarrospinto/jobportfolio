@@ -10,7 +10,10 @@
           <span>
             {{ crumb.text }}
           </span>
-          <Icon name="ChevronRightIcon" class="mx-3 h-3 w-3 fill-current" />
+          <IconComponent
+            name="ChevronRightIcon"
+            class="mx-3 h-3 w-3 fill-current"
+          />
         </router-link>
         <span v-else class="text-gray-500">
           {{ crumb.text }}
@@ -22,12 +25,8 @@
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import Icon from "@/components/common/Icon.vue";
 import { useRoute } from "vue-router";
 export default defineComponent({
-  components: {
-    Icon,
-  },
   setup() {
     interface Breadcrumb {
       path: string;

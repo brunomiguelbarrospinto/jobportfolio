@@ -34,7 +34,10 @@
             <template #button>
               <Dropdown>
                 <template #activator>
-                  <Icon name="DotsVerticalIcon" class="text-red bg-red w-5" />
+                  <IconComponent
+                    name="DotsVerticalIcon"
+                    class="text-red bg-red w-5"
+                  />
                 </template>
                 <template #content>
                   <DropdownMenuItem
@@ -78,7 +81,6 @@ import { useSocialNetworks } from "@/composables/useSocialNetworks";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
-import Icon from "@/components/common/Icon.vue";
 import SocialNetworkModalDelete from "./SocialNetworkModalDelete.vue";
 import useNotifications from "@/composables/useNotifications";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
@@ -90,7 +92,6 @@ export default defineComponent({
     ListItem,
     Dropdown,
     DropdownMenuItem,
-    Icon,
     SocialNetworkModalDelete,
     draggable,
   },
