@@ -1,7 +1,6 @@
 import { createApp, App as Application } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
 import "./assets/tailwind.scss";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -11,6 +10,8 @@ import {
   ButtonComponent,
   IconComponent,
   InteractiveElementComponent,
+  IconLoadingAnimatedComponent,
+  TagComponent,
 } from "vue-vite-components";
 
 import "vue-vite-components/dist/style.css";
@@ -30,7 +31,9 @@ onAuthStateChanged(auth, (user) => {
     app.component("ButtonComponent", ButtonComponent); // global registration - can be used anywhere
     app.component("IconComponent", IconComponent); // global registration - can be used anywhere
     app.component("InteractiveElementComponent", InteractiveElementComponent); // global registration - can be used anywhere
+    app.component("IconLoadingAnimatedComponent", IconLoadingAnimatedComponent); // global registration - can be used anywhere
+    app.component("TagComponent", TagComponent); // global registration - can be used anywhere
 
-    app.use(store).use(router).mount("#app");
+    app.use(router).mount("#app");
   }
 });

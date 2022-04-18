@@ -8,10 +8,10 @@
       :key="'knowledge-item-' + knowledgeItem.id"
       v-for="knowledgeItem in knowledge"
     >
-      <Label
+      <TagComponent
         :text="knowledgeItem.name"
         class="mr-3 mb-3 hover:shadow-md"
-        :bgColor="knowledgeItem.color"
+        :backgroundColor="knowledgeItem.color"
       />
     </a>
   </div>
@@ -23,9 +23,8 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import KnowledgeInterface from "@/definitions/entities/KnowledgeInterface";
-import Label from "@/components/common/Label.vue";
 export default defineComponent({
-  components: { SectionTitle, Label },
+  components: { SectionTitle },
   props: {
     user: {
       type: Object as PropType<UserInterface>,

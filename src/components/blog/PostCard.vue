@@ -13,7 +13,10 @@
           :to="`/category/${category.slug}`"
           class="mr-2"
         >
-          <Label :text="category.title" :bgColor="category.color" />
+          <TagComponent
+            :text="category.title"
+            :backgroundColor="category.color"
+          />
         </router-link>
       </div>
       <router-link
@@ -39,7 +42,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import Label from "@/components/common/Label.vue";
 const props = defineProps({
   post: Object,
 });
