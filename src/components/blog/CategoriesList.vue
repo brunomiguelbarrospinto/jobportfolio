@@ -6,13 +6,12 @@
       :to="`/category/${category.slug}`"
       class="mr-2 mb-2"
     >
-      <Label :text="category.title" :bgColor="category.color" />
+      <TagComponent :text="category.title" :backgroundColor="category.color" />
     </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
-import Label from "@/components/common/Label.vue";
 import useCategories from "@/composables/blog/useCategories";
 
 const { fetchCategories, categories } = useCategories();

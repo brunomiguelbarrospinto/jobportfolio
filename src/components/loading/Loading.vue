@@ -2,15 +2,6 @@
   <div
     class="absolute flex h-screen w-screen items-center justify-center justify-items-center bg-gray-200"
   >
-    <LoadingIcon />
+    <IconLoadingAnimatedComponent class="-ml-1 mr-3 h-10 w-10" />
   </div>
 </template>
-<script>
-import { defineComponent } from "vue";
-import LoadingIcon from "./LoadingIcon.vue";
-export default defineComponent({
-  components: {
-    LoadingIcon,
-  },
-});
-</script>

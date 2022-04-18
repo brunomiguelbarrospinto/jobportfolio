@@ -27,9 +27,8 @@
     "vue": "^3.2.31",
     "vue-prism-component": "^2.0.0",
     "vue-router": "^4.0.0-0",
-    "vue-vite-components": "^0.0.0-development-4",
+    "vue-vite-components": "^0.0.0-development-10",
     "vuedraggable": "^4.1.0",
-    "vuex": "^4.0.0-0",
     "yup": "^0.32.9"
   },
   "devDependencies": {
