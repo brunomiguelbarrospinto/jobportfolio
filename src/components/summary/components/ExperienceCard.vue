@@ -49,7 +49,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import ExperienceModel from "@/models/ExperienceModel";
-import getContrastYIQ from "@/utils/getContrastYIQ";
+import { getContrastColor } from "vue-vite-components";
 export default defineComponent({
   props: {
     experience: {
@@ -58,7 +58,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const hoverColor = getContrastYIQ(props.experience.brandColor as string);
+    const hoverColor = getContrastColor({
+      hexadecimal: props.experience.brandColor,
+    });
+    console.log(hoverColor);
     return {
       hoverColor,
     };
