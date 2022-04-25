@@ -20,6 +20,12 @@ const routes: Array<RouteRecordRaw> = [
   ...DashboardRoutes,
   ...ProfileRoutes,
   ...BlogRoutes,
+  {
+    path: "/test",
+    name: "test",
+    component: () => import(/* webpackChunkName: "login" */ "@/views/Test.vue"),
+    meta: { isPublic: true },
+  },
 ];
 
 const router = createRouter({
