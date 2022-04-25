@@ -1,5 +1,5 @@
 <template>
-  <nav class="my-8 font-semibold text-black" aria-label="Breadcrumb">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
     <div class="inline-flex list-none p-0">
       <template :key="'crumb-' + index" v-for="(crumb, index) in crumbs">
         <router-link
@@ -33,9 +33,12 @@ export default defineComponent({
       to: string;
     }
     const route = useRoute();
+
     const crumbs = computed(() => {
       let pathArray = route.path.split("/");
+
       pathArray.shift();
+
       let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
         if (!route.matched[idx - 1]?.meta?.dinamicRoute) {
           breadcrumbArray.push({
@@ -57,3 +60,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.breadcrumb {
+  @apply my-8 font-semibold text-black;
+}
+</style>
