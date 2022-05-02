@@ -7,32 +7,44 @@
             <img
               v-if="user.aboutMe"
               ref="profileDropdown"
-              @click.prevent="toggleDropdown"
               class="h-full w-full rounded-full"
               :src="user.aboutMe.photo"
               alt=""
             />
           </div>
-          <div class="ml-3">{{ user.aboutMe.name }}</div>
+          <div class="ml-3">
+            {{ user.aboutMe.name }} {{ user.aboutMe?.lastNames }}
+          </div>
         </div></template
       >
       <template #right-section> </template>
     </Navbar>
-    <Navbar>
-      <template #left-section></template>
-      <template #right-section>
-        <router-link
-          :key="`link-module-${m.id}`"
-          v-for="m in modules"
-          :to="`#${m.id}`"
-          class="ml-4"
-        >
-          {{ m.linkText }}
-        </router-link>
-      </template>
-    </Navbar>
-    <div class="container mx-auto max-w-6xl">
-      <Banner :user="user" class="mb-20" />
+    <div class="container mx-auto max-w-4xl px-3">
+      <Banner :user="user" />
+
+      <div class="grid grid-cols-3 gap-14">
+        <div class="col-span-2">
+          <component
+            :is="m.component"
+            :key="`first-column-${m.id}`"
+            :id="`${m.id}`"
+            v-for="m in firstColumn"
+            :user="user"
+            class="mb-16"
+          />
+        </div>
+
+        <div>
+          <component
+            :is="m.component"
+            :key="`second-column-${m.id}`"
+            :id="`${m.id}`"
+            v-for="m in secondColumn"
+            :user="user"
+            class="mb-16"
+          />
+        </div>
+      </div>
 
       <component
         :is="m.component"
@@ -40,7 +52,7 @@
         :id="`${m.id}`"
         v-for="m in modules"
         :user="user"
-        class="mb-20"
+        class="mb-16"
       />
     </div>
   </div>
@@ -51,7 +63,6 @@ import { defineComponent, PropType } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import Navbar from "@/components/navbar/Navbar.vue";
 import Banner from "@/components/Banner.vue";
-import AboutMe from "./components/AboutMe.vue";
 import Languages from "./components/Languages.vue";
 import Studies from "./components/Studies.vue";
 import Knowledge from "./components/Knowledge.vue";
@@ -73,24 +84,17 @@ export default defineComponent({
   setup() {
     const modules = [
       {
-        id: "about-me",
-        linkText: "Acerca de mi",
-        component: AboutMe,
+        id: "contact-me",
+        linkText: "Contactame",
+        component: ContactMe,
       },
-      {
-        id: "languages",
-        linkText: "Idiomas",
-        component: Languages,
-      },
+    ];
+
+    const firstColumn = [
       {
         id: "studies",
         linkText: "Estudios",
         component: Studies,
-      },
-      {
-        id: "knowledge",
-        linkText: "Conocimientos",
-        component: Knowledge,
       },
       {
         id: "experiences",
@@ -102,14 +106,24 @@ export default defineComponent({
         linkText: "Proyectos",
         component: Projects,
       },
+    ];
+
+    const secondColumn = [
       {
-        id: "contact-me",
-        linkText: "Contactame",
-        component: ContactMe,
+        id: "knowledge",
+        linkText: "Conocimientos",
+        component: Knowledge,
+      },
+      {
+        id: "languages",
+        linkText: "Idiomas",
+        component: Languages,
       },
     ];
     return {
       modules,
+      firstColumn,
+      secondColumn,
     };
   },
 });

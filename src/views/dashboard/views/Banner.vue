@@ -1,12 +1,10 @@
 <template>
-  <div class="border bg-white p-4">
-    <Form
-      :form="form"
-      :values="user?.banner"
-      @form:onSubmit="updateBannerForm"
-      :isLoading="isLoading"
-    />
-  </div>
+  <Form
+    :form="form"
+    :values="user?.banner"
+    @form:onSubmit="updateBannerForm"
+    :isLoading="isLoading"
+  />
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";

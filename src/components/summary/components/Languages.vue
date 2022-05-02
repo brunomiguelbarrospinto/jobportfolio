@@ -4,8 +4,8 @@
     <div
       :key="'language-' + language.id"
       v-for="(language, k) in languages"
-      class="align-items-center inline-flex"
-      :class="k > 0 ? 'ml-6' : ''"
+      class="align-items-center flex"
+      :class="k > 0 ? 'mt-2' : ''"
     >
       <!-- <span v-if="k > 0"> • </span> -->
       <img

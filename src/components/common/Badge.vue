@@ -1,5 +1,5 @@
 <template>
-  <span class="rounded px-1 text-xs" :class="typeClasses"><slot /></span>
+  <span class="rounded-sm px-1 text-xs" :class="typeClasses"><slot /></span>
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";

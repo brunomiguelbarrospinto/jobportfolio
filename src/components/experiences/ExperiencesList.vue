@@ -1,73 +1,71 @@
 <template>
   <div>
-    <div class="border bg-white p-4">
-      <div class="flex justify-between">
-        <div>Mis experiencias</div>
-        <ButtonComponent
-          :to="{ name: 'dashboard-experiences-create' }"
-          text="Añadir"
-        />
-      </div>
-
-      <draggable
-        v-if="elementsToOrder"
-        v-model="elementsToOrder"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="id"
-        :sort="sort"
-        @change="updateOrder"
-      >
-        <template #item="{ element }">
-          <ListItem>
-            <template #image>
-              <img
-                v-if="element.logo"
-                class="h-8 w-8"
-                :src="element.logo"
-                alt=""
-              />
-              <template v-else>{{ element.company[0] }}</template>
-            </template>
-            <template #title>
-              {{ element.company }}
-            </template>
-            <template #subtitle>
-              {{ element.description }}
-            </template>
-            <template #button>
-              <Dropdown>
-                <template #activator>
-                  <IconComponent
-                    name="DotsVerticalIcon"
-                    class="text-red bg-red w-5"
-                  />
-                </template>
-                <template #content>
-                  <DropdownMenuItem
-                    is="router-link"
-                    :to="{
-                      name: 'dashboard-experiences-edit',
-                      params: { id: element.id },
-                    }"
-                  >
-                    Editar
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    @click="
-                      id = element.id;
-                      isOpen = true;
-                    "
-                  >
-                    Eliminar
-                  </DropdownMenuItem>
-                </template>
-              </Dropdown>
-            </template>
-          </ListItem>
-        </template>
-      </draggable>
+    <div class="flex justify-between">
+      <div>Mis experiencias</div>
+      <ButtonComponent
+        :to="{ name: 'dashboard-experiences-create' }"
+        text="Añadir"
+      />
     </div>
+
+    <draggable
+      v-if="elementsToOrder"
+      v-model="elementsToOrder"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :sort="sort"
+      @change="updateOrder"
+    >
+      <template #item="{ element }">
+        <ListItem>
+          <template #image>
+            <img
+              v-if="element.logo"
+              class="h-8 w-8"
+              :src="element.logo"
+              alt=""
+            />
+            <template v-else>{{ element.company[0] }}</template>
+          </template>
+          <template #title>
+            {{ element.company }}
+          </template>
+          <template #subtitle>
+            {{ element.description }}
+          </template>
+          <template #button>
+            <Dropdown>
+              <template #activator>
+                <IconComponent
+                  name="DotsVerticalIcon"
+                  class="text-red bg-red w-5"
+                />
+              </template>
+              <template #content>
+                <DropdownMenuItem
+                  is="router-link"
+                  :to="{
+                    name: 'dashboard-experiences-edit',
+                    params: { id: element.id },
+                  }"
+                >
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  @click="
+                    id = element.id;
+                    isOpen = true;
+                  "
+                >
+                  Eliminar
+                </DropdownMenuItem>
+              </template>
+            </Dropdown>
+          </template>
+        </ListItem>
+      </template>
+    </draggable>
     <ExperienceModalDelete
       :isOpen="isOpen"
       @close="

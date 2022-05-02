@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
-import { getDatabase, connectDatabaseEmulator } from "firebase/database";
-
+import { getDatabase } from "firebase/database";
+//, connectDatabaseEmulator
 import {
   getAuth,
   signInWithPopup as _signInWithPopup,
@@ -29,10 +29,10 @@ const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
 const database = getDatabase(app);
-if (location.hostname === "localhost") {
-  // Point to the RTDB emulator running on localhost.
-  connectDatabaseEmulator(database, "localhost", 9000);
-}
+// if (location.hostname === "localhost") {
+//   // Point to the RTDB emulator running on localhost.
+//   connectDatabaseEmulator(database, "localhost", 9000);
+// }
 
 export const useFirebase = (): {
   database: any;

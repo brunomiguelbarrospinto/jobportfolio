@@ -1,69 +1,67 @@
 <template>
   <div>
-    <div class="border bg-white p-4">
-      <div class="mb-4 flex items-center justify-between">
-        <div class="font-semibold">Mis redes sociales</div>
-        <ButtonComponent
-          :to="{ name: 'dashboard-social-networks-create' }"
-          text="Añadir"
-        />
-      </div>
-
-      <draggable
-        v-if="elementsToOrder"
-        v-model="elementsToOrder"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="id"
-        :sort="sort"
-        @change="updateOrder"
-      >
-        <template #item="{ element: sn }">
-          <ListItem>
-            <template #image>
-              <component
-                class="p-1"
-                :is="getSocialNetworkIconComponent(sn.name)"
-                color="#fff"
-              />
-            </template>
-            <template #title>
-              <span class="capitalize">{{ sn.name }}</span>
-            </template>
-            <template #subtitle> Link: {{ sn.link }} </template>
-            <template #button>
-              <Dropdown>
-                <template #activator>
-                  <IconComponent
-                    name="DotsVerticalIcon"
-                    class="text-red bg-red w-5"
-                  />
-                </template>
-                <template #content>
-                  <DropdownMenuItem
-                    is="router-link"
-                    :to="{
-                      name: 'dashboard-social-networks-edit',
-                      params: { id: sn.id },
-                    }"
-                  >
-                    Editar
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    @click="
-                      id = sn.id;
-                      isOpen = true;
-                    "
-                  >
-                    Eliminar
-                  </DropdownMenuItem>
-                </template>
-              </Dropdown>
-            </template>
-          </ListItem>
-        </template>
-      </draggable>
+    <div class="mb-4 flex items-center justify-between">
+      <div class="font-semibold">Mis redes sociales</div>
+      <ButtonComponent
+        :to="{ name: 'dashboard-social-networks-create' }"
+        text="Añadir"
+      />
     </div>
+
+    <draggable
+      v-if="elementsToOrder"
+      v-model="elementsToOrder"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :sort="sort"
+      @change="updateOrder"
+    >
+      <template #item="{ element: sn }">
+        <ListItem>
+          <template #image>
+            <component
+              class="p-1"
+              :is="getSocialNetworkIconComponent(sn.name)"
+              color="#fff"
+            />
+          </template>
+          <template #title>
+            <span class="capitalize">{{ sn.name }}</span>
+          </template>
+          <template #subtitle> Link: {{ sn.link }} </template>
+          <template #button>
+            <Dropdown>
+              <template #activator>
+                <IconComponent
+                  name="DotsVerticalIcon"
+                  class="text-red bg-red w-5"
+                />
+              </template>
+              <template #content>
+                <DropdownMenuItem
+                  is="router-link"
+                  :to="{
+                    name: 'dashboard-social-networks-edit',
+                    params: { id: sn.id },
+                  }"
+                >
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  @click="
+                    id = sn.id;
+                    isOpen = true;
+                  "
+                >
+                  Eliminar
+                </DropdownMenuItem>
+              </template>
+            </Dropdown>
+          </template>
+        </ListItem>
+      </template>
+    </draggable>
     <SocialNetworkModalDelete
       :isOpen="isOpen"
       @close="

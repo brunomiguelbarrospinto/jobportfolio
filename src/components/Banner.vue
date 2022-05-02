@@ -1,53 +1,25 @@
 <template>
-  <div class="relative flex flex-col items-center justify-center p-5">
-    <div class="absolute h-full w-full bg-blue-400">
-      <img
-        v-if="banner?.backgroundImage"
-        class="h-full w-full object-cover"
-        :src="banner.backgroundImage"
-      />
-    </div>
-    <div
-      class="relative flex h-full flex-col items-center justify-between justify-items-center"
-    >
-      <div />
-      <div
-        class="flex flex-col items-center justify-center justify-items-center"
-      >
-        <img
-          v-if="banner?.showPhoto && aboutMe?.photo"
-          class="mb-2 h-32 w-32 rounded-full border-4 border-white md:mb-4"
-          alt=""
-          :src="aboutMe.photo"
-        />
-        <div
-          class="mb-2 text-3xl font-semibold text-white md:mb-4 md:text-2xl lg:text-3xl"
-        >
-          {{ banner.title }}
+  <div class="bg-white py-16">
+    <div class="container mx-auto max-w-screen-xl">
+      <div class="grid grid-cols-2 gap-20">
+        <div class="grid place-content-center">
+          <h1 class="mb-1 text-5xl font-bold leading-normal">
+            {{ banner?.title }}
+          </h1>
+          <h1 class="mb-3 text-3xl font-semibold leading-normal">
+            {{ banner?.subTitle }}
+          </h1>
+          <h4 class="mb-8">
+            <div v-html="user.aboutMe?.biography" />
+          </h4>
         </div>
-        <div
-          class="md:text-1xl mb-2 text-xl font-normal text-white md:mb-4 lg:text-2xl"
-        >
-          {{ banner.subTitle }}
-        </div>
-
-        <div
-          v-if="banner?.social"
-          class="flex items-center justify-center justify-items-center border-t-2 border-gray-200 border-opacity-50 pt-2 md:pt-4"
-        >
-          <template :key="sn.link + sn.order" v-for="sn in socialNetworks">
-            <a
-              v-if="sn.link.length"
-              class="mr-4 flex w-6 items-center justify-center justify-items-center last:mr-0"
-              :href="sn.link"
-              target="_blank"
-            >
-              <component
-                :is="getSocialNetworkIconComponent(sn.name)"
-                color="#fff"
-              />
-            </a>
-          </template>
+        <div class="">
+          <img
+            v-if="banner?.showPhoto && aboutMe?.photo"
+            class="rounded-full border-4"
+            alt=""
+            :src="aboutMe.photo"
+          />
         </div>
       </div>
     </div>

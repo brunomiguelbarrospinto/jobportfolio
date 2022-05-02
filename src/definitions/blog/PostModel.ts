@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import PostDTO from "./PostDTO";
 import dayjs from "dayjs";
 

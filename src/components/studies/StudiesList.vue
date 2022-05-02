@@ -1,73 +1,66 @@
 <template>
   <div>
-    <div class="border bg-white p-4">
-      <div class="flex justify-between">
-        <div>Mis estudios</div>
-        <ButtonComponent
-          :to="{ name: 'dashboard-studies-create' }"
-          text="Añadir"
-        />
-      </div>
-
-      <draggable
-        v-if="elementsToOrder"
-        v-model="elementsToOrder"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="id"
-        :sort="sort"
-        @change="updateOrder"
-      >
-        <template #item="{ element: study }">
-          <ListItem>
-            <template #image>
-              <img
-                v-if="study.image"
-                class="h-8 w-8"
-                :src="study.image"
-                alt=""
-              />
-              <template v-else>{{ study.institute[0] }}</template>
-            </template>
-            <template #title>
-              {{ study.title }}
-            </template>
-            <template #subtitle>
-              {{ study.institute }}
-            </template>
-            <template #button>
-              <Dropdown>
-                <template #activator>
-                  <IconComponent
-                    name="DotsVerticalIcon"
-                    class="text-red bg-red w-5"
-                  />
-                </template>
-                <template #content>
-                  <DropdownMenuItem
-                    is="router-link"
-                    :to="{
-                      name: 'dashboard-studies-edit',
-                      params: { id: study.id },
-                    }"
-                  >
-                    Editar
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    @click="
-                      id = study.id;
-                      isOpen = true;
-                    "
-                  >
-                    Eliminar
-                  </DropdownMenuItem>
-                </template>
-              </Dropdown>
-            </template>
-          </ListItem>
-        </template>
-      </draggable>
+    <div class="flex justify-between">
+      <div>Mis estudios</div>
+      <ButtonComponent
+        :to="{ name: 'dashboard-studies-create' }"
+        text="Añadir"
+      />
     </div>
+
+    <draggable
+      v-if="elementsToOrder"
+      v-model="elementsToOrder"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :sort="sort"
+      @change="updateOrder"
+    >
+      <template #item="{ element: study }">
+        <ListItem>
+          <template #image>
+            <img v-if="study.image" class="h-8 w-8" :src="study.image" alt="" />
+            <template v-else>{{ study.institute[0] }}</template>
+          </template>
+          <template #title>
+            {{ study.title }}
+          </template>
+          <template #subtitle>
+            {{ study.institute }}
+          </template>
+          <template #button>
+            <Dropdown>
+              <template #activator>
+                <IconComponent
+                  name="DotsVerticalIcon"
+                  class="text-red bg-red w-5"
+                />
+              </template>
+              <template #content>
+                <DropdownMenuItem
+                  is="router-link"
+                  :to="{
+                    name: 'dashboard-studies-edit',
+                    params: { id: study.id },
+                  }"
+                >
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  @click="
+                    id = study.id;
+                    isOpen = true;
+                  "
+                >
+                  Eliminar
+                </DropdownMenuItem>
+              </template>
+            </Dropdown>
+          </template>
+        </ListItem>
+      </template>
+    </draggable>
     <StudyModalDelete
       :isOpen="isOpen"
       @close="

@@ -1,12 +1,10 @@
 <template>
-  <div class="border bg-white p-4">
-    <Form
-      :form="form"
-      :values="user.aboutMe"
-      @form:onSubmit="updateAboutMeForm"
-      :isLoading="isLoading"
-    />
-  </div>
+  <Form
+    :form="form"
+    :values="user.aboutMe"
+    @form:onSubmit="updateAboutMeForm"
+    :isLoading="isLoading"
+  />
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";

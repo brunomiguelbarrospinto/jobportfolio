@@ -1,73 +1,71 @@
 <template>
   <div>
-    <div class="border bg-white p-4">
-      <div class="flex justify-between">
-        <div>Mis cursos</div>
-        <ButtonComponent
-          :to="{ name: 'dashboard-courses-create' }"
-          text="Añadir"
-        />
-      </div>
-
-      <draggable
-        v-if="elementsToOrder"
-        v-model="elementsToOrder"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="id"
-        :sort="sort"
-        @change="updateOrder"
-      >
-        <template #item="{ element: course }">
-          <ListItem>
-            <template #image>
-              <img
-                v-if="course.image"
-                class="h-8 w-8"
-                :src="course.image"
-                alt=""
-              />
-              <template v-else>{{ course.name[0] }}</template>
-            </template>
-            <template #title>
-              {{ course.name }}
-            </template>
-            <template #subtitle>
-              {{ course.description }}
-            </template>
-            <template #button>
-              <Dropdown>
-                <template #activator>
-                  <IconComponent
-                    name="DotsVerticalIcon"
-                    class="text-red bg-red w-5"
-                  />
-                </template>
-                <template #content>
-                  <DropdownMenuItem
-                    is="router-link"
-                    :to="{
-                      name: 'dashboard-courses-edit',
-                      params: { id: course.id },
-                    }"
-                  >
-                    Editar
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    @click="
-                      id = course.id;
-                      isOpen = true;
-                    "
-                  >
-                    Eliminar
-                  </DropdownMenuItem>
-                </template>
-              </Dropdown>
-            </template>
-          </ListItem>
-        </template>
-      </draggable>
+    <div class="flex justify-between">
+      <div>Mis cursos</div>
+      <ButtonComponent
+        :to="{ name: 'dashboard-courses-create' }"
+        text="Añadir"
+      />
     </div>
+
+    <draggable
+      v-if="elementsToOrder"
+      v-model="elementsToOrder"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :sort="sort"
+      @change="updateOrder"
+    >
+      <template #item="{ element: course }">
+        <ListItem>
+          <template #image>
+            <img
+              v-if="course.image"
+              class="h-8 w-8"
+              :src="course.image"
+              alt=""
+            />
+            <template v-else>{{ course.name[0] }}</template>
+          </template>
+          <template #title>
+            {{ course.name }}
+          </template>
+          <template #subtitle>
+            {{ course.description }}
+          </template>
+          <template #button>
+            <Dropdown>
+              <template #activator>
+                <IconComponent
+                  name="DotsVerticalIcon"
+                  class="text-red bg-red w-5"
+                />
+              </template>
+              <template #content>
+                <DropdownMenuItem
+                  is="router-link"
+                  :to="{
+                    name: 'dashboard-courses-edit',
+                    params: { id: course.id },
+                  }"
+                >
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  @click="
+                    id = course.id;
+                    isOpen = true;
+                  "
+                >
+                  Eliminar
+                </DropdownMenuItem>
+              </template>
+            </Dropdown>
+          </template>
+        </ListItem>
+      </template>
+    </draggable>
     <CourseModalDelete
       :isOpen="isOpen"
       @close="

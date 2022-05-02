@@ -12,6 +12,7 @@ import {
   InteractiveElementComponent,
   IconLoadingAnimatedComponent,
   TagComponent,
+  CardComponent,
 } from "vue-vite-components";
 
 import "vue-vite-components/dist/style.css";
@@ -33,6 +34,7 @@ onAuthStateChanged(auth, (user) => {
     app.component("InteractiveElementComponent", InteractiveElementComponent); // global registration - can be used anywhere
     app.component("IconLoadingAnimatedComponent", IconLoadingAnimatedComponent); // global registration - can be used anywhere
     app.component("TagComponent", TagComponent); // global registration - can be used anywhere
+    app.component("CardComponent", CardComponent); // global registration - can be used anywhere
 
     app.use(router).mount("#app");
   }

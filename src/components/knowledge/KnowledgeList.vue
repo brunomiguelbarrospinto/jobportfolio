@@ -1,61 +1,59 @@
 <template>
   <div>
-    <div class="border bg-white p-4">
-      <div class="flex justify-between">
-        <div>Mis conocimientos</div>
-        <ButtonComponent
-          :to="{ name: 'dashboard-knowledge-create' }"
-          text="Añadir"
-        />
-      </div>
-
-      <draggable
-        v-if="elementsToOrder"
-        v-model="elementsToOrder"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="id"
-        :sort="sort"
-        @change="updateOrder"
-      >
-        <template #item="{ element }">
-          <ListItem>
-            <template #title>
-              {{ element.name }}
-            </template>
-            <template #button>
-              <Dropdown>
-                <template #activator>
-                  <IconComponent
-                    name="DotsVerticalIcon"
-                    class="text-red bg-red w-5"
-                  />
-                </template>
-                <template #content>
-                  <DropdownMenuItem
-                    is="router-link"
-                    :to="{
-                      name: 'dashboard-knowledge-edit',
-                      params: { id: element.id },
-                    }"
-                  >
-                    Editar
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    @click="
-                      id = element.id;
-                      isOpen = true;
-                    "
-                  >
-                    Eliminar
-                  </DropdownMenuItem>
-                </template>
-              </Dropdown>
-            </template>
-          </ListItem>
-        </template>
-      </draggable>
+    <div class="flex justify-between">
+      <div>Mis conocimientos</div>
+      <ButtonComponent
+        :to="{ name: 'dashboard-knowledge-create' }"
+        text="Añadir"
+      />
     </div>
+
+    <draggable
+      v-if="elementsToOrder"
+      v-model="elementsToOrder"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :sort="sort"
+      @change="updateOrder"
+    >
+      <template #item="{ element }">
+        <ListItem>
+          <template #title>
+            {{ element.name }}
+          </template>
+          <template #button>
+            <Dropdown>
+              <template #activator>
+                <IconComponent
+                  name="DotsVerticalIcon"
+                  class="text-red bg-red w-5"
+                />
+              </template>
+              <template #content>
+                <DropdownMenuItem
+                  is="router-link"
+                  :to="{
+                    name: 'dashboard-knowledge-edit',
+                    params: { id: element.id },
+                  }"
+                >
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  @click="
+                    id = element.id;
+                    isOpen = true;
+                  "
+                >
+                  Eliminar
+                </DropdownMenuItem>
+              </template>
+            </Dropdown>
+          </template>
+        </ListItem>
+      </template>
+    </draggable>
     <KnowledgeModalDelete
       :isOpen="isOpen"
       @close="
