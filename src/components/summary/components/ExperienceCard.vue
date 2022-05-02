@@ -48,7 +48,6 @@ export default defineComponent({
     const hoverColor = getContrastColor({
       hexadecimal: props.experience.brandColor,
     });
-    console.log(hoverColor);
     return {
       hoverColor,
     };
