@@ -63,6 +63,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .breadcrumb {
-  @apply my-8 font-semibold text-black;
+  @apply my-5 font-medium text-black;
 }
 </style>

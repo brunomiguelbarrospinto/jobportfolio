@@ -7,19 +7,16 @@
         :module="module"
       />
     </div>
-    <Summary :user="user" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Summary from "@/components/summary/Summary.vue";
 import ModuleCard from "@/components/dashboard/home/ModuleCard.vue";
 import { useUser } from "@/composables/useUser";
 
 import { useModules } from "@/composables/useModules";
 export default defineComponent({
   components: {
-    Summary,
     ModuleCard,
   },
   setup() {

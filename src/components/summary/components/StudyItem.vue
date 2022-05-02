@@ -1,38 +1,34 @@
 <template>
-  <a :href="study.url" target="_blank" class="c-study-item">
-    <header class="c-study-item__header">
-      <div class="c-study-item__header__gradient" />
-      <div class="c-study-item__header__logo">
+  <a :href="study.url" target="_blank">
+    <CardComponent>
+      <template v-if="study.image" #image>
         <img
-          v-if="study.image"
-          class="h-10 w-10 rounded-full border-2 border-white"
+          class="h-10 w-10 border-2 border-white"
           alt=""
           :src="study.image"
         />
-      </div>
-      <div class="c-study-item__header__content">
-        <div class="font-medium">
-          {{ study.title }}
-        </div>
-        <div class="mb-1">
-          {{ study.institute }}
-        </div>
+      </template>
+      <template #title>
+        {{ study.title }}
+      </template>
+      <template #subtitle>
+        {{ study.institute }}
+      </template>
+      <template #extra-info>
         <div class="text-xs">
           <span class="capitalize">{{ study.startShortMonthName }}</span>
           {{ study.startYear }} -
-          <template v-if="study.current"
-            ><span class="font-semibold text-green-500"
-              >actualidad
-            </span></template
-          >
+          <template v-if="study.current">
+            <span class="font-semibold text-green-500"> actualidad </span>
+          </template>
           <template v-else>
             <span class="capitalize">{{ study.finishShortMonthName }}</span>
             {{ study.finishYear }}
           </template>
           <span class="text-xs font-medium"> ({{ study.duration }})</span>
         </div>
-      </div>
-    </header>
+      </template>
+    </CardComponent>
   </a>
 </template>
 
@@ -48,27 +44,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.c-study-item {
-  @apply rounded border  transition-all duration-200;
-
-  &:hover {
-    @apply shadow-md;
-  }
-  &__header {
-    @apply relative flex w-full  p-3  text-sm;
-
-    &__logo {
-      @apply relative mr-3;
-    }
-
-    &__content {
-      @apply relative;
-    }
-  }
-  &__content {
-    @apply p-3 text-sm;
-  }
-}
-</style>

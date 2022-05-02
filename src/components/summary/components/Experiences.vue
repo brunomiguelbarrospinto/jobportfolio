@@ -1,13 +1,11 @@
 <template>
   <div>
     <SectionTitle :user="user">Experiencias</SectionTitle>
-
     <Scrollsnap>
       <ExperienceCard
         :key="'experience-card-' + experience.id"
         v-for="experience in experiences"
         :experience="experience"
-        class="section-category-by-type__scrollsnap__item"
       />
     </Scrollsnap>
   </div>

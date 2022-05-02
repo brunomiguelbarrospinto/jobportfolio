@@ -1,12 +1,10 @@
 <template>
-  <div class="border bg-white p-4">
-    <Form
-      :form="SocialNetworkForm(isNewSocialNetwork)"
-      @form:onSubmit="submit"
-      :isLoading="isLoading"
-      :values="socialNetwork"
-    />
-  </div>
+  <Form
+    :form="SocialNetworkForm(isNewSocialNetwork)"
+    @form:onSubmit="submit"
+    :isLoading="isLoading"
+    :values="socialNetwork"
+  />
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";

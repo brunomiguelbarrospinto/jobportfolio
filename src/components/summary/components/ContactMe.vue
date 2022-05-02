@@ -7,7 +7,7 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="PhoneIcon" class="mr-3" />
           <div>
-            <span class="text-lg">Telefono</span> <br />
+            <span class="text-md">Telefono</span> <br />
             <span class="text-sm text-gray-500">{{ user.aboutMe?.phone }}</span>
           </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="MailIcon" class="mr-3" />
           <div>
-            <span class="text-lg">Email</span> <br />
+            <span class="text-md">Email</span> <br />
             <span class="text-sm text-gray-500">{{ user.email }}</span>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="LocationMarkerIcon" class="mr-3" />
           <div>
-            <span class="text-lg">Ubicación</span> <br />
+            <span class="text-md">Ubicación</span> <br />
             <span class="text-sm text-gray-500">{{
               user.aboutMe?.address
             }}</span>
@@ -33,7 +33,7 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="GlobeAltIcon" class="mr-3" />
           <div>
-            <span class="text-lg">Redes sociales</span> <br />
+            <span class="text-md">Redes sociales</span> <br />
             <template
               :key="sn.link + sn.order"
               v-for="sn in user?.socialNetworks"

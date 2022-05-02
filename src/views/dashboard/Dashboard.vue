@@ -11,7 +11,7 @@
         <AuthUserDropdown />
       </template>
     </Navbar>
-    <div class="mx-auto max-w-4xl">
+    <div class="mx-auto max-w-4xl px-3">
       <Breadcrumbs />
       <router-view v-slot="{ Component }">
         <TransitionComponent>
@@ -19,7 +19,6 @@
         </TransitionComponent>
       </router-view>
     </div>
-    <Summary v-if="false" :user="user" />
   </div>
 </template>
 

@@ -131,6 +131,8 @@ $base-class: ".c-scroll-snap";
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
     margin-bottom: -15px;
+    padding-bottom: 15px;
+
     display: flex;
     > * {
       scroll-snap-align: start;

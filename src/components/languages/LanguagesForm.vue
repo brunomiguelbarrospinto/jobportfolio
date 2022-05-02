@@ -1,11 +1,9 @@
 <template>
-  <div class="border bg-white p-4">
-    <Form
-      :form="LanguageForm(isNew)"
-      @form:onSubmit="submit"
-      :values="knowledge"
-    />
-  </div>
+  <Form
+    :form="LanguageForm(isNew)"
+    @form:onSubmit="submit"
+    :values="knowledge"
+  />
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";

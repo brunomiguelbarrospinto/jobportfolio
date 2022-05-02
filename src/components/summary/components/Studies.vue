@@ -7,7 +7,6 @@
         :key="'experience-card-' + study.id"
         v-for="study in studies"
         :study="study"
-        class="section-category-by-type__scrollsnap__item"
       />
     </Scrollsnap>
   </div>

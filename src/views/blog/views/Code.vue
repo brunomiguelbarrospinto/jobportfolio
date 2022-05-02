@@ -1,6 +1,6 @@
 <template>
   <Prism :language="language">
-    {{ code }}
+    {{ props.code }}
   </Prism>
 </template>
 <script setup lang="ts">

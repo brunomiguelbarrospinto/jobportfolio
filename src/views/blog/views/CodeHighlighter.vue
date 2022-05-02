@@ -1,5 +1,5 @@
 <template>
-  <component :is="highlightjs" :language="language" :code="code" />
+  <component :is="highlightjs" :language="props.language" :code="props.code" />
 </template>
 <script setup lang="ts">
 import "highlight.js/lib/common";

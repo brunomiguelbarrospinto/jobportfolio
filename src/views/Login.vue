@@ -38,7 +38,7 @@ export default defineComponent({
 .c-login {
   @apply flex h-screen items-center justify-center justify-items-center;
   &__content {
-    @apply flex h-60 w-96 flex-col items-center justify-around rounded-md border border-gray-200 bg-white p-5 text-black shadow-sm;
+    @apply flex h-60 w-96 flex-col items-center justify-around rounded-sm border p-5 text-black shadow-sm;
     &__logo {
       @apply w-48;
     }

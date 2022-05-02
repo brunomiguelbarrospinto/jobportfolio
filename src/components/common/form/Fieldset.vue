@@ -1,7 +1,7 @@
 <template>
-  <fieldset class="mb-5 border border-solid border-gray-200 p-4">
+  <fieldset class="mb-5 rounded-sm border border-solid p-4">
     <legend
-      class="bg-blue-500 py-0.5 px-2 text-sm text-white"
+      class="rounded-sm border border-solid py-0.5 px-2 text-sm"
       v-if="fieldset.legend"
     >
       {{ fieldset.legend }}

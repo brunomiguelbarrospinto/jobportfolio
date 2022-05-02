@@ -1,8 +1,21 @@
 <template>
   <div>
     <SectionTitle :user="user">Proyectos</SectionTitle>
-
-    {{ projects }}
+    <a
+      :key="'project-' + k"
+      v-for="(project, k) in projects"
+      :href="project.url"
+      target="_blank"
+    >
+      <CardComponent>
+        <template #title>
+          {{ project.name }}
+        </template>
+        <template #subtitle>
+          {{ project.url }}
+        </template>
+      </CardComponent>
+    </a>
   </div>
 </template>
 

@@ -1,11 +1,5 @@
 <template>
-  <div class="border bg-white p-4">
-    <Form
-      :form="ProjectForm(isNew)"
-      @form:onSubmit="submit"
-      :values="project"
-    />
-  </div>
+  <Form :form="ProjectForm(isNew)" @form:onSubmit="submit" :values="project" />
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";
