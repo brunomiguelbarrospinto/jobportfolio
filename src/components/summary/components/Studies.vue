@@ -2,13 +2,12 @@
   <div>
     <SectionTitle :user="user">Estudios</SectionTitle>
 
-    <Scrollsnap>
-      <StudyItem
-        :key="'experience-card-' + study.id"
-        v-for="study in studies"
-        :study="study"
-      />
-    </Scrollsnap>
+    <StudyItem
+      class="mb-5 block"
+      :key="'experience-card-' + study.id"
+      v-for="study in studies"
+      :study="study"
+    />
   </div>
 </template>
 
@@ -19,11 +18,10 @@ import StudyInterface from "@/definitions/entities/StudyInterface";
 import SectionTitle from "./SectionTitle.vue";
 import StudyItem from "./StudyItem.vue";
 import { useFirebase } from "@/composables/useFirebase";
-import Scrollsnap from "@/components/common/Scrollsnap.vue";
 import StudyClass from "@/models/StudyModel";
 
 export default defineComponent({
-  components: { SectionTitle, StudyItem, Scrollsnap },
+  components: { SectionTitle, StudyItem },
   props: {
     user: {
       type: Object as PropType<UserInterface>,

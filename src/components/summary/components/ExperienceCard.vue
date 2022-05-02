@@ -1,5 +1,5 @@
 <template>
-  <a :href="experience.url" target="_blank">
+  <a :href="experience.url" target="_blank" class="mb-5 block">
     <CardComponent>
       <template v-if="experience.logo" #image>
         <img

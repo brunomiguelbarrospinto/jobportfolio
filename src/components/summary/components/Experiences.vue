@@ -1,13 +1,12 @@
 <template>
   <div>
     <SectionTitle :user="user">Experiencias</SectionTitle>
-    <Scrollsnap>
-      <ExperienceCard
-        :key="'experience-card-' + experience.id"
-        v-for="experience in experiences"
-        :experience="experience"
-      />
-    </Scrollsnap>
+
+    <ExperienceCard
+      :key="'experience-card-' + experience.id"
+      v-for="experience in experiences"
+      :experience="experience"
+    />
   </div>
 </template>
 
@@ -17,12 +16,11 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 import SectionTitle from "./SectionTitle.vue";
 import ExperienceCard from "./ExperienceCard.vue";
-import Scrollsnap from "@/components/common/Scrollsnap.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import ExperienceModel from "@/models/ExperienceModel";
 
 export default defineComponent({
-  components: { SectionTitle, ExperienceCard, Scrollsnap },
+  components: { SectionTitle, ExperienceCard },
   props: {
     user: {
       type: Object as PropType<UserInterface>,

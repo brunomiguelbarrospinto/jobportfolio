@@ -22,7 +22,7 @@
     <div class="container mx-auto max-w-4xl px-3">
       <Banner :user="user" />
 
-      <div class="grid grid-cols-3 gap-14">
+      <div class="grid grid-cols-3 gap-12">
         <div class="col-span-2">
           <component
             :is="m.component"
@@ -30,7 +30,7 @@
             :id="`${m.id}`"
             v-for="m in firstColumn"
             :user="user"
-            class="mb-16"
+            class="mb-12"
           />
         </div>
 
@@ -41,7 +41,7 @@
             :id="`${m.id}`"
             v-for="m in secondColumn"
             :user="user"
-            class="mb-16"
+            class="mb-12"
           />
         </div>
       </div>
@@ -52,7 +52,7 @@
         :id="`${m.id}`"
         v-for="m in modules"
         :user="user"
-        class="mb-16"
+        class="mb-12"
       />
     </div>
   </div>
@@ -92,11 +92,6 @@ export default defineComponent({
 
     const firstColumn = [
       {
-        id: "studies",
-        linkText: "Estudios",
-        component: Studies,
-      },
-      {
         id: "experiences",
         linkText: "Experiencias",
         component: Experiences,
@@ -109,6 +104,12 @@ export default defineComponent({
     ];
 
     const secondColumn = [
+      {
+        id: "studies",
+        linkText: "Estudios",
+        component: Studies,
+      },
+
       {
         id: "knowledge",
         linkText: "Conocimientos",

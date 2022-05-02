@@ -136,7 +136,7 @@ $base-class: ".c-scroll-snap";
     display: flex;
     > * {
       scroll-snap-align: start;
-      min-width: 300px;
+      min-width: 320px;
       margin-right: 20px;
       &:last-of-type {
         margin-right: 0px;
