@@ -2,14 +2,14 @@
   <div class="bg-white py-12">
     <div class="container mx-auto max-w-screen-xl">
       <div class="grid grid-cols-7 gap-12">
-        <div class="col-span-2">
+        <!-- <div class="col-span-2">
           <img
             v-if="banner?.showPhoto && aboutMe?.photo"
             class="w-full rounded-full border-4"
             alt=""
             :src="aboutMe.photo"
           />
-        </div>
+        </div> -->
         <div class="col-span-5 grid place-content-center">
           <h1 class="mb-1 text-5xl font-bold leading-normal">
             {{ banner?.title }}
