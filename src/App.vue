@@ -1,5 +1,11 @@
 <template>
   <div>
+    <select :value="currentLocale" @change="setLocale($event.target.value)">
+      <option v-for="(lang, i) in locales" :key="`Lang${i}`" :value="lang">
+        {{ lang }}
+      </option>
+    </select>
+    {{ $t("hello") }}
     <router-view v-slot="{ Component }">
       <TransitionComponent>
         <component :is="Component" />
@@ -25,5 +31,9 @@
 import useNotifications from "@/composables/useNotifications";
 import TransitionComponent from "@/components/transition/Transition.vue";
 import Notification from "@/components/common/notification/Notification.vue";
+import useLocale from "@/composables/useLocale";
+
 const { notifications, removeNotification } = useNotifications();
+
+const { locales, setLocale, currentLocale } = useLocale();
 </script>
