@@ -1,3 +1,5 @@
 {
-    "Logout": "Salirrrr"
+    "app": {
+        "Logout": "Salirrrr"
+    }
 }
