@@ -1,3 +1,6 @@
 {
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "login": {
+        "Log in": "Log in"
+    }
 }
