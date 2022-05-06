@@ -1,3 +1,6 @@
 {
-    "Logout": "Cerrar sesión"
+    "Logout": "Cerrar sesión",
+    "login": {
+        "Log in": "Iniciar Sesión"
+    }
 }
