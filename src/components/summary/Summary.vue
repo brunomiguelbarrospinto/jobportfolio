@@ -15,8 +15,8 @@
           <div class="ml-3">
             {{ user.aboutMe.name }} {{ user.aboutMe?.lastNames }}
           </div>
-        </div></template
-      >
+        </div>
+      </template>
       <template #right-section> </template>
     </Navbar>
     <div class="container mx-auto max-w-4xl px-3">

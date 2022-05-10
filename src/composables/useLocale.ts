@@ -1,8 +1,8 @@
 import { ref } from "vue";
+import { createI18n, LocaleMessages, VueMessageType } from "vue-i18n";
 
 const currentLocale = ref(localStorage.getItem("locale") || "es");
-
-import { createI18n, LocaleMessages, VueMessageType } from "vue-i18n";
+const locales = ["es", "en"];
 
 /**
  * Load locale messages
@@ -36,20 +36,13 @@ const i18n = ref(
     globalInjection: true,
   })
 );
-
-export function changeLocale(locale) {
-  console.log(locale + 1123123);
-  i18n.value.global.locale = locale;
-}
-
-export default function useLocale(): any {
-  const locales = ["es", "en"];
-  function setLocale(locale) {
-    if (locales.includes(locale)) {
-      currentLocale.value = locale;
-      localStorage.setItem("locale", locale);
-      changeLocale(locale);
-    }
+function setLocale(locale) {
+  if (locales.includes(locale)) {
+    currentLocale.value = locale;
+    localStorage.setItem("locale", locale);
+    i18n.value.global.locale = locale;
   }
+}
+export default function useLocale() {
   return { locales, currentLocale, setLocale, i18n };
 }

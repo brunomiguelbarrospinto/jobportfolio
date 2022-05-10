@@ -8,7 +8,10 @@
         </router-link>
       </template>
       <template #right-section>
-        <AuthUserDropdown />
+        <div class="flex">
+          <LocaleDropdown class="mr-3" />
+          <AuthUserDropdown />
+        </div>
       </template>
     </Navbar>
     <div class="mx-auto max-w-4xl px-3">
@@ -32,6 +35,7 @@ import Navbar from "@/components/navbar/Navbar.vue";
 import Breadcrumbs from "@/components/common/Breadcrumbs.vue";
 import Summary from "@/components/summary/Summary.vue";
 import AuthUserDropdown from "@/components/dashboard/AuthUserDropdown.vue";
+import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 
 export default defineComponent({
   components: {
@@ -41,6 +45,7 @@ export default defineComponent({
     Breadcrumbs,
     Summary,
     AuthUserDropdown,
+    LocaleDropdown,
   },
   setup() {
     const { currentAuthUser } = useFirebase();

@@ -12,7 +12,6 @@
           <img
             v-if="aboutMe"
             ref="profileDropdown"
-            @click.prevent="toggleDropdown"
             class="h-full w-full rounded-full"
             :src="aboutMe.photo"
             alt=""
@@ -26,10 +25,12 @@
           :to="{ name: 'profile', params: { email: currentAuthUser.email } }"
           target="_blank"
         >
-          Ver perfil
+          {{ $t("View profile") }}
         </router-link>
       </DropdownMenuItem>
-      <DropdownMenuItem @click="logout"> Salir </DropdownMenuItem>
+      <DropdownMenuItem @click="logout">
+        {{ $t("Logout") }}
+      </DropdownMenuItem>
     </template>
   </Dropdown>
 </template>
