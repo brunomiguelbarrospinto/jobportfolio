@@ -1,5 +1,15 @@
 {
     "Logout": "Cerrar sesión",
     "Log in": "Iniciar Sesión",
-    "View profile": "Ver perfil"
+    "View profile": "Ver perfil",
+    "Dashboard": "Panel de control",
+    "Banner": "Cabecera",
+    "About me": "Sobre mi",
+    "Social media": "Redes sociales",
+    "Languages": "Idiomas",
+    "Studies": "Estudios",
+    "Courses": "Cursos",
+    "Knowledge": "Conocimientos",
+    "Experiences": "Experiencias",
+    "Projects": "Proyectos"
 }
