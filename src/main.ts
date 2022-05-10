@@ -4,8 +4,8 @@ import router from "./router";
 import "./assets/tailwind.scss";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import LogRocket from "logrocket";
-LogRocket.init("hsxssp/jobportfolio");
+// import LogRocket from "logrocket";
+// LogRocket.init("hsxssp/jobportfolio");
 import {
   ButtonComponent,
   IconComponent,

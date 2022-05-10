@@ -14,4 +14,5 @@ export default interface FormElementInterface {
     | TextareaInterface
     | RadioGroupInterface;
   isVisible?: (element: FormElementInterface[]) => boolean;
+  translatable?: boolean;
 }

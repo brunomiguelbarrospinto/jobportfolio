@@ -69,6 +69,7 @@ export default (): FormInterface => {
           {
             type: "input",
             data: lastNames,
+            translatable: true,
           },
           {
             type: "input",

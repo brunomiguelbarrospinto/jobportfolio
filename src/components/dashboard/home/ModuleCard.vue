@@ -33,7 +33,7 @@
           {{ "Total " + module.count }}
         </Badge>
       </div>
-      <div>{{ module.text }}</div>
+      <div>{{ $t(module.text) }}</div>
     </CardComponent>
   </router-link>
 </template>

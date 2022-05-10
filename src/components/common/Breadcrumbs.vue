@@ -8,7 +8,7 @@
           class="flex items-center"
         >
           <span>
-            {{ crumb.text }}
+            {{ $t(crumb.text) }}
           </span>
           <IconComponent
             name="ChevronRightIcon"
@@ -16,7 +16,7 @@
           />
         </router-link>
         <span v-else class="text-gray-500">
-          {{ crumb.text }}
+          {{ $t(crumb.text) }}
         </span>
       </template>
     </div>

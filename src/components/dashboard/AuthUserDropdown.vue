@@ -24,8 +24,9 @@
         <router-link
           :to="{ name: 'profile', params: { email: currentAuthUser.email } }"
           target="_blank"
+          class="block w-full"
         >
-          {{ $t("View profile") }}
+          Ver perfil
         </router-link>
       </DropdownMenuItem>
       <DropdownMenuItem @click="logout">

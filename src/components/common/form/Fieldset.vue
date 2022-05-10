@@ -51,8 +51,7 @@
 <script lang="ts">
 import draggable from "vuedraggable";
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
-import FormElementInterface from "@/definitions/form/FormElementInterface";
-import { defineComponent, PropType, ref } from "vue";
+import { defineComponent, PropType, ref, computed } from "vue";
 import FormElement from "./FormElement.vue";
 
 export default defineComponent({
@@ -68,14 +67,14 @@ export default defineComponent({
     const drag = ref(false);
     const sort = ref(false);
 
-    const elements = ref<FormElementInterface[]>([]);
-
-    elements.value = props.fieldset.elements.map((element) => {
-      return {
-        ...element,
-        id: element.data.id,
-      };
-    });
+    const elements = computed(() =>
+      props.fieldset.elements.map((element) => {
+        return {
+          ...element,
+          id: element.data.id,
+        };
+      })
+    );
 
     function emitsort() {
       context.emit("orderChanged", [{ elements: elements.value }]);
