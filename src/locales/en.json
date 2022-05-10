@@ -1,5 +1,15 @@
 {
-  "Logout": "Logout",
-  "Log in": "Log in",
-  "View profile": "View profile"
+    "Logout": "Logout",
+    "Log in": "Log in",
+    "View profile": "View profile",
+    "Dashboard": "Dashboard",
+    "Banner": "Banner",
+    "About me": "About me",
+    "Social media": "Social media",
+    "Languages": "Languages",
+    "Studies": "Studies",
+    "Courses": "Courses",
+    "Knowledge": "Knowledge",
+    "Experiences": "Experiences",
+    "Projects": "Projects"
 }
