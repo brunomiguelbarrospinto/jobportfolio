@@ -69,7 +69,6 @@ export default (): FormInterface => {
           {
             type: "input",
             data: lastNames,
-            translatable: true,
           },
           {
             type: "input",
@@ -78,6 +77,7 @@ export default (): FormInterface => {
           {
             type: "input",
             data: address,
+            translatable: true,
           },
           {
             type: "input",
@@ -86,6 +86,7 @@ export default (): FormInterface => {
           {
             type: "textarea",
             data: biography,
+            translatable: true,
           },
         ],
       },

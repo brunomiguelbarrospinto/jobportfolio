@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed, toRef } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
 import FormInterface from "@/definitions/form/FormInterface";
 import Fieldset from "./Fieldset.vue";
@@ -59,8 +59,20 @@ export default defineComponent({
         fieldset.elements.forEach((element) => {
           if (element.translatable) {
             console.log(element.data.value);
-            data[element.data.id][currentLocale.value] =
-              element.data.value !== undefined ? element.data.value : null;
+            console.log(element.data.id);
+            if (!element.data.value) {
+              data[element.data.id] = null;
+            } else {
+              if (
+                !data[element.data.id] ||
+                typeof data[element.data.id] === "string"
+              ) {
+                data[element.data.id] = {};
+              }
+
+              data[element.data.id][currentLocale.value] =
+                element.data.value !== undefined ? element.data.value : null;
+            }
           } else {
             data[element.data.id] =
               element.data.value !== undefined ? element.data.value : null;

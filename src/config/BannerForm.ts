@@ -57,10 +57,12 @@ export default (): FormInterface => {
           {
             type: "input",
             data: title,
+            translatable: true,
           },
           {
             type: "input",
             data: subTitle,
+            translatable: true,
           },
           {
             type: "input",

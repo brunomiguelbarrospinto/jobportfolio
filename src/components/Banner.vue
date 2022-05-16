@@ -12,13 +12,13 @@
         </div> -->
         <div class="col-span-5 grid place-content-center">
           <h1 class="mb-1 text-5xl font-bold leading-normal">
-            {{ banner?.title }}
+            {{ banner?.title?.[currentLocale] }}
           </h1>
           <h1 class="mb-3 text-3xl font-semibold leading-normal">
-            {{ banner?.subTitle }}
+            {{ banner?.subTitle?.[currentLocale] }}
           </h1>
           <h4 class="mb-8">
-            <div v-html="user.aboutMe?.biography" />
+            <div v-html="user.aboutMe?.biography?.[currentLocale]" />
           </h4>
         </div>
       </div>
@@ -30,6 +30,7 @@
 import { defineComponent, PropType, computed } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
+import useLocale from "@/composables/useLocale";
 
 export default defineComponent({
   props: {
@@ -39,6 +40,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { currentLocale } = useLocale();
     const aboutMe = computed(() => props.user.aboutMe);
     const banner = computed(() => props.user.banner);
     const socialNetworks = computed(() => props.user.socialNetworks);
@@ -47,6 +49,7 @@ export default defineComponent({
       banner,
       socialNetworks,
       getSocialNetworkIconComponent,
+      currentLocale,
     };
   },
 });
