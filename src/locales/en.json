@@ -15,5 +15,16 @@
     "Create course": "Create course",
     "Editar curso": {
         "Edit course": "Edit course"
-    }
+    },
+    "Create experience": "Create experience",
+    "Create": "Create",
+    "Update": "Update",
+    "Edit": "Edit",
+    "Save": "Save",
+    "Configuration": "Configuration",
+    "Background image": "Background image",
+    "Show profile picture": "Show profile picture",
+    "Title": "Title",
+    "Subtitle": "Subtitle",
+    "Show social media": "Show social media"
 }
