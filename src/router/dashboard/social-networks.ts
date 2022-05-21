@@ -9,7 +9,7 @@ const route: RouteRecordRaw = {
     ),
   meta: {
     requiresAuth: true,
-    breadCrumb: "Redes Sociales",
+    breadCrumb: "Social media",
   },
   children: [
     {
@@ -29,7 +29,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Añadir red social",
+        breadCrumb: "Create",
       },
     },
     {
@@ -42,7 +42,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Editar red social",
+        breadCrumb: "Edit",
         dinamicRoute: true,
       },
     },

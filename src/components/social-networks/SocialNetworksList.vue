@@ -5,6 +5,7 @@
       <ButtonComponent
         :to="{ name: 'dashboard-social-networks-create' }"
         text="Añadir"
+        size="sm"
       />
     </div>
 

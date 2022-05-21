@@ -4,14 +4,14 @@ import TextareaInterface from "@/definitions/form/TextareaInterface";
 
 const photo: InputInterface = {
   id: "photo",
-  label: "Imagen de perfil",
+  label: "Profile picture",
   type: "file",
   value: null,
 };
 
 const name: InputInterface = {
   id: "name",
-  label: "Nombre",
+  label: "Names",
   type: "text",
   value: null,
   required: true,
@@ -19,35 +19,35 @@ const name: InputInterface = {
 
 const lastNames: InputInterface = {
   id: "lastNames",
-  label: "Apellidos",
+  label: "Surnames",
   type: "text",
   value: null,
 };
 
 const dateOfBirth: InputInterface = {
   id: "dateOfBirth",
-  label: "Fecha de nacimieto",
+  label: "Date of birth",
   type: "date",
   value: null,
 };
 
 const address: InputInterface = {
   id: "address",
-  label: "Dirección",
+  label: "Address",
   type: "text",
   value: null,
 };
 
 const phone: InputInterface = {
   id: "phone",
-  label: "Teléfono",
+  label: "Telephone",
   type: "tel",
   value: null,
 };
 
 const biography: TextareaInterface = {
   id: "biography",
-  label: "Biografia",
+  label: "Biography",
   value: null,
   rows: 10,
 };
@@ -56,7 +56,7 @@ export default (): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: "Acerca de mi",
+        legend: "About me",
         elements: [
           {
             type: "input",

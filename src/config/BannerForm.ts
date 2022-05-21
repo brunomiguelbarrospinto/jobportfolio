@@ -4,14 +4,14 @@ import CheckboxInterface from "@/definitions/form/CheckboxInterface";
 
 const showPhoto: CheckboxInterface = {
   id: "showPhoto",
-  label: "Mostrar imagen de perfil",
+  label: "Show profile picture",
   type: "checkbox",
   value: false,
 };
 
 const title: InputInterface = {
   id: "title",
-  label: "Titulo",
+  label: "Title",
   type: "text",
   value: null,
   required: true,
@@ -20,7 +20,7 @@ const title: InputInterface = {
 const subTitle: InputInterface = {
   id: "subTitle",
   name: "subTitle",
-  label: "Subtitulo",
+  label: "Subtitle",
   type: "text",
   value: null,
   required: true,
@@ -28,14 +28,14 @@ const subTitle: InputInterface = {
 
 const backgroundImage: InputInterface = {
   id: "backgroundImage",
-  label: "Imagen de fondo",
+  label: "Background image",
   type: "file",
   value: null,
 };
 
 const social: CheckboxInterface = {
   id: "social",
-  label: "Mostrar redes sociales",
+  label: "Show social media",
   type: "checkbox",
   value: false,
 };
@@ -44,7 +44,7 @@ export default (): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: "Configuracion del banner",
+        legend: "Setting",
         elements: [
           {
             type: "input",

@@ -4,7 +4,7 @@
       class="rounded-sm border border-solid py-0.5 px-2 text-sm"
       v-if="fieldset.legend"
     >
-      {{ fieldset.legend }}
+      {{ $t(fieldset.legend) }}
     </legend>
     <ButtonComponent
       v-if="fieldset.sortable"

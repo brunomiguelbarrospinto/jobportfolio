@@ -13,8 +13,9 @@
       :disabled="isLoading"
       :isLoading="isLoading"
       type="submit"
-      :text="buttonText"
+      :text="$t(buttonText)"
       color="default"
+      size="sm"
     />
   </form>
 </template>
@@ -41,7 +42,6 @@ export default defineComponent({
     values: { type: Object },
   },
   setup(props, context) {
-    console.log(props);
     const { currentLocale } = useLocale();
     const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
     function onSubmit() {
@@ -105,7 +105,6 @@ export default defineComponent({
           }),
         };
       });
-      console.log(syncedForm);
       return syncedForm;
     });
 
@@ -118,7 +117,7 @@ export default defineComponent({
         return props.form.buttonText;
       }
 
-      return "Guardar";
+      return "Save";
     });
     return {
       hasFieldsets,

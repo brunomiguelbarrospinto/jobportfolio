@@ -12,7 +12,7 @@
           </span>
           <IconComponent
             name="ChevronRightIcon"
-            class="mx-3 h-3 w-3 fill-current"
+            class="mx-2 h-4 w-4 fill-current"
           />
         </router-link>
         <span v-else class="text-gray-500">
@@ -63,6 +63,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .breadcrumb {
-  @apply my-5 font-medium text-black;
+  @apply my-5 text-base text-sm font-normal;
 }
 </style>

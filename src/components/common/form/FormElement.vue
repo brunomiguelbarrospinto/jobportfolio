@@ -2,7 +2,7 @@
   <Label
     v-if="element.data.label"
     :for="element.data.id"
-    :label="element.data.label"
+    :label="element.data.label ? $t(element.data.label) : undefined"
   />
 
   <!-- Input -->
@@ -14,7 +14,9 @@
     v-model="value"
     :id="element.data.id"
     :name="element.data.name"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :required="element.data.required"
     :type="element.data.type"
   />
@@ -25,7 +27,9 @@
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :required="element.data.required"
     :type="element.data.type"
   />
@@ -37,7 +41,9 @@
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :required="element.data.required"
     :options="element.data.options"
   />
@@ -48,7 +54,9 @@
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :required="element.data.required"
     :type="element.data.type"
   />
@@ -61,7 +69,9 @@
     :name="element.data.name"
     :id="element.data.id"
     :label="element.data.label"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :required="element.data.required"
     :type="element.data.type"
   />
@@ -82,7 +92,9 @@
     v-model="value"
     :id="element.data.id"
     :label="element.data.label"
-    :placeholder="element.data.placeholder"
+    :placeholder="
+      element.data.placeholder ? $t(element.data.placeholder) : undefined
+    "
     :rows="element.data.rows"
     :required="element.data.required"
   />

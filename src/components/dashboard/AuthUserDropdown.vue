@@ -26,7 +26,7 @@
           target="_blank"
           class="block w-full"
         >
-          Ver perfil
+          {{ $t("View profile") }}
         </router-link>
       </DropdownMenuItem>
       <DropdownMenuItem @click="logout">
