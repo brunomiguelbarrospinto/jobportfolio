@@ -1,7 +1,7 @@
 <template>
   <div class="c-login">
     <div class="c-login__content">
-      <img class="c-login__content__logo" :src="require('@/assets/logo.png')" />
+      <Logo />
       Iniciar sesión
       <LoginWithGoogleButton @login="login" />
     </div>
@@ -12,9 +12,11 @@ import { defineComponent, watch } from "vue";
 import { useFirebase } from "@/composables/useFirebase";
 import { useRouter } from "vue-router";
 import LoginWithGoogleButton from "@/components/login/LoginWIthGoogleButton.vue";
+import Logo from "@/components/common/Logo.vue";
 export default defineComponent({
   components: {
     LoginWithGoogleButton,
+    Logo,
   },
   setup() {
     const { currentAuthUser, signInWithPopup } = useFirebase();
