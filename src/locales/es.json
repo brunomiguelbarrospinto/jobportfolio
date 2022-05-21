@@ -11,5 +11,9 @@
     "Courses": "Cursos",
     "Knowledge": "Conocimientos",
     "Experiences": "Experiencias",
-    "Projects": "Proyectos"
+    "Projects": "Proyectos",
+    "Create course": "Crear curso",
+    "Editar curso": {
+        "Edit course": "Editar curso"
+    }
 }
