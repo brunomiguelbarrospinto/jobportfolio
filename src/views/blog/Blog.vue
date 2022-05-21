@@ -3,9 +3,9 @@
     <Navbar class="sticky">
       <template #left-section>
         <div class="relative">
-          <img class="w-32" :src="require('@/assets/logo.png')" />
+          <Logo />
           <div
-            class="absolute -right-6 top-5 -rotate-12 bg-blue-500 px-1 py-0.5 text-xs font-bold uppercase text-white"
+            class="absolute -right-7 top-5 -rotate-12 bg-blue-500 px-1 py-0.5 text-xs font-semibold uppercase text-white"
           >
             Blog
           </div>
@@ -27,6 +27,8 @@
 </template>
 <script setup lang="ts">
 import Navbar from "@/components/navbar/Navbar.vue";
+import Logo from "@/components/common/Logo.vue";
+
 const links = [
   {
     text: "Inicio",

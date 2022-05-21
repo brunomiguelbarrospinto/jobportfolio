@@ -4,7 +4,7 @@
     <Navbar>
       <template #left-section>
         <router-link :to="{ name: 'dashboard-home' }">
-          <img class="w-32" :src="require('@/assets/logo.png')" />
+          <Logo />
         </router-link>
       </template>
       <template #right-section>
@@ -36,6 +36,7 @@ import Breadcrumbs from "@/components/common/Breadcrumbs.vue";
 import Summary from "@/components/summary/Summary.vue";
 import AuthUserDropdown from "@/components/dashboard/AuthUserDropdown.vue";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
+import Logo from "@/components/common/Logo.vue";
 
 export default defineComponent({
   components: {
@@ -46,6 +47,7 @@ export default defineComponent({
     Summary,
     AuthUserDropdown,
     LocaleDropdown,
+    Logo,
   },
   setup() {
     const { currentAuthUser } = useFirebase();

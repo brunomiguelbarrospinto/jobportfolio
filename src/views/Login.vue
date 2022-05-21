@@ -2,7 +2,10 @@
   <div class="c-login">
     <div>
       <CardComponent class="c-login__content">
-        {{ $t("Log in") }} <LoginWithGoogleButton @login="login" />
+        <Logo />
+
+        {{ $t("Log in") }} <br />
+        <LoginWithGoogleButton @login="login" />
       </CardComponent>
     </div>
   </div>
@@ -12,9 +15,11 @@ import { defineComponent, watch } from "vue";
 import { useFirebase } from "@/composables/useFirebase";
 import { useRouter } from "vue-router";
 import LoginWithGoogleButton from "@/components/login/LoginWIthGoogleButton.vue";
+import Logo from "@/components/common/Logo.vue";
 export default defineComponent({
   components: {
     LoginWithGoogleButton,
+    Logo,
   },
   setup() {
     const { currentAuthUser, signInWithPopup } = useFirebase();
