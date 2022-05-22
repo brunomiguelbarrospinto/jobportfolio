@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis idiomas</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My languages") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-languages-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
@@ -25,9 +26,15 @@
                 require(`@/assets/img/languages/${element.languageId}.svg`)
               "
           /></template>
-          <template #title> {{ element.name }} </template>
+          <template #title>
+            {{
+              languagesData?.find((l) => l.id == element.languageId)?.name[
+                currentLocale
+              ]
+            }}
+          </template>
           <template #subtitle>
-            {{ element.description }}
+            {{ element.description[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -82,7 +89,8 @@ import useNotifications from "@/composables/useNotifications";
 import LanguagesModalDelete from "./LanguagesModalDelete.vue";
 import draggable from "vuedraggable";
 import LanguageInterface from "@/definitions/entities/LanguageInterface";
-
+import languagesData from "@/data/languages.json";
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: {
     ListItem,
@@ -92,6 +100,7 @@ export default defineComponent({
     draggable,
   },
   setup() {
+    const { currentLocale } = useLocale();
     const { languages, deleteLanguage, isFinished, updateOrderLanguages } =
       useLanguages();
     const isOpen = ref(false);
@@ -153,6 +162,8 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      languagesData,
+      currentLocale,
     };
   },
 });

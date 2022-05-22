@@ -54,12 +54,10 @@ export default defineComponent({
     }
 
     function formatData(fieldsets: FieldsetInterface[]) {
-      let data = JSON.parse(JSON.stringify(props.values));
+      let data = props.values ? JSON.parse(JSON.stringify(props.values)) : {};
       fieldsets?.forEach((fieldset) => {
         fieldset.elements.forEach((element) => {
           if (element.translatable) {
-            console.log(element.data.value);
-            console.log(element.data.id);
             if (!element.data.value) {
               data[element.data.id] = null;
             } else {
@@ -110,7 +108,7 @@ export default defineComponent({
 
     const buttonText = computed(() => {
       if (props.isLoading) {
-        return "Procesando";
+        return "Processing";
       }
 
       if (props.form.buttonText) {
