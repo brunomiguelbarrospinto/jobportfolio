@@ -14,8 +14,16 @@
         class="mr-2 inline"
       />
       <div>
-        <div class="-mb-1 block">{{ language.name }}</div>
-        <span class="text-xs text-gray-500"> {{ language.description }}</span>
+        <div class="-mb-1 block">
+          {{
+            languagesData?.find((l) => l.id == language.languageId)?.name[
+              currentLocale
+            ]
+          }}
+        </div>
+        <span class="text-xs text-gray-500">
+          {{ language.description[currentLocale] }}</span
+        >
       </div>
     </div>
   </div>
@@ -27,6 +35,9 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import LanguageModel from "@/models/LanguageModel";
+import useLocale from "@/composables/useLocale";
+import languagesData from "@/data/languages.json";
+
 export default defineComponent({
   components: { SectionTitle },
   props: {
@@ -36,6 +47,8 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { currentLocale } = useLocale();
+
     const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
     const languages = computed(() => {
@@ -45,7 +58,7 @@ export default defineComponent({
       return languages.every((e) => !e.order) ? languages.reverse() : languages;
     });
 
-    return { languages };
+    return { languages, currentLocale, languagesData };
   },
 });
 </script>

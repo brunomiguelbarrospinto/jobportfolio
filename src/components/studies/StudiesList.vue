@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis estudios</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My studies") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-studies-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
