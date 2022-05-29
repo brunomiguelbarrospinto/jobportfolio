@@ -29,7 +29,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "New",
+        breadCrumb: "Create",
       },
     },
     {

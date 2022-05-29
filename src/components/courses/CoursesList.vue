@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis cursos</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My courses") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-courses-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
@@ -19,7 +20,7 @@
     >
       <template #item="{ element: course }">
         <ListItem>
-          <template #image>
+          <!-- <template #image>
             <img
               v-if="course.image"
               class="h-8 w-8"
@@ -27,12 +28,12 @@
               alt=""
             />
             <template v-else>{{ course.name[0] }}</template>
-          </template>
+          </template> -->
           <template #title>
-            {{ course.name }}
+            {{ course.name[currentLocale] }}
           </template>
           <template #subtitle>
-            {{ course.description }}
+            {{ course.description[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -50,7 +51,7 @@
                     params: { id: course.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -58,7 +59,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>
@@ -87,7 +88,7 @@ import useNotifications from "@/composables/useNotifications";
 import CourseModalDelete from "./CourseModalDelete.vue";
 import draggable from "vuedraggable";
 import CourseInterface from "@/definitions/entities/CourseInterface";
-
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: {
     ListItem,
@@ -102,6 +103,7 @@ export default defineComponent({
     const isOpen = ref(false);
     const id = ref("");
     const { pushNotification } = useNotifications();
+    const { currentLocale } = useLocale();
 
     async function submit() {
       await deleteCourse(id.value);
@@ -159,6 +161,7 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      currentLocale,
     };
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SectionTitle :user="user">Conocimientos</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Knowledge") }}</SectionTitle>
 
     <a
       :href="knowledgeItem.url"
@@ -9,7 +9,7 @@
       v-for="knowledgeItem in knowledge"
     >
       <TagComponent
-        :text="knowledgeItem.name"
+        :text="knowledgeItem.name[currentLocale]"
         class="mr-3 mb-3 hover:shadow-md"
         :backgroundColor="knowledgeItem.color"
       />
@@ -23,6 +23,7 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import KnowledgeInterface from "@/definitions/entities/KnowledgeInterface";
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: { SectionTitle },
   props: {
@@ -32,6 +33,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { currentLocale } = useLocale();
     const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
     const knowledge = computed(() => {
@@ -44,7 +46,7 @@ export default defineComponent({
       return knowledge;
     });
 
-    return { knowledge };
+    return { currentLocale, knowledge };
   },
 });
 </script>

@@ -9,10 +9,10 @@
         />
       </template>
       <template #title>
-        {{ study.title }}
+        {{ study.title[currentLocale] }}
       </template>
       <template #subtitle>
-        {{ study.institute }}
+        {{ study.institute[currentLocale] }}
       </template>
       <template #extra-info>
         <div class="text-xs">
@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import useLocale from "@/composables/useLocale";
 import StudyModel from "@/models/StudyModel";
 export default defineComponent({
   props: {
@@ -41,6 +42,12 @@ export default defineComponent({
       type: Object as PropType<StudyModel>,
       required: true,
     },
+  },
+  setup() {
+    const { currentLocale } = useLocale();
+    return {
+      currentLocale,
+    };
   },
 });
 </script>

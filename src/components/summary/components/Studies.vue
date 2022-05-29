@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SectionTitle :user="user">Estudios</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Studies") }}</SectionTitle>
 
     <StudyItem
       class="mb-5 block"

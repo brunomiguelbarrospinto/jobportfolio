@@ -2,7 +2,7 @@ import FormInterface from "@/definitions/form/FormInterface";
 import InputInterface from "@/definitions/form/InputInterface";
 const company = (): InputInterface => ({
   id: "name",
-  label: "Conocimiento",
+  label: "Knowledge",
   type: "text",
   value: null,
   required: true,
@@ -26,11 +26,12 @@ export default (isNew: boolean): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: isNew ? "Nueva experiencia" : "Editar experiencia",
+        legend: isNew ? "Create" : "Edit",
         elements: [
           {
             type: "input",
             data: company(),
+            translatable: true,
           },
           {
             type: "input",
