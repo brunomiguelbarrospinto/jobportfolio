@@ -14,7 +14,7 @@
       :isLoading="isLoading"
       type="submit"
       :text="$t(buttonText)"
-      color="default"
+      color="primary"
       size="sm"
     />
   </form>
@@ -126,3 +126,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.button--primary {
+  background-color: rgb(33, 90, 181) !important;
+}
+</style>

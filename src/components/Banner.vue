@@ -14,12 +14,12 @@
           <h1 class="mb-1 text-5xl font-bold leading-normal">
             {{ banner?.title?.[currentLocale] }}
           </h1>
-          <h1 class="mb-3 text-3xl font-semibold leading-normal">
+          <h2 class="mb-3 text-3xl font-semibold leading-normal">
             {{ banner?.subTitle?.[currentLocale] }}
-          </h1>
-          <h4 class="mb-8">
+          </h2>
+          <h3 class="mb-8">
             <div v-html="user.aboutMe?.biography?.[currentLocale]" />
-          </h4>
+          </h3>
         </div>
       </div>
     </div>

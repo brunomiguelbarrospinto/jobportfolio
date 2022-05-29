@@ -11,7 +11,13 @@
       <img
         :src="require(`@/assets/img/languages/${language.languageId}.svg`)"
         width="32"
+        height="44"
         class="mr-2 inline"
+        :alt="
+          languagesData?.find((l) => l.id == language.languageId)?.name[
+            currentLocale
+          ]
+        "
       />
       <div>
         <div class="-mb-1 block">

@@ -18,7 +18,7 @@
         <span class="capitalize">{{ experience.startShortMonthName }}</span>
         {{ experience.startYear }} -
         <template v-if="experience.current"
-          ><span class="font-semibold text-green-500">actualidad </span>
+          ><span class="font-semibold text-green-700">actualidad </span>
         </template>
         <template v-else>
           <span class="capitalize">{{ experience.finishShortMonthName }}</span>

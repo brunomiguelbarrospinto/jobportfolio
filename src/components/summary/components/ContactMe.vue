@@ -43,6 +43,7 @@
                 class="mr-4 flex w-6 items-center justify-center justify-items-center last:mr-0"
                 :href="sn.link"
                 target="_blank"
+                :title="sn.name"
               >
                 <component :is="getSocialNetworkIconComponent(sn.name)" />
               </a>

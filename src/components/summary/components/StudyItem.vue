@@ -2,11 +2,9 @@
   <a :href="study.url" target="_blank">
     <CardComponent>
       <template v-if="study.image" #image>
-        <img
-          class="h-10 w-10 border-2 border-white"
-          alt=""
-          :src="study.image"
-        />
+        <div class="h-10 w-10 border-2 border-white">
+          <img width="36" height="36" alt="" :src="study.image" />
+        </div>
       </template>
       <template #title>
         {{ study.title[currentLocale] }}
@@ -19,7 +17,7 @@
           <span class="capitalize">{{ study.startShortMonthName }}</span>
           {{ study.startYear }} -
           <template v-if="study.current">
-            <span class="font-semibold text-green-500"> actualidad </span>
+            <span class="font-semibold text-green-700"> actualidad </span>
           </template>
           <template v-else>
             <span class="capitalize">{{ study.finishShortMonthName }}</span>
