@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SectionTitle :user="user">Idiomas</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Languages") }}</SectionTitle>
     <div
       :key="'language-' + language.id"
       v-for="(language, k) in languages"

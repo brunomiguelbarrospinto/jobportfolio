@@ -1,10 +1,16 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordRaw,
+  createWebHashHistory,
+} from "vue-router";
 import DashboardRoutes from "./dashboard/index";
 import ProfileRoutes from "./profile/index";
 import BlogRoutes from "./blog/index";
 import { useFirebase } from "@/composables/useFirebase";
 const { currentAuthUser } = useFirebase();
-
+import { IS_STAGING } from "@/config";
+console.log(IS_STAGING);
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -29,7 +35,9 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: IS_STAGING
+    ? createWebHashHistory()
+    : createWebHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to) {
     if (to.hash) {
