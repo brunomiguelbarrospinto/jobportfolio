@@ -1,13 +1,13 @@
 <template>
   <div>
-    <SectionTitle :user="user">Contactame</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Contact me") }}</SectionTitle>
 
     <div class="grid grid-cols-2 gap-4">
       <div>
         <div class="mb-4 flex items-center">
           <IconComponent name="PhoneIcon" class="mr-3" />
           <div>
-            <span class="text-md">Telefono</span> <br />
+            <span class="text-md">{{ $t("Telephone") }}</span> <br />
             <span class="text-sm text-gray-500">{{ user.aboutMe?.phone }}</span>
           </div>
         </div>
@@ -23,9 +23,9 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="LocationMarkerIcon" class="mr-3" />
           <div>
-            <span class="text-md">Ubicación</span> <br />
+            <span class="text-md">{{ $t("Address") }}</span> <br />
             <span class="text-sm text-gray-500">{{
-              user.aboutMe?.address
+              user.aboutMe?.address?.[currentLocale]
             }}</span>
           </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="mb-4 flex items-center">
           <IconComponent name="GlobeAltIcon" class="mr-3" />
           <div>
-            <span class="text-md">Redes sociales</span> <br />
+            <span class="text-md">{{ $t("Social media") }}</span> <br />
             <template
               :key="sn.link + sn.order"
               v-for="sn in user?.socialNetworks"
@@ -72,7 +72,7 @@ import ContactMeForm from "@/config/ContactMeForm";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 import emailjs from "@emailjs/browser";
 import useNotifications from "@/composables/useNotifications";
-
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: { SectionTitle },
   props: {
@@ -82,6 +82,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { currentLocale } = useLocale();
     const isLoading = ref(false);
     const { pushNotification } = useNotifications();
 
@@ -113,7 +114,13 @@ export default defineComponent({
         );
     }
 
-    return { ContactMeForm, submit, getSocialNetworkIconComponent, isLoading };
+    return {
+      ContactMeForm,
+      submit,
+      getSocialNetworkIconComponent,
+      isLoading,
+      currentLocale,
+    };
   },
 });
 </script>

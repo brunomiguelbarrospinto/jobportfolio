@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis proyectos</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My projects") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-projects-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
     <draggable
@@ -31,7 +32,7 @@
             {{ element.name }}
           </template>
           <template #subtitle>
-            {{ element.description }}
+            {{ element.description[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -49,7 +50,7 @@
                     params: { id: element.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -57,7 +58,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>
@@ -86,7 +87,7 @@ import useNotifications from "@/composables/useNotifications";
 import ProjectsModalDelete from "./ProjectsModalDelete.vue";
 import draggable from "vuedraggable";
 import ProjectInterface from "@/definitions/entities/ProjectInterface";
-
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: {
     ListItem,
@@ -96,6 +97,7 @@ export default defineComponent({
     draggable,
   },
   setup() {
+    const { currentLocale } = useLocale();
     const { projects, deleteProject, isFinished, updateOrderProjects } =
       useProjects();
     const isOpen = ref(false);
@@ -158,6 +160,7 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      currentLocale,
     };
   },
 });

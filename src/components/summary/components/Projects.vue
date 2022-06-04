@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SectionTitle :user="user">Proyectos</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Projects") }}</SectionTitle>
     <a
       :key="'project-' + k"
       v-for="(project, k) in projects"
@@ -14,6 +14,9 @@
         <template #subtitle>
           {{ project.url }}
         </template>
+        <template #content>
+          {{ project.description[currentLocale] }}
+        </template>
       </CardComponent>
     </a>
   </div>
@@ -25,6 +28,7 @@ import { UserInterface } from "@/definitions/entities/UserInterface";
 import ProjectInterface from "@/definitions/entities/ProjectInterface";
 import SectionTitle from "./SectionTitle.vue";
 import { useFirebase } from "@/composables/useFirebase";
+import useLocale from "@/composables/useLocale";
 
 export default defineComponent({
   components: { SectionTitle },
@@ -46,8 +50,9 @@ export default defineComponent({
       }
       return projects;
     });
+    const { currentLocale } = useLocale();
 
-    return { projects };
+    return { projects, currentLocale };
   },
 });
 </script>
