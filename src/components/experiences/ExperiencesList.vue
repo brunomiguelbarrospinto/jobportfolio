@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis experiencias</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My experiences") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-experiences-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
@@ -32,7 +33,7 @@
             {{ element.company }}
           </template>
           <template #subtitle>
-            {{ element.description }}
+            {{ element.position[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -50,7 +51,7 @@
                     params: { id: element.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -58,7 +59,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>
@@ -87,7 +88,7 @@ import useNotifications from "@/composables/useNotifications";
 import ExperienceModalDelete from "./ExperienceModalDelete.vue";
 import draggable from "vuedraggable";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
-
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   components: {
     ListItem,
@@ -97,6 +98,7 @@ export default defineComponent({
     draggable,
   },
   setup() {
+    const { currentLocale } = useLocale();
     const {
       experiences,
       deleteExperience,
@@ -163,6 +165,7 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      currentLocale,
     };
   },
 });
