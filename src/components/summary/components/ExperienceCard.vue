@@ -9,7 +9,7 @@
         />
       </template>
       <template #title>
-        {{ experience.position }}
+        {{ experience.position[currentLocale] }}
       </template>
       <template #subtitle>
         {{ experience.company }}
@@ -17,8 +17,8 @@
       <template #extra-info>
         <span class="capitalize">{{ experience.startShortMonthName }}</span>
         {{ experience.startYear }} -
-        <template v-if="experience.current"
-          ><span class="font-semibold text-green-500">actualidad </span>
+        <template v-if="experience.current">
+          <span class="font-semibold text-green-700">{{ $t("Present") }} </span>
         </template>
         <template v-else>
           <span class="capitalize">{{ experience.finishShortMonthName }}</span>
@@ -27,7 +27,7 @@
         <span class="text-xs font-medium"> ({{ experience.duration }})</span>
       </template>
       <template #content>
-        {{ experience.description }}
+        {{ experience.description[currentLocale] }}
       </template>
     </CardComponent>
   </a>
@@ -37,6 +37,8 @@
 import { defineComponent, PropType } from "vue";
 import ExperienceModel from "@/models/ExperienceModel";
 import { getContrastColor } from "vue-vite-components";
+import useLocale from "@/composables/useLocale";
+
 export default defineComponent({
   props: {
     experience: {
@@ -45,11 +47,13 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { currentLocale } = useLocale();
     const hoverColor = getContrastColor({
       hexadecimal: props.experience.brandColor,
     });
     return {
       hoverColor,
+      currentLocale,
     };
   },
 });

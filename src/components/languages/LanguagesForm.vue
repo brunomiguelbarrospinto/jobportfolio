@@ -1,6 +1,6 @@
 <template>
   <Form
-    :form="LanguageForm(isNew)"
+    :form="LanguageForm({ isNew, locale: currentLocale })"
     @form:onSubmit="submit"
     :values="knowledge"
   />
@@ -12,6 +12,7 @@ import LanguageInterface from "@/definitions/entities/LanguageInterface";
 import useLanguages from "@/composables/useLanguages";
 import useNotifications from "@/composables/useNotifications";
 import { useRouter } from "vue-router";
+import useLocale from "@/composables/useLocale";
 export default defineComponent({
   props: {
     id: {
@@ -26,6 +27,7 @@ export default defineComponent({
       useLanguages();
     const knowledge = computed(() => getLanguageById(props.id));
     const isNew = computed(() => knowledge.value === undefined);
+    const { currentLocale } = useLocale();
 
     async function submit(data: LanguageInterface) {
       await saveLanguage({
@@ -44,7 +46,15 @@ export default defineComponent({
       }
     }
 
-    return { knowledge, isNew, LanguageForm, submit, isLoading, isFinished };
+    return {
+      knowledge,
+      isNew,
+      LanguageForm,
+      submit,
+      isLoading,
+      isFinished,
+      currentLocale,
+    };
   },
 });
 </script>

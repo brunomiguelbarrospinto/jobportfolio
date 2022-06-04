@@ -4,9 +4,9 @@
       id="activator"
       ref="activator"
       @click.prevent="toggleDropdown"
-      class="cursor-pointer"
+      class="h-full cursor-pointer"
     >
-      <slot name="activator" />
+      <slot name="activator" :isOpen="open" />
     </div>
 
     <TransitionComponent>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import TransitionComponent from "@/components/transition/Transition.vue";
 export default defineComponent({
   components: {
@@ -46,12 +46,12 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
-      document.addEventListener("click", closeDropdown);
-    });
-
-    onUnmounted(() => {
-      document.removeEventListener("click", closeDropdown);
+    watch(open, (value) => {
+      if (value) {
+        document.addEventListener("click", closeDropdown);
+      } else {
+        document.removeEventListener("click", closeDropdown);
+      }
     });
 
     return {

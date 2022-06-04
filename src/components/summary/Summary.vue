@@ -13,11 +13,11 @@
             />
           </div>
           <div class="ml-3">
-            {{ user.aboutMe.name }} {{ user.aboutMe?.lastNames }}
+            {{ user.aboutMe?.name }} {{ user.aboutMe?.lastNames }}
           </div>
-        </div></template
-      >
-      <template #right-section> </template>
+        </div>
+      </template>
+      <template #right-section><LocaleDropdown /> </template>
     </Navbar>
     <div class="container mx-auto max-w-4xl px-3">
       <Banner :user="user" />
@@ -69,11 +69,13 @@ import Knowledge from "./components/Knowledge.vue";
 import Experiences from "./components/Experiences.vue";
 import Projects from "./components/Projects.vue";
 import ContactMe from "./components/ContactMe.vue";
+import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 
 export default defineComponent({
   components: {
     Navbar,
     Banner,
+    LocaleDropdown,
   },
   props: {
     user: {

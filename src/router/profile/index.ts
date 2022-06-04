@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/:email",
+    path: "/profile/:email",
     name: "profile-index",
     props: true,
     component: () =>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center border-t pt-2 pb-2 pr-4 pl-4 transition-all hover:bg-gray-50 hover:shadow-sm"
+    class="flex items-center border-t pt-2 pb-2 transition-all hover:bg-gray-50 hover:shadow-sm"
   >
     <div
       v-if="$slots.image"

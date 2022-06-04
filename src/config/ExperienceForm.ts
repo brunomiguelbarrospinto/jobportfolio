@@ -4,7 +4,7 @@ import FormElementInterface from "@/definitions/form/FormElementInterface";
 import CheckboxInterface from "@/definitions/form/CheckboxInterface";
 const company = (): InputInterface => ({
   id: "company",
-  label: "Compañia",
+  label: "Company",
   type: "text",
   value: null,
   required: true,
@@ -33,7 +33,7 @@ const brandColor = (): InputInterface => ({
 
 const position = (): InputInterface => ({
   id: "position",
-  label: "Posición",
+  label: "Position",
   type: "text",
   value: null,
   required: true,
@@ -41,7 +41,7 @@ const position = (): InputInterface => ({
 
 const location = (): InputInterface => ({
   id: "location",
-  label: "Ubicación",
+  label: "Location",
   type: "text",
   value: null,
   required: true,
@@ -49,7 +49,7 @@ const location = (): InputInterface => ({
 
 const description = (): InputInterface => ({
   id: "description",
-  label: "Descripción",
+  label: "Description",
   type: "text",
   value: null,
   required: true,
@@ -57,7 +57,7 @@ const description = (): InputInterface => ({
 
 const startDate = (): InputInterface => ({
   id: "startDate",
-  label: "Fecha de inicio",
+  label: "Start date",
   type: "date",
   value: null,
   required: true,
@@ -65,14 +65,14 @@ const startDate = (): InputInterface => ({
 
 const current = (): CheckboxInterface => ({
   id: "current",
-  label: "Actualmente trabajando",
+  label: "Currently working",
   type: "checkbox",
   value: false,
 });
 
 const finishDate = (): InputInterface => ({
   id: "finishDate",
-  label: "Fecha de finalizacion",
+  label: "Finish date",
   type: "date",
   value: null,
   required: true,
@@ -82,7 +82,7 @@ export default (isNew: boolean): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: isNew ? "Nueva experiencia" : "Editar experiencia",
+        legend: isNew ? "Create" : "Edit",
         elements: [
           {
             type: "input",
@@ -103,14 +103,17 @@ export default (isNew: boolean): FormInterface => {
           {
             type: "input",
             data: position(),
+            translatable: true,
           },
           {
             type: "input",
             data: location(),
+            translatable: true,
           },
           {
             type: "input",
             data: description(),
+            translatable: true,
           },
           {
             type: "input",

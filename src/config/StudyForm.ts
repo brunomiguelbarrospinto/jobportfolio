@@ -12,7 +12,7 @@ const image = (): InputInterface => ({
 
 const institute = (): InputInterface => ({
   id: "institute",
-  label: "Instituto",
+  label: "Institute",
   type: "text",
   value: null,
   required: true,
@@ -27,7 +27,7 @@ const url = (): InputInterface => ({
 
 const title = (): InputInterface => ({
   id: "title",
-  label: "Titulo",
+  label: "Title",
   type: "text",
   value: null,
   required: true,
@@ -35,7 +35,7 @@ const title = (): InputInterface => ({
 
 const startDate = (): InputInterface => ({
   id: "startDate",
-  label: "Fecha de inicio",
+  label: "Start date",
   type: "date",
   value: null,
   required: true,
@@ -43,14 +43,14 @@ const startDate = (): InputInterface => ({
 
 const current = (): CheckboxInterface => ({
   id: "current",
-  label: "Actualmente estudiando",
+  label: "Currently studying",
   type: "checkbox",
   value: false,
 });
 
 const finishDate = (): InputInterface => ({
   id: "finishDate",
-  label: "Fecha de finalizacion",
+  label: "Finish date",
   type: "date",
   value: null,
   required: true,
@@ -60,7 +60,7 @@ export default (isNewStudy: boolean): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: isNewStudy ? "Nuevo estudio" : "Editar estudio",
+        legend: isNewStudy ? "Create" : "Edit",
         elements: [
           {
             type: "input",
@@ -69,6 +69,7 @@ export default (isNewStudy: boolean): FormInterface => {
           {
             type: "input",
             data: institute(),
+            translatable: true,
           },
           {
             type: "input",
@@ -77,6 +78,7 @@ export default (isNewStudy: boolean): FormInterface => {
           {
             type: "input",
             data: title(),
+            translatable: true,
           },
           {
             type: "input",

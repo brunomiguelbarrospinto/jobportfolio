@@ -9,7 +9,7 @@ const route: RouteRecordRaw = {
     ),
   meta: {
     requiresAuth: true,
-    breadCrumb: "Estudios",
+    breadCrumb: "Studies",
   },
   children: [
     {
@@ -29,7 +29,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Crear estudio",
+        breadCrumb: "Create",
       },
     },
     {
@@ -42,7 +42,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Editar estudio",
+        breadCrumb: "Edit",
         dinamicRoute: true,
       },
     },

@@ -1,5 +1,5 @@
 <template>
-  <span class="block inline-flex text-xs text-red-500">
+  <span class="inline-flex text-xs text-red-500">
     <template v-if="errorMessage">{{ errorMessage }}</template>
     <slot />
   </span>

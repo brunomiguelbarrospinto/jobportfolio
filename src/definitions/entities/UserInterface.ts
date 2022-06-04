@@ -7,7 +7,7 @@ import ExperienceInterface from "./ExperienceInterface";
 import ProjectInterface from "./ProjectInterface";
 
 export interface AboutMeInterface {
-  name: string;
+  name?: string;
   lastNames?: string;
   dateOfBirth?: string;
   address?: string;

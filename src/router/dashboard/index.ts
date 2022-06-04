@@ -31,7 +31,6 @@ const routes: Array<RouteRecordRaw> = [
           ),
         meta: {
           requiresAuth: true,
-          breadCrumb: "Inicio",
         },
       },
       {
@@ -55,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
           ),
         meta: {
           requiresAuth: true,
-          breadCrumb: "Acerca de mi",
+          breadCrumb: "About me",
         },
       },
       SocialNetworksRoutes,

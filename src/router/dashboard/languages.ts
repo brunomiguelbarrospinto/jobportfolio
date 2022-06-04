@@ -9,7 +9,7 @@ const route: RouteRecordRaw = {
     ),
   meta: {
     requiresAuth: true,
-    breadCrumb: "Idiomas",
+    breadCrumb: "Languages",
   },
   children: [
     {
@@ -29,7 +29,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Crear idioma",
+        breadCrumb: "Create",
       },
     },
     {
@@ -42,7 +42,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Editar idioma",
+        breadCrumb: "Edit",
         dinamicRoute: true,
       },
     },

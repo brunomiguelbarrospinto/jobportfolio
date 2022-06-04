@@ -2,24 +2,22 @@
   <a :href="study.url" target="_blank">
     <CardComponent>
       <template v-if="study.image" #image>
-        <img
-          class="h-10 w-10 border-2 border-white"
-          alt=""
-          :src="study.image"
-        />
+        <div class="h-10 w-10 border-2 border-white">
+          <img width="36" height="36" alt="" :src="study.image" />
+        </div>
       </template>
       <template #title>
-        {{ study.title }}
+        {{ study.title[currentLocale] }}
       </template>
       <template #subtitle>
-        {{ study.institute }}
+        {{ study.institute[currentLocale] }}
       </template>
       <template #extra-info>
         <div class="text-xs">
           <span class="capitalize">{{ study.startShortMonthName }}</span>
           {{ study.startYear }} -
           <template v-if="study.current">
-            <span class="font-semibold text-green-500"> actualidad </span>
+            <span class="font-semibold text-green-700"> actualidad </span>
           </template>
           <template v-else>
             <span class="capitalize">{{ study.finishShortMonthName }}</span>
@@ -34,6 +32,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import useLocale from "@/composables/useLocale";
 import StudyModel from "@/models/StudyModel";
 export default defineComponent({
   props: {
@@ -41,6 +40,12 @@ export default defineComponent({
       type: Object as PropType<StudyModel>,
       required: true,
     },
+  },
+  setup() {
+    const { currentLocale } = useLocale();
+    return {
+      currentLocale,
+    };
   },
 });
 </script>

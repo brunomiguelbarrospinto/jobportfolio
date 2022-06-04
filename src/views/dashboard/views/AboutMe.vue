@@ -1,7 +1,7 @@
 <template>
   <Form
     :form="form"
-    :values="user.aboutMe"
+    :values="aboutMe"
     @form:onSubmit="updateAboutMeForm"
     :isLoading="isLoading"
   />
@@ -9,7 +9,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import AboutMeForm from "@/config/AboutMeForm";
-import { useUser } from "@/composables/useUser";
 import { useAboutMe } from "@/composables/useAboutMe";
 import { useRouter } from "vue-router";
 import useNotifications from "@/composables/useNotifications";
@@ -17,12 +16,13 @@ import { AboutMeInterface } from "@/definitions/entities/UserInterface";
 
 export default defineComponent({
   setup() {
-    const { user } = useUser();
-    const { updateAboutMe, isLoading, isFinished } = useAboutMe();
+    const { aboutMe, updateAboutMe, isLoading, isFinished } = useAboutMe();
     const router = useRouter();
     const { pushNotification } = useNotifications();
 
     async function updateAboutMeForm(data: AboutMeInterface) {
+      console.log(data);
+
       await updateAboutMe(data);
       if (isFinished) {
         router.push({ name: "home" });
@@ -36,7 +36,7 @@ export default defineComponent({
     }
     return {
       form: AboutMeForm(),
-      user,
+      aboutMe,
       updateAboutMeForm,
       isLoading,
       isFinished,

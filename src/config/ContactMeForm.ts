@@ -4,7 +4,7 @@ import TextareaInterface from "@/definitions/form/TextareaInterface";
 
 const name: InputInterface = {
   id: "name",
-  label: "Nombre",
+  label: "Name",
   type: "text",
   value: null,
   required: true,
@@ -19,7 +19,7 @@ const email: InputInterface = {
 };
 const title: InputInterface = {
   id: "title",
-  label: "Titulo",
+  label: "Title",
   type: "text",
   value: null,
   required: true,
@@ -27,7 +27,7 @@ const title: InputInterface = {
 
 const message: TextareaInterface = {
   id: "message",
-  label: "Mensaje",
+  label: "Message",
   value: null,
   rows: 6,
   required: true,
@@ -37,7 +37,7 @@ export default (): FormInterface => {
   return {
     fieldsets: [
       {
-        legend: "Formulario de contacto",
+        legend: "Contact form",
         elements: [
           {
             type: "input",
@@ -58,6 +58,6 @@ export default (): FormInterface => {
         ],
       },
     ],
-    buttonText: "Enviar",
+    buttonText: "Send",
   };
 };

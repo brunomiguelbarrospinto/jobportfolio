@@ -9,7 +9,7 @@ const route: RouteRecordRaw = {
     ),
   meta: {
     requiresAuth: true,
-    breadCrumb: "Experiencias",
+    breadCrumb: "Experiences",
   },
   children: [
     {
@@ -29,7 +29,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Crear experiencia",
+        breadCrumb: "New",
       },
     },
     {
@@ -42,7 +42,7 @@ const route: RouteRecordRaw = {
         ),
       meta: {
         requiresAuth: true,
-        breadCrumb: "Editar experiencia",
+        breadCrumb: "Edit",
         dinamicRoute: true,
       },
     },

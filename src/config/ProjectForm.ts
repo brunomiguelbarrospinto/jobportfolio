@@ -3,7 +3,7 @@ import InputInterface from "@/definitions/form/InputInterface";
 
 const name = (): InputInterface => ({
   id: "name",
-  label: "Nombre",
+  label: "Name",
   type: "text",
   value: null,
   required: true,
@@ -25,7 +25,7 @@ const logo = (): InputInterface => ({
 
 const description = (): InputInterface => ({
   id: "description",
-  label: "Descripción",
+  label: "Description",
   type: "text",
   value: null,
   required: true,
@@ -52,6 +52,7 @@ export default (isNew: boolean): FormInterface => {
           {
             type: "input",
             data: description(),
+            translatable: true,
           },
         ],
       },

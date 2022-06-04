@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis conocimientos</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My knowledge") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-knowledge-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
-
     <draggable
       v-if="elementsToOrder"
       v-model="elementsToOrder"
@@ -20,7 +20,7 @@
       <template #item="{ element }">
         <ListItem>
           <template #title>
-            {{ element.name }}
+            {{ element.name[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -38,7 +38,7 @@
                     params: { id: element.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -46,7 +46,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>
@@ -75,6 +75,7 @@ import useNotifications from "@/composables/useNotifications";
 import KnowledgeModalDelete from "./KnowledgeModalDelete.vue";
 import draggable from "vuedraggable";
 import KnowledgeInterface from "@/definitions/entities/KnowledgeInterface";
+import useLocale from "@/composables/useLocale";
 
 export default defineComponent({
   components: {
@@ -90,6 +91,7 @@ export default defineComponent({
     const isOpen = ref(false);
     const id = ref("");
     const { pushNotification } = useNotifications();
+    const { currentLocale } = useLocale();
 
     async function submit() {
       await deleteKnowledge(id.value);
@@ -146,6 +148,7 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      currentLocale,
     };
   },
 });

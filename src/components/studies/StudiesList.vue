@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div>Mis estudios</div>
+    <div class="mb-4 flex items-center justify-between">
+      <div>{{ $t("My studies") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-studies-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
@@ -24,10 +25,10 @@
             <template v-else>{{ study.institute[0] }}</template>
           </template>
           <template #title>
-            {{ study.title }}
+            {{ study.title[currentLocale] }}
           </template>
           <template #subtitle>
-            {{ study.institute }}
+            {{ study.institute[currentLocale] }}
           </template>
           <template #button>
             <Dropdown>
@@ -45,7 +46,7 @@
                     params: { id: study.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -53,7 +54,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>
@@ -84,6 +85,7 @@ import useNotifications from "@/composables/useNotifications";
 import StudyModalDelete from "./StudyModalDelete.vue";
 import draggable from "vuedraggable";
 import StudyInterface from "@/definitions/entities/StudyInterface";
+import useLocale from "@/composables/useLocale";
 
 export default defineComponent({
   components: {
@@ -94,6 +96,8 @@ export default defineComponent({
     draggable,
   },
   setup() {
+    const { currentLocale } = useLocale();
+
     const { studies, deleteStudy, isFinished, updateOrderStudies } =
       useStudies();
     const isOpen = ref(false);
@@ -156,6 +160,7 @@ export default defineComponent({
       sort,
       updateOrder,
       elementsToOrder,
+      currentLocale,
     };
   },
 });

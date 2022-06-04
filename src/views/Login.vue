@@ -1,9 +1,12 @@
 <template>
   <div class="c-login">
-    <div class="c-login__content">
-      <Logo />
-      Iniciar sesión
-      <LoginWithGoogleButton @login="login" />
+    <div>
+      <CardComponent class="c-login__content">
+        <Logo />
+
+        {{ $t("Log in") }} <br />
+        <LoginWithGoogleButton @login="login" />
+      </CardComponent>
     </div>
   </div>
 </template>
@@ -38,12 +41,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .c-login {
-  @apply flex h-screen items-center justify-center justify-items-center;
-  &__content {
-    @apply flex h-60 w-96 flex-col items-center justify-around rounded-sm border p-5 text-black shadow-sm;
-    &__logo {
-      @apply w-48;
-    }
-  }
+  @apply fixed flex h-screen w-screen items-center justify-center justify-items-center;
 }
 </style>

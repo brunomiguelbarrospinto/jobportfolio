@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SectionTitle :user="user">Experiencias</SectionTitle>
+    <SectionTitle :user="user">{{ $t("Experiences") }}</SectionTitle>
 
     <ExperienceCard
       :key="'experience-card-' + experience.id"

@@ -4,8 +4,8 @@ import router from "./router";
 import "./assets/tailwind.scss";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import LogRocket from "logrocket";
-LogRocket.init("hsxssp/jobportfolio");
+// import LogRocket from "logrocket";
+// LogRocket.init("hsxssp/jobportfolio");
 import {
   ButtonComponent,
   IconComponent,
@@ -20,14 +20,16 @@ import "vue-vite-components/dist/style.css";
 import Form from "@/components/common/form/Form.vue";
 
 import { useFirebase } from "@/composables/useFirebase";
+import useLocale from "./composables/useLocale";
 const { setCurrentAuthUser } = useFirebase();
 let app: Application;
 
+const { i18n } = useLocale();
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   setCurrentAuthUser(user);
   if (!app) {
-    app = createApp(App);
+    app = createApp(App).use(i18n.value);
     app.component("Form", Form); // global registration - can be used anywhere
     app.component("ButtonComponent", ButtonComponent); // global registration - can be used anywhere
     app.component("IconComponent", IconComponent); // global registration - can be used anywhere

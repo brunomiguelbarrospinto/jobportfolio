@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="mb-4 flex items-center justify-between">
-      <div class="font-semibold">Mis redes sociales</div>
+      <div class="font-semibold">{{ $t("My social media") }}</div>
       <ButtonComponent
         :to="{ name: 'dashboard-social-networks-create' }"
-        text="Añadir"
+        :text="$t('Create')"
+        size="sm"
       />
     </div>
 
@@ -46,7 +47,7 @@
                     params: { id: sn.id },
                   }"
                 >
-                  Editar
+                  {{ $t("Edit") }}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   @click="
@@ -54,7 +55,7 @@
                     isOpen = true;
                   "
                 >
-                  Eliminar
+                  {{ $t("Delete") }}
                 </DropdownMenuItem>
               </template>
             </Dropdown>

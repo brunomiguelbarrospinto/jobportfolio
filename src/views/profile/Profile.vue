@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import { useProfile } from "@/composables/useProfile";
 import Summary from "@/components/summary/Summary.vue";
 
@@ -18,9 +18,7 @@ export default defineComponent({
   },
   setup(props) {
     const { getProfileByEmail, profile } = useProfile();
-    onMounted(() => {
-      getProfileByEmail(props.email);
-    });
+    getProfileByEmail(props.email);
     return { profile };
   },
 });
