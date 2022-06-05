@@ -6,7 +6,9 @@ const routes: Array<RouteRecordRaw> = [
     name: "profile-index",
     props: true,
     component: () =>
-      import(/* webpackChunkName: "profile" */ "@/views/profile/Index.vue"),
+      import(
+        /* webpackChunkName: "profile-index" */ "@/views/profile/Index.vue"
+      ),
     meta: { isPublic: true },
 
     children: [
@@ -15,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
         name: "profile",
         component: () =>
           import(
-            /* webpackChunkName: "dashboard-home" */ "@/views/profile/Profile.vue"
+            /* webpackChunkName: "profile" */ "@/views/profile/Profile.vue"
           ),
         meta: { isPublic: true },
       },
