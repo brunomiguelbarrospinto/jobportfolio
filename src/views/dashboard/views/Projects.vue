@@ -8,11 +8,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import TransitionComponent from "@/components/transition/Transition.vue";
-
-export default defineComponent({
-  components: { TransitionComponent },
-});
 </script>

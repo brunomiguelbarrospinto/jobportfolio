@@ -10,24 +10,20 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  props: {
-    id: {
-      type: String,
-    },
-    placeholder: {
-      type: String,
-    },
-    modelValue: {
-      type: [String, Number],
-    },
-    rows: {
-      type: Number,
-      default: 4,
-    },
+<script lang="ts" setup>
+const props = defineProps({
+  id: {
+    type: String,
+  },
+  placeholder: {
+    type: String,
+  },
+  modelValue: {
+    type: [String, Number],
+  },
+  rows: {
+    type: Number,
+    default: 4,
   },
 });
 </script>

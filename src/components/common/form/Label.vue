@@ -5,14 +5,11 @@
   </label>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  props: {
-    label: {
-      type: String,
-      default: null,
-    },
+<script lang="ts" setup>
+const props = defineProps({
+  label: {
+    type: String,
+    default: null,
   },
 });
 </script>

@@ -10,7 +10,6 @@ import BlogRoutes from "./blog/index";
 import { useFirebase } from "@/composables/useFirebase";
 const { currentAuthUser } = useFirebase();
 import { IS_STAGING } from "@/config";
-console.log(IS_STAGING);
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",

@@ -5,14 +5,11 @@
   </span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  props: {
-    errorMessage: {
-      type: String,
-      default: null,
-    },
+<script lang="ts" setup>
+const props = defineProps({
+  errorMessage: {
+    type: String,
+    default: null,
   },
 });
 </script>

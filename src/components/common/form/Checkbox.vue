@@ -8,19 +8,15 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+const props = defineProps({
+  id: {
+    type: String,
+  },
 
-export default defineComponent({
-  props: {
-    id: {
-      type: String,
-    },
-
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
+  modelValue: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

@@ -23,42 +23,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+<script lang="ts" setup>
+import { ref, watch } from "vue";
 import TransitionComponent from "@/components/transition/Transition.vue";
-export default defineComponent({
-  components: {
-    TransitionComponent,
-  },
-  setup() {
-    const open = ref(false);
-    const activator = ref<HTMLElement>();
 
-    function toggleDropdown() {
-      open.value = !open.value;
+const open = ref(false);
+const activator = ref<HTMLElement>();
+
+function toggleDropdown() {
+  open.value = !open.value;
+}
+
+function closeDropdown(e: Event) {
+  if (activator.value) {
+    if (!activator.value.contains(e.target as Node)) {
+      open.value = false;
     }
+  }
+}
 
-    function closeDropdown(e: Event) {
-      if (activator.value) {
-        if (!activator.value.contains(e.target as Node)) {
-          open.value = false;
-        }
-      }
-    }
-
-    watch(open, (value) => {
-      if (value) {
-        document.addEventListener("click", closeDropdown);
-      } else {
-        document.removeEventListener("click", closeDropdown);
-      }
-    });
-
-    return {
-      open,
-      toggleDropdown,
-      activator,
-    };
-  },
+watch(open, (value) => {
+  if (value) {
+    document.addEventListener("click", closeDropdown);
+  } else {
+    document.removeEventListener("click", closeDropdown);
+  }
 });
 </script>

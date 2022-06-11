@@ -15,20 +15,17 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Label from "./Label.vue";
 import Radio from "./Radio.vue";
-export default defineComponent({
-  components: { Label, Radio },
-  props: {
-    radioGroup: {
-      type: Object,
-      required: true,
-    },
-    modelValue: {
-      type: [String, Number],
-    },
+
+const props = defineProps({
+  radioGroup: {
+    type: Object,
+    required: true,
+  },
+  modelValue: {
+    type: [String, Number],
   },
 });
 </script>

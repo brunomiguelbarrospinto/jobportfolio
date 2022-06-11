@@ -14,31 +14,25 @@
   </ErrorMessage>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import ErrorMessage from "./ErrorMessage.vue";
 
-export default defineComponent({
-  components: {
-    ErrorMessage,
+const props = defineProps({
+  id: {
+    type: String,
+    required: true,
   },
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-    },
-    placeholder: {
-      type: String,
-    },
-    modelValue: {
-      type: [String, Number],
-    },
-    errorMessage: {
-      type: String,
-    },
+  name: {
+    type: String,
+  },
+  placeholder: {
+    type: String,
+  },
+  modelValue: {
+    type: [String, Number],
+  },
+  errorMessage: {
+    type: String,
   },
 });
 </script>

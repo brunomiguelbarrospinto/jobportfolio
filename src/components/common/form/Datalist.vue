@@ -21,59 +21,48 @@
   </datalist>
 </template>
 
-<script lang="ts">
-import { defineComponent, nextTick, computed, PropType } from "vue";
+<script lang="ts" setup>
+import { nextTick, computed, PropType } from "vue";
 import Input from "./Input.vue";
 import OptionInterface from "@/definitions/form/OptionInterface";
 
-export default defineComponent({
-  components: {
-    Input,
+const props = defineProps({
+  id: {
+    type: String,
+    required: true,
   },
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-    label: {
-      type: String,
-    },
-    placeholder: {
-      type: String,
-    },
-    modelValue: {
-      type: [String, Number],
-      required: true,
-    },
-    options: {
-      type: Array as PropType<OptionInterface[]>,
-      required: true,
-    },
+  label: {
+    type: String,
   },
-  setup(props, context) {
-    async function changeValue(value: string | number): Promise<void> {
-      context.emit(
-        "update:modelValue",
-        isNaN(value as number) ? value : parseInt(value as string)
-      );
-      await nextTick();
-      //document.activeElement?.blur();
-    }
-    function validateValue() {
-      if (!props.options.find((option) => option.value == props.modelValue)) {
-        context.emit("update:modelValue", null);
-      }
-    }
-    const text = computed(
-      () =>
-        props.options.find((option) => option.value == props.modelValue)?.text
-    );
-
-    return {
-      validateValue,
-      text,
-      changeValue,
-    };
+  placeholder: {
+    type: String,
+  },
+  modelValue: {
+    type: [String, Number],
+    required: true,
+  },
+  options: {
+    type: Array as PropType<OptionInterface[]>,
+    required: true,
   },
 });
+
+const emit = defineEmits(["update:modelValue"]);
+
+async function changeValue(value: string | number): Promise<void> {
+  emit(
+    "update:modelValue",
+    isNaN(value as number) ? value : parseInt(value as string)
+  );
+  await nextTick();
+  //document.activeElement?.blur();
+}
+function validateValue() {
+  if (!props.options.find((option) => option.value == props.modelValue)) {
+    emit("update:modelValue", null);
+  }
+}
+const text = computed(
+  () => props.options.find((option) => option.value == props.modelValue)?.text
+);
 </script>

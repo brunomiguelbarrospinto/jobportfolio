@@ -9,20 +9,12 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import ModuleCard from "@/components/dashboard/home/ModuleCard.vue";
 import { useUser } from "@/composables/useUser";
 
 import { useModules } from "@/composables/useModules";
-export default defineComponent({
-  components: {
-    ModuleCard,
-  },
-  setup() {
-    const { user } = useUser();
-    const { modules } = useModules();
-    return { user, modules };
-  },
-});
+
+const { user } = useUser();
+const { modules } = useModules();
 </script>

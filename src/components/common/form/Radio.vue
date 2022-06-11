@@ -13,29 +13,23 @@
   </Label>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Label from "./Label.vue";
 
-export default defineComponent({
-  components: {
-    Label,
+const props = defineProps({
+  id: {
+    type: String,
   },
-  props: {
-    id: {
-      type: String,
-    },
-    label: {
-      type: String,
-    },
-    modelValue: {
-      type: [String, Number, Boolean],
-      default: "",
-    },
-    value: {
-      type: [String, Number],
-      required: true,
-    },
+  label: {
+    type: String,
+  },
+  modelValue: {
+    type: [String, Number, Boolean],
+    default: "",
+  },
+  value: {
+    type: [String, Number],
+    required: true,
   },
 });
 </script>

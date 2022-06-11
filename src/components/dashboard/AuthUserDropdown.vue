@@ -36,32 +36,18 @@
   </Dropdown>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import { useUser } from "@/composables/useUser";
 import { useRouter } from "vue-router";
 
-export default defineComponent({
-  components: {
-    Dropdown,
-    DropdownMenuItem,
-  },
-  setup() {
-    const { currentAuthUser, signOut } = useFirebase();
-    const { aboutMe } = useUser();
-    const router = useRouter();
-    async function logout() {
-      await signOut();
-      router.push({ name: "login" });
-    }
-    return {
-      logout,
-      currentAuthUser,
-      aboutMe,
-    };
-  },
-});
+const { currentAuthUser, signOut } = useFirebase();
+const { aboutMe } = useUser();
+const router = useRouter();
+async function logout() {
+  await signOut();
+  router.push({ name: "login" });
+}
 </script>

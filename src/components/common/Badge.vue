@@ -1,10 +1,12 @@
 <template>
-  <span class="rounded-sm px-1 text-xs" :class="typeClasses"><slot /></span>
+  <span class="rounded-sm px-1 text-xs" :class="typeClasses[props.type]"
+    ><slot
+  /></span>
 </template>
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { PropType } from "vue";
 
-type typeClasses =
+type TypeClasses =
   | "default"
   | "info"
   | "default"
@@ -12,25 +14,17 @@ type typeClasses =
   | "warning"
   | "danger";
 
-export default defineComponent({
-  props: {
-    type: {
-      type: String as PropType<typeClasses>,
-      default: "default",
-    },
-  },
-  setup(props) {
-    const typeClasses = {
-      default: "bg-white",
-      info: "bg-blue-500 text-white",
-      success: "bg-green-500 text-white",
-      warning: "bg-yellow-500 text-white",
-      danger: "bg-red-500 text-white",
-    };
-
-    return {
-      typeClasses: typeClasses[props.type],
-    };
+const props = defineProps({
+  type: {
+    type: String as PropType<TypeClasses>,
+    default: "default",
   },
 });
+const typeClasses = {
+  default: "bg-white",
+  info: "bg-blue-500 text-white",
+  success: "bg-green-500 text-white",
+  warning: "bg-yellow-500 text-white",
+  danger: "bg-red-500 text-white",
+};
 </script>

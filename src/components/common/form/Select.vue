@@ -22,21 +22,17 @@
   </select>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+const props = defineProps({
+  id: {
+    type: String,
+  },
 
-export default defineComponent({
-  props: {
-    id: {
-      type: String,
-    },
-
-    options: {
-      type: Array,
-    },
-    modelValue: {
-      type: [String, Number],
-    },
+  options: {
+    type: Array,
+  },
+  modelValue: {
+    type: [String, Number],
   },
 });
 </script>

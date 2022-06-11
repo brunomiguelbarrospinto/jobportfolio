@@ -8,29 +8,24 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  props: {
-    id: {
-      type: String,
-    },
-    placeholder: {
-      type: String,
-    },
+<script lang="ts" setup>
+const props = defineProps({
+  id: {
+    type: String,
   },
-  methods: {
-    input(event: Event) {
-      let file = (event?.target as HTMLInputElement)?.files?.[0];
-      if (file) {
-        var reader = new FileReader();
-        reader.onload = () => {
-          this.$emit("update:modelValue", reader.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    },
+  placeholder: {
+    type: String,
   },
 });
+
+function input(event: Event) {
+  let file = (event?.target as HTMLInputElement)?.files?.[0];
+  if (file) {
+    var reader = new FileReader();
+    reader.onload = () => {
+      this.$emit("update:modelValue", reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+}
 </script>

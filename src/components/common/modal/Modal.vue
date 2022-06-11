@@ -66,30 +66,23 @@
   </TransitionComponent>
 </template>
 
-<script>
-import { computed, defineComponent } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import TransitionComponent from "@/components/transition/Transition.vue";
-export default defineComponent({
-  components: {
-    TransitionComponent,
-  },
-  props: {
-    isOpen: { type: Boolean, default: false },
-    type: { type: String, default: null },
-  },
-  setup(props) {
-    const typeMap = {
-      warning: "yellow",
-      error: "red",
-      success: "green",
-      info: "blue",
-    };
 
-    const typeModal = computed(() => {
-      return typeMap[props.type];
-    });
+const props = defineProps({
+  isOpen: { type: Boolean, default: false },
+  type: { type: String, default: null },
+});
 
-    return { typeModal };
-  },
+const typeMap = {
+  warning: "yellow",
+  error: "red",
+  success: "green",
+  info: "blue",
+};
+
+const typeModal = computed(() => {
+  return typeMap[props.type];
 });
 </script>

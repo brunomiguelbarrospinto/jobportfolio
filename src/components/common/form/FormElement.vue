@@ -107,8 +107,8 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, PropType } from "vue";
+<script lang="ts" setup>
+import { computed, PropType } from "vue";
 import FormElementInterface from "@/definitions/form/FormElementInterface";
 
 import Label from "./Label.vue";
@@ -120,48 +120,33 @@ import Radio from "./Radio.vue";
 import RadioGroup from "./RadioGroup.vue";
 import Select from "./Select.vue";
 import Textarea from "./Textarea.vue";
-export default defineComponent({
-  components: {
-    Label,
-    Input,
-    InputFile,
-    Datalist,
-    Select,
-    Checkbox,
-    Radio,
-    RadioGroup,
-    Textarea,
+
+const props = defineProps({
+  element: {
+    type: Object as PropType<FormElementInterface>,
+    required: true,
   },
-  props: {
-    element: {
-      type: Object as PropType<FormElementInterface>,
-      required: true,
-    },
-    elements: {
-      type: Array as PropType<FormElementInterface[]>,
-    },
-    modelValue: {
-      type: [String, Number, Boolean],
-    },
+  elements: {
+    type: Array as PropType<FormElementInterface[]>,
   },
-  setup(props, { emit }) {
-    const value = computed({
-      get() {
-        return props.modelValue;
-      },
-      set(value) {
-        emit("update:modelValue", value);
-      },
-    });
-    const isVisible = computed(() => {
-      return props.element?.isVisible !== undefined
-        ? props.element.isVisible(props.elements as FormElementInterface[])
-        : true;
-    });
-    return {
-      value,
-      isVisible,
-    };
+  modelValue: {
+    type: [String, Number, Boolean],
   },
+});
+
+const emit = defineEmits(["update:modelValue"]);
+
+const value = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
+const isVisible = computed(() => {
+  return props.element?.isVisible !== undefined
+    ? props.element.isVisible(props.elements as FormElementInterface[])
+    : true;
 });
 </script>
