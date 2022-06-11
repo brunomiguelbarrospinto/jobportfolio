@@ -39,7 +39,6 @@
             >.
           </h4>
           <div>
-            <ButtonComponent text="Contactame" leftIcon="MailIcon" />
             <button class="text-slate-500">Acerca de mi</button>
           </div>
         </div>

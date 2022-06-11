@@ -64,9 +64,8 @@
     />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
-
+<script lang="ts" setup>
+import { ref, computed, watch } from "vue";
 import useKnowledge from "@/composables/useKnowledge";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -76,80 +75,61 @@ import KnowledgeModalDelete from "./KnowledgeModalDelete.vue";
 import draggable from "vuedraggable";
 import KnowledgeInterface from "@/definitions/entities/KnowledgeInterface";
 import useLocale from "@/composables/useLocale";
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    KnowledgeModalDelete,
-    draggable,
-  },
-  setup() {
-    const { knowledge, deleteKnowledge, isFinished, updateOrderKnowledge } =
-      useKnowledge();
-    const isOpen = ref(false);
-    const id = ref("");
-    const { pushNotification } = useNotifications();
-    const { currentLocale } = useLocale();
+const { knowledge, deleteKnowledge, isFinished, updateOrderKnowledge } =
+  useKnowledge();
+const isOpen = ref(false);
+const id = ref("");
+const { pushNotification } = useNotifications();
+const { currentLocale } = useLocale();
 
-    async function submit() {
-      await deleteKnowledge(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Conocimiento eliminad",
-          type: "success",
-        });
-      }
-    }
-
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderKnowledge(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus experiencias se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): KnowledgeInterface[] | null =>
-      knowledge.value
-        ? knowledge.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+async function submit() {
+  await deleteKnowledge(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Conocimiento eliminad",
+      type: "success",
     });
-    return {
-      isOpen,
-      id,
-      submit,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-      currentLocale,
-    };
-  },
+  }
+}
+
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderKnowledge(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus experiencias se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): KnowledgeInterface[] | null =>
+  knowledge.value
+    ? knowledge.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

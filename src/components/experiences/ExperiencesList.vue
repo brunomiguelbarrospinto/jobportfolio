@@ -77,9 +77,8 @@
     />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
-
+<script lang="ts" setup>
+import { ref, computed, watch } from "vue";
 import useExperiences from "@/composables/useExperiences";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -89,84 +88,61 @@ import ExperienceModalDelete from "./ExperienceModalDelete.vue";
 import draggable from "vuedraggable";
 import ExperienceInterface from "@/definitions/entities/ExperienceInterface";
 import useLocale from "@/composables/useLocale";
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    ExperienceModalDelete,
-    draggable,
-  },
-  setup() {
-    const { currentLocale } = useLocale();
-    const {
-      experiences,
-      deleteExperience,
-      isFinished,
-      updateOrderExperiences,
-    } = useExperiences();
-    const isOpen = ref(false);
-    const id = ref("");
-    const { pushNotification } = useNotifications();
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-    async function submit() {
-      await deleteExperience(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Experiencia eliminada",
-          type: "success",
-        });
-      }
-    }
+const { currentLocale } = useLocale();
+const { experiences, deleteExperience, isFinished, updateOrderExperiences } =
+  useExperiences();
+const isOpen = ref(false);
+const id = ref("");
+const { pushNotification } = useNotifications();
 
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderExperiences(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus experiencias se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): ExperienceInterface[] | null =>
-      experiences.value
-        ? experiences.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+async function submit() {
+  await deleteExperience(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Experiencia eliminada",
+      type: "success",
     });
-    return {
-      experiences,
-      isOpen,
-      id,
-      submit,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-      currentLocale,
-    };
-  },
+  }
+}
+
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderExperiences(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus experiencias se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): ExperienceInterface[] | null =>
+  experiences.value
+    ? experiences.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

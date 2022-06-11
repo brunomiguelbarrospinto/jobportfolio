@@ -42,6 +42,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { TagComponent } from "vue-vite-components";
 const props = defineProps({
   post: Object,
 });

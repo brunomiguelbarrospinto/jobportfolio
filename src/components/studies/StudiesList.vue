@@ -72,10 +72,10 @@
     />
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 // TODO: create list components, create useStudies to get, create, update amd delete studies
 
-import { defineComponent, ref, computed, watch } from "vue";
+import { ref, computed, watch } from "vue";
 
 import { useStudies } from "@/composables/useStudies";
 import ListItem from "@/components/common/list/ListItem.vue";
@@ -86,82 +86,61 @@ import StudyModalDelete from "./StudyModalDelete.vue";
 import draggable from "vuedraggable";
 import StudyInterface from "@/definitions/entities/StudyInterface";
 import useLocale from "@/composables/useLocale";
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    StudyModalDelete,
-    draggable,
-  },
-  setup() {
-    const { currentLocale } = useLocale();
+const { currentLocale } = useLocale();
 
-    const { studies, deleteStudy, isFinished, updateOrderStudies } =
-      useStudies();
-    const isOpen = ref(false);
-    const id = ref("");
-    const { pushNotification } = useNotifications();
+const { studies, deleteStudy, isFinished, updateOrderStudies } = useStudies();
+const isOpen = ref(false);
+const id = ref("");
+const { pushNotification } = useNotifications();
 
-    async function submit() {
-      await deleteStudy(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Estudio eliminado",
-          type: "success",
-        });
-      }
-    }
-
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderStudies(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus estudios se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): StudyInterface[] | null =>
-      studies.value
-        ? studies.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+async function submit() {
+  await deleteStudy(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Estudio eliminado",
+      type: "success",
     });
-    return {
-      studies,
-      isOpen,
-      id,
-      submit,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-      currentLocale,
-    };
-  },
+  }
+}
+
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderStudies(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus estudios se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): StudyInterface[] | null =>
+  studies.value
+    ? studies.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

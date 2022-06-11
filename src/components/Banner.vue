@@ -18,7 +18,7 @@
             {{ banner?.subTitle?.[currentLocale] }}
           </h2>
           <h3 cllass="text-md :nd:text-lg" class="mb-8">
-            <div v-html="user.aboutMe?.biography?.[currentLocale]" />
+            <div v-html="aboutMe?.biography?.[currentLocale]" />
           </h3>
         </div>
       </div>
@@ -26,31 +26,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+<script lang="ts" setup>
+import { PropType, computed } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
-import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 import useLocale from "@/composables/useLocale";
 
-export default defineComponent({
-  props: {
-    user: {
-      type: Object as PropType<UserInterface>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { currentLocale } = useLocale();
-    const aboutMe = computed(() => props.user.aboutMe);
-    const banner = computed(() => props.user.banner);
-    const socialNetworks = computed(() => props.user.socialNetworks);
-    return {
-      aboutMe,
-      banner,
-      socialNetworks,
-      getSocialNetworkIconComponent,
-      currentLocale,
-    };
+const props = defineProps({
+  user: {
+    type: Object as PropType<UserInterface>,
+    required: true,
   },
 });
+const { currentLocale } = useLocale();
+const aboutMe = computed(() => props.user.aboutMe);
+const banner = computed(() => props.user.banner);
 </script>

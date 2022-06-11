@@ -5,3 +5,6 @@
     <slot />
   </InteractiveElementComponent>
 </template>
+<script lang="ts" setup>
+import { InteractiveElementComponent } from "vue-vite-components";
+</script>

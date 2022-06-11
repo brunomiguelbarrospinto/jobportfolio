@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
 import DropdownMenuItem from "@/components/common/dropdown/DropdownMenuItem.vue";
+import { IconComponent } from "vue-vite-components";
 import useLocale from "@/composables/useLocale";
 const { locales, setLocale, currentLocale } = useLocale();
 </script>

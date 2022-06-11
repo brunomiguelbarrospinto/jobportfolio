@@ -40,6 +40,7 @@
 <script setup lang="ts">
 import { useScroll, useWindowSize } from "@vueuse/core";
 import { ref, computed, onMounted, watch } from "vue";
+import { IconComponent } from "vue-vite-components";
 
 const props = defineProps({
   themeColor: { type: String },

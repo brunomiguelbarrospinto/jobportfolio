@@ -48,44 +48,32 @@
   </fieldset>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import draggable from "vuedraggable";
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
-import { defineComponent, PropType, ref, computed } from "vue";
+import { PropType, ref, computed } from "vue";
 import FormElement from "./FormElement.vue";
+import { ButtonComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: {
-    FormElement,
-    draggable,
-  },
-  props: {
-    fieldset: { type: Object as PropType<FieldsetInterface>, required: true },
-  },
-
-  setup(props, context) {
-    const drag = ref(false);
-    const sort = ref(false);
-
-    const elements = computed(() =>
-      props.fieldset.elements.map((element) => {
-        return {
-          ...element,
-          id: element.data.id,
-        };
-      })
-    );
-
-    function emitsort() {
-      context.emit("orderChanged", [{ elements: elements.value }]);
-    }
-
-    return {
-      drag,
-      sort,
-      elements,
-      emitsort,
-    };
-  },
+const props = defineProps({
+  fieldset: { type: Object as PropType<FieldsetInterface>, required: true },
 });
+
+const emit = defineEmits(["orderChanged"]);
+
+const drag = ref(false);
+const sort = ref(false);
+
+const elements = computed(() =>
+  props.fieldset.elements.map((element) => {
+    return {
+      ...element,
+      id: element.data.id,
+    };
+  })
+);
+
+function emitsort() {
+  emit("orderChanged", [{ elements: elements.value }]);
+}
 </script>

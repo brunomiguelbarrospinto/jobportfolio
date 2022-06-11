@@ -58,8 +58,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { PropType } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import Navbar from "@/components/navbar/Navbar.vue";
 import Banner from "@/components/Banner.vue";
@@ -71,63 +71,49 @@ import Projects from "./components/Projects.vue";
 import ContactMe from "./components/ContactMe.vue";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 
-export default defineComponent({
-  components: {
-    Navbar,
-    Banner,
-    LocaleDropdown,
-  },
-  props: {
-    user: {
-      type: Object as PropType<UserInterface>,
-      required: true,
-    },
-  },
-  setup() {
-    const modules = [
-      {
-        id: "contact-me",
-        linkText: "Contactame",
-        component: ContactMe,
-      },
-    ];
-
-    const firstColumn = [
-      {
-        id: "experiences",
-        linkText: "Experiencias",
-        component: Experiences,
-      },
-      {
-        id: "projects",
-        linkText: "Proyectos",
-        component: Projects,
-      },
-    ];
-
-    const secondColumn = [
-      {
-        id: "studies",
-        linkText: "Estudios",
-        component: Studies,
-      },
-
-      {
-        id: "knowledge",
-        linkText: "Conocimientos",
-        component: Knowledge,
-      },
-      {
-        id: "languages",
-        linkText: "Idiomas",
-        component: Languages,
-      },
-    ];
-    return {
-      modules,
-      firstColumn,
-      secondColumn,
-    };
+const props = defineProps({
+  user: {
+    type: Object as PropType<UserInterface>,
+    required: true,
   },
 });
+const modules = [
+  {
+    id: "contact-me",
+    linkText: "Contactame",
+    component: ContactMe,
+  },
+];
+
+const firstColumn = [
+  {
+    id: "experiences",
+    linkText: "Experiencias",
+    component: Experiences,
+  },
+  {
+    id: "projects",
+    linkText: "Proyectos",
+    component: Projects,
+  },
+];
+
+const secondColumn = [
+  {
+    id: "studies",
+    linkText: "Estudios",
+    component: Studies,
+  },
+
+  {
+    id: "knowledge",
+    linkText: "Conocimientos",
+    component: Knowledge,
+  },
+  {
+    id: "languages",
+    linkText: "Idiomas",
+    component: Languages,
+  },
+];
 </script>

@@ -77,9 +77,8 @@
     />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
-
+<script lang="ts" setup>
+import { ref, computed, watch } from "vue";
 import { useCourses } from "@/composables/useCourses";
 import ListItem from "@/components/common/list/ListItem.vue";
 import Dropdown from "@/components/common/dropdown/Dropdown.vue";
@@ -89,80 +88,60 @@ import CourseModalDelete from "./CourseModalDelete.vue";
 import draggable from "vuedraggable";
 import CourseInterface from "@/definitions/entities/CourseInterface";
 import useLocale from "@/composables/useLocale";
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    CourseModalDelete,
-    draggable,
-  },
-  setup() {
-    const { courses, deleteCourse, isFinished, updateOrderCourses } =
-      useCourses();
-    const isOpen = ref(false);
-    const id = ref("");
-    const { pushNotification } = useNotifications();
-    const { currentLocale } = useLocale();
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-    async function submit() {
-      await deleteCourse(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Curso eliminado",
-          type: "success",
-        });
-      }
-    }
+const { courses, deleteCourse, isFinished, updateOrderCourses } = useCourses();
+const isOpen = ref(false);
+const id = ref("");
+const { pushNotification } = useNotifications();
+const { currentLocale } = useLocale();
 
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderCourses(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus cursos se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): CourseInterface[] | null =>
-      courses.value
-        ? courses.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+async function submit() {
+  await deleteCourse(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Curso eliminado",
+      type: "success",
     });
-    return {
-      courses,
-      isOpen,
-      id,
-      submit,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-      currentLocale,
-    };
-  },
+  }
+}
+
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderCourses(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus cursos se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): CourseInterface[] | null =>
+  courses.value
+    ? courses.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

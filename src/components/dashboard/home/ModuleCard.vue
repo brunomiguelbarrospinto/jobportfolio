@@ -38,19 +38,13 @@
   </router-link>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Badge from "@/components/common/Badge.vue";
-
-export default defineComponent({
-  components: {
-    Badge,
-  },
-  props: {
-    module: {
-      type: Object,
-      required: true,
-    },
+import { IconComponent, CardComponent } from "vue-vite-components";
+const props = defineProps({
+  module: {
+    type: Object,
+    required: true,
   },
 });
 </script>

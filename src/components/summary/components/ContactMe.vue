@@ -64,8 +64,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+<script lang="ts" setup>
+import Form from "@/components/common/form/Form.vue";
+import { PropType, ref } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import SectionTitle from "./SectionTitle.vue";
 import ContactMeForm from "@/config/ContactMeForm";
@@ -73,54 +74,43 @@ import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 import emailjs from "@emailjs/browser";
 import useNotifications from "@/composables/useNotifications";
 import useLocale from "@/composables/useLocale";
-export default defineComponent({
-  components: { SectionTitle },
-  props: {
-    user: {
-      type: Object as PropType<UserInterface>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { currentLocale } = useLocale();
-    const isLoading = ref(false);
-    const { pushNotification } = useNotifications();
+import { IconComponent } from "vue-vite-components";
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function submit(data: any) {
-      isLoading.value = true;
-      emailjs
-        .send(
-          "service_pnp7245",
-          "template_u7r9akk",
-          { ...data, from_email: data.email, to_email: props.user.email },
-          "user_5g5KswcOcIydJl2rmUdMM"
-        )
-        .then(
-          (result) => {
-            console.log("SUCCESS!", result.text);
-            isLoading.value = false;
-            pushNotification({
-              id: "",
-              title: "Email enviado a: " + props.user.email,
-              description: "El email ha sido enviado correctamente.",
-              type: "success",
-            });
-          },
-          (error) => {
-            console.log("FAILED...", error.text);
-            isLoading.value = false;
-          }
-        );
-    }
-
-    return {
-      ContactMeForm,
-      submit,
-      getSocialNetworkIconComponent,
-      isLoading,
-      currentLocale,
-    };
+const props = defineProps({
+  user: {
+    type: Object as PropType<UserInterface>,
+    required: true,
   },
 });
+const { currentLocale } = useLocale();
+const isLoading = ref(false);
+const { pushNotification } = useNotifications();
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function submit(data: any) {
+  isLoading.value = true;
+  emailjs
+    .send(
+      "service_pnp7245",
+      "template_u7r9akk",
+      { ...data, from_email: data.email, to_email: props.user.email },
+      "user_5g5KswcOcIydJl2rmUdMM"
+    )
+    .then(
+      (result) => {
+        console.log("SUCCESS!", result.text);
+        isLoading.value = false;
+        pushNotification({
+          id: "",
+          title: "Email enviado a: " + props.user.email,
+          description: "El email ha sido enviado correctamente.",
+          type: "success",
+        });
+      },
+      (error) => {
+        console.log("FAILED...", error.text);
+        isLoading.value = false;
+      }
+    );
+}
 </script>

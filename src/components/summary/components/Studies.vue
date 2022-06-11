@@ -11,8 +11,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+<script lang="ts" setup>
+import { PropType, computed } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import StudyInterface from "@/definitions/entities/StudyInterface";
 import SectionTitle from "./SectionTitle.vue";
@@ -20,28 +20,21 @@ import StudyItem from "./StudyItem.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import StudyClass from "@/models/StudyModel";
 
-export default defineComponent({
-  components: { SectionTitle, StudyItem },
-  props: {
-    user: {
-      type: Object as PropType<UserInterface>,
-      required: true,
-    },
+const props = defineProps({
+  user: {
+    type: Object as PropType<UserInterface>,
+    required: true,
   },
-  setup(props) {
-    const { convertObjectsCollectionsToArrayCollections } = useFirebase();
+});
+const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
-    const studies = computed(() => {
-      const studies = convertObjectsCollectionsToArrayCollections(
-        props.user.studies as StudyInterface[]
-      ).map((s) => new StudyClass(s));
-      if (studies.every((e) => !e.order)) {
-        studies.reverse();
-      }
-      return studies;
-    });
-
-    return { studies };
-  },
+const studies = computed(() => {
+  const studies = convertObjectsCollectionsToArrayCollections(
+    props.user.studies as StudyInterface[]
+  ).map((s) => new StudyClass(s));
+  if (studies.every((e) => !e.order)) {
+    studies.reverse();
+  }
+  return studies;
 });
 </script>

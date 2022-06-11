@@ -73,8 +73,8 @@
     />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
+<script lang="ts" setup>
+import { ref, computed, watch } from "vue";
 
 import { useSocialNetworks } from "@/composables/useSocialNetworks";
 import ListItem from "@/components/common/list/ListItem.vue";
@@ -85,85 +85,65 @@ import useNotifications from "@/composables/useNotifications";
 import { getSocialNetworkIconComponent } from "@/utils/socialNetwork";
 import draggable from "vuedraggable";
 import SocialNetworkInterface from "@/definitions/entities/SocialNetworksInterface";
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    SocialNetworkModalDelete,
-    draggable,
-  },
-  setup() {
-    const { pushNotification } = useNotifications();
+const { pushNotification } = useNotifications();
 
-    const {
-      socialNetworks,
-      deleteSocialNetwork,
-      isFinished,
-      updateOrderSocialNetworks,
-    } = useSocialNetworks();
+const {
+  socialNetworks,
+  deleteSocialNetwork,
+  isFinished,
+  updateOrderSocialNetworks,
+} = useSocialNetworks();
 
-    const isOpen = ref(false);
-    const id = ref("");
-    async function submit() {
-      await deleteSocialNetwork(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Red social eliminada",
-          type: "success",
-        });
-      }
-    }
-
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderSocialNetworks(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus redes sociales se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): SocialNetworkInterface[] | null =>
-      socialNetworks.value
-        ? socialNetworks.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+const isOpen = ref(false);
+const id = ref("");
+async function submit() {
+  await deleteSocialNetwork(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Red social eliminada",
+      type: "success",
     });
+  }
+}
 
-    return {
-      id,
-      isOpen,
-      submit,
-      getSocialNetworkIconComponent,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-    };
-  },
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderSocialNetworks(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus redes sociales se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): SocialNetworkInterface[] | null =>
+  socialNetworks.value
+    ? socialNetworks.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

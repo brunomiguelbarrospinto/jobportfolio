@@ -20,110 +20,102 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+<script lang="ts" setup>
+import { PropType, computed } from "vue";
 import FieldsetInterface from "@/definitions/form/FieldsetInterface";
 import FormInterface from "@/definitions/form/FormInterface";
 import Fieldset from "./Fieldset.vue";
 import useLocale from "@/composables/useLocale";
-export default defineComponent({
-  components: {
-    Fieldset,
-  },
-  props: {
-    form: {
-      type: Object as PropType<FormInterface>,
-      required: true,
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    values: { type: Object },
-  },
-  setup(props, context) {
-    const { currentLocale } = useLocale();
-    const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
-    function onSubmit() {
-      if (hasFieldsets.value) {
-        context.emit(
-          "form:onSubmit",
-          formatData(props.form.fieldsets as FieldsetInterface[])
-        );
-      }
-    }
+import { ButtonComponent } from "vue-vite-components";
 
-    function formatData(fieldsets: FieldsetInterface[]) {
-      let data = props.values ? JSON.parse(JSON.stringify(props.values)) : {};
-      fieldsets?.forEach((fieldset) => {
-        fieldset.elements.forEach((element) => {
-          if (element.translatable) {
-            if (!element.data.value) {
-              data[element.data.id] = null;
-            } else {
-              if (
-                !data[element.data.id] ||
-                typeof data[element.data.id] === "string"
-              ) {
-                data[element.data.id] = {};
-              }
+const props = defineProps({
+  form: {
+    type: Object as PropType<FormInterface>,
+    required: true,
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  values: { type: Object },
+});
 
-              data[element.data.id][currentLocale.value] =
-                element.data.value !== undefined ? element.data.value : null;
-            }
-          } else {
-            data[element.data.id] =
-              element.data.value !== undefined ? element.data.value : null;
+const emit = defineEmits(["form:onSubmit"]);
+
+const { currentLocale } = useLocale();
+const hasFieldsets = computed(() => props.form?.fieldsets !== undefined);
+function onSubmit() {
+  if (hasFieldsets.value) {
+    emit(
+      "form:onSubmit",
+      formatData(props.form.fieldsets as FieldsetInterface[])
+    );
+  }
+}
+
+function formatData(fieldsets: FieldsetInterface[]) {
+  let data = props.values ? JSON.parse(JSON.stringify(props.values)) : {};
+  fieldsets?.forEach((fieldset) => {
+    fieldset.elements.forEach((element) => {
+      if (element.translatable) {
+        if (!element.data.value) {
+          data[element.data.id] = null;
+        } else {
+          if (
+            !data[element.data.id] ||
+            typeof data[element.data.id] === "string"
+          ) {
+            data[element.data.id] = {};
           }
-        });
-      });
 
-      return data;
-    }
-
-    const syncedForm = computed(() => {
-      let syncedForm = props.form;
-      syncedForm.fieldsets = syncedForm.fieldsets?.map((fieldset) => {
-        return {
-          ...fieldset,
-          elements: fieldset.elements.map((element) => {
-            return {
-              ...element,
-              data: {
-                ...element.data,
-                value: props?.values
-                  ? props?.values[element.data.id] !== undefined
-                    ? element.translatable
-                      ? props.values[element.data.id][currentLocale.value]
-                      : props.values[element.data.id]
-                    : element.data.value
-                  : null,
-              },
-            };
-          }),
-        };
-      });
-      return syncedForm;
-    });
-
-    const buttonText = computed(() => {
-      if (props.isLoading) {
-        return "Processing";
+          data[element.data.id][currentLocale.value] =
+            element.data.value !== undefined ? element.data.value : null;
+        }
+      } else {
+        data[element.data.id] =
+          element.data.value !== undefined ? element.data.value : null;
       }
-
-      if (props.form.buttonText) {
-        return props.form.buttonText;
-      }
-
-      return "Save";
     });
+  });
+
+  return data;
+}
+
+const syncedForm = computed(() => {
+  let syncedForm = props.form;
+  syncedForm.fieldsets = syncedForm.fieldsets?.map((fieldset) => {
     return {
-      hasFieldsets,
-      onSubmit,
-      syncedForm,
-      buttonText,
+      ...fieldset,
+      elements: fieldset.elements.map((element) => {
+        return {
+          ...element,
+          data: {
+            ...element.data,
+            value: props?.values
+              ? props?.values[element.data.id] !== undefined
+                ? element.translatable
+                  ? props.values[element.data.id][currentLocale.value]
+                  : props.values[element.data.id]
+                : element.data.value
+              : null,
+          },
+        };
+      }),
     };
-  },
+  });
+  return syncedForm;
+});
+
+const buttonText = computed(() => {
+  if (props.isLoading) {
+    return "Processing";
+  }
+
+  if (props.form.buttonText) {
+    return props.form.buttonText;
+  }
+
+  return "Save";
 });
 </script>
 
