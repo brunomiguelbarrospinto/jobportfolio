@@ -3,7 +3,7 @@
     <SectionTitle :user="user">{{ $t("Contact me") }}</SectionTitle>
 
     <div class="grid grid-cols-2 gap-4">
-      <div>
+      <div class="col-span-2 md:col-span-1">
         <div class="mb-4 flex items-center">
           <IconComponent name="PhoneIcon" class="mr-3" />
           <div>
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="col-span-2 md:col-span-1">
         <Form
           ref="formRef"
           :form="ContactMeForm()"

@@ -23,7 +23,7 @@
       <Banner :user="user" />
 
       <div class="grid grid-cols-3 gap-12">
-        <div class="col-span-2">
+        <div class="col-span-3 md:col-span-2">
           <component
             :is="m.component"
             :key="`first-column-${m.id}`"
@@ -34,7 +34,7 @@
           />
         </div>
 
-        <div>
+        <div class="col-span-3 md:col-span-1">
           <component
             :is="m.component"
             :key="`second-column-${m.id}`"

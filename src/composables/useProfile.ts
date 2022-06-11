@@ -11,7 +11,7 @@ export const useProfile = (): {
   profile: Ref<UserInterface | null>;
   getProfileByEmail: (email: string) => void;
 } => {
-  function getProfileByEmail(email: string) {
+  async function getProfileByEmail(email: string) {
     const userDB = refDB(database, `users`);
     onValue(
       userDB,
