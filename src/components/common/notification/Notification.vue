@@ -39,22 +39,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  props: {
-    type: {
-      type: String,
-      default: "info",
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: false,
-    },
+<script lang="ts" setup>
+import { IconComponent } from "vue-vite-components";
+const props = defineProps({
+  type: {
+    type: String,
+    default: "info",
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: false,
   },
 });
 </script>

@@ -16,18 +16,13 @@
   </Modal>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import Modal from "@/components/common/modal/Modal.vue";
+import { ButtonComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: {
-    Modal,
-  },
-  props: {
-    isOpen: {
-      type: Boolean,
-    },
+const props = defineProps({
+  isOpen: {
+    type: Boolean,
   },
 });
 </script>

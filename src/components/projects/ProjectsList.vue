@@ -76,8 +76,8 @@
     />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, computed, watch } from "vue";
+<script lang="ts" setup>
+import { ref, computed, watch } from "vue";
 
 import useProjects from "@/composables/useProjects";
 import ListItem from "@/components/common/list/ListItem.vue";
@@ -88,80 +88,61 @@ import ProjectsModalDelete from "./ProjectsModalDelete.vue";
 import draggable from "vuedraggable";
 import ProjectInterface from "@/definitions/entities/ProjectInterface";
 import useLocale from "@/composables/useLocale";
-export default defineComponent({
-  components: {
-    ListItem,
-    Dropdown,
-    DropdownMenuItem,
-    ProjectsModalDelete,
-    draggable,
-  },
-  setup() {
-    const { currentLocale } = useLocale();
-    const { projects, deleteProject, isFinished, updateOrderProjects } =
-      useProjects();
-    const isOpen = ref(false);
-    const id = ref("");
-    const { pushNotification } = useNotifications();
+import { ButtonComponent } from "vue-vite-components";
+import { IconComponent } from "vue-vite-components";
 
-    async function submit() {
-      await deleteProject(id.value);
-      if (isFinished) {
-        isOpen.value = false;
-        id.value = "";
-        pushNotification({
-          id: "",
-          title: "Eliminado",
-          description: "Proyecto eliminada",
-          type: "success",
-        });
-      }
-    }
+const { currentLocale } = useLocale();
+const { projects, deleteProject, isFinished, updateOrderProjects } =
+  useProjects();
+const isOpen = ref(false);
+const id = ref("");
+const { pushNotification } = useNotifications();
 
-    const drag = ref(false);
-    const sort = ref(true);
-
-    async function updateOrder() {
-      if (elementsToOrder.value) {
-        await updateOrderProjects(elementsToOrder.value);
-        if (isFinished) {
-          pushNotification({
-            id: "",
-            title: "Orden actualizado",
-            description: "Tus proyectos se han ordenado",
-            type: "success",
-          });
-        }
-      }
-    }
-
-    const elements = computed((): ProjectInterface[] | null =>
-      projects.value
-        ? projects.value.map((element) => {
-            return {
-              ...element,
-              id: element.id,
-            };
-          })
-        : null
-    );
-
-    const elementsToOrder = ref(elements.value);
-
-    watch(elements, (value) => {
-      elementsToOrder.value = value;
+async function submit() {
+  await deleteProject(id.value);
+  if (isFinished) {
+    isOpen.value = false;
+    id.value = "";
+    pushNotification({
+      id: "",
+      title: "Eliminado",
+      description: "Proyecto eliminada",
+      type: "success",
     });
-    return {
-      projects,
-      isOpen,
-      id,
-      submit,
-      drag,
-      sort,
-      updateOrder,
-      elementsToOrder,
-      currentLocale,
-    };
-  },
+  }
+}
+
+const drag = ref(false);
+const sort = ref(true);
+
+async function updateOrder() {
+  if (elementsToOrder.value) {
+    await updateOrderProjects(elementsToOrder.value);
+    if (isFinished) {
+      pushNotification({
+        id: "",
+        title: "Orden actualizado",
+        description: "Tus proyectos se han ordenado",
+        type: "success",
+      });
+    }
+  }
+}
+
+const elements = computed((): ProjectInterface[] | null =>
+  projects.value
+    ? projects.value.map((element) => {
+        return {
+          ...element,
+          id: element.id,
+        };
+      })
+    : null
+);
+
+const elementsToOrder = ref(elements.value);
+
+watch(elements, (value) => {
+  elementsToOrder.value = value;
 });
 </script>

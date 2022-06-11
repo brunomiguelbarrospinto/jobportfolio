@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
+
 //, connectDatabaseEmulator
 import {
   getAuth,
@@ -25,14 +27,16 @@ const firebaseConfig = {
 
 const currentAuthUser: Ref<any | null> = ref(null);
 
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
-const database = getDatabase(app);
+const database = getDatabase(firebaseApp);
 // if (location.hostname === "localhost") {
 //   // Point to the RTDB emulator running on localhost.
 //   connectDatabaseEmulator(database, "localhost", 9000);
 // }
+
+const storage = getStorage(firebaseApp);
 
 export const useFirebase = (): {
   database: any;

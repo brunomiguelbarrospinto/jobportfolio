@@ -33,28 +33,17 @@
   </a>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { PropType } from "vue";
 import ExperienceModel from "@/models/ExperienceModel";
-import { getContrastColor } from "vue-vite-components";
 import useLocale from "@/composables/useLocale";
+import { CardComponent } from "vue-vite-components";
 
-export default defineComponent({
-  props: {
-    experience: {
-      type: Object as PropType<ExperienceModel>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { currentLocale } = useLocale();
-    const hoverColor = getContrastColor({
-      hexadecimal: props.experience.brandColor,
-    });
-    return {
-      hoverColor,
-      currentLocale,
-    };
+const props = defineProps({
+  experience: {
+    type: Object as PropType<ExperienceModel>,
+    required: true,
   },
 });
+const { currentLocale } = useLocale();
 </script>

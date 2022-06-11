@@ -23,41 +23,34 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import { useRoute } from "vue-router";
-export default defineComponent({
-  setup() {
-    interface Breadcrumb {
-      path: string;
-      to: string;
+import { IconComponent } from "vue-vite-components";
+interface Breadcrumb {
+  path: string;
+  to: string;
+}
+const route = useRoute();
+
+const crumbs = computed(() => {
+  let pathArray = route.path.split("/");
+
+  pathArray.shift();
+
+  let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
+    if (!route.matched[idx - 1]?.meta?.dinamicRoute) {
+      breadcrumbArray.push({
+        path: path,
+        to: breadcrumbArray[idx - 1]
+          ? "/" + breadcrumbArray[idx - 1].path + "/" + path
+          : "/" + path,
+        text: route.matched[idx].meta.breadCrumb || path,
+      } as Breadcrumb);
     }
-    const route = useRoute();
-
-    const crumbs = computed(() => {
-      let pathArray = route.path.split("/");
-
-      pathArray.shift();
-
-      let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
-        if (!route.matched[idx - 1]?.meta?.dinamicRoute) {
-          breadcrumbArray.push({
-            path: path,
-            to: breadcrumbArray[idx - 1]
-              ? "/" + breadcrumbArray[idx - 1].path + "/" + path
-              : "/" + path,
-            text: route.matched[idx].meta.breadCrumb || path,
-          } as Breadcrumb);
-        }
-        return breadcrumbArray;
-      }, [] as Breadcrumb[]);
-      return breadcrumbs;
-    });
-
-    return {
-      crumbs,
-    };
-  },
+    return breadcrumbArray;
+  }, [] as Breadcrumb[]);
+  return breadcrumbs;
 });
 </script>
 

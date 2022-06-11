@@ -22,37 +22,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, computed } from "vue";
+<script lang="ts" setup>
+import { PropType, computed } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
 import ProjectInterface from "@/definitions/entities/ProjectInterface";
 import SectionTitle from "./SectionTitle.vue";
 import { useFirebase } from "@/composables/useFirebase";
 import useLocale from "@/composables/useLocale";
+import { CardComponent } from "vue-vite-components";
 
-export default defineComponent({
-  components: { SectionTitle },
-  props: {
-    user: {
-      type: Object as PropType<UserInterface>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { convertObjectsCollectionsToArrayCollections } = useFirebase();
-
-    const projects = computed(() => {
-      const projects = convertObjectsCollectionsToArrayCollections(
-        props.user.projects as ProjectInterface[]
-      );
-      if (projects.every((e) => !e.order)) {
-        projects.reverse();
-      }
-      return projects;
-    });
-    const { currentLocale } = useLocale();
-
-    return { projects, currentLocale };
+const props = defineProps({
+  user: {
+    type: Object as PropType<UserInterface>,
+    required: true,
   },
 });
+const { convertObjectsCollectionsToArrayCollections } = useFirebase();
+
+const projects = computed(() => {
+  const projects = convertObjectsCollectionsToArrayCollections(
+    props.user.projects as ProjectInterface[]
+  );
+  if (projects.every((e) => !e.order)) {
+    projects.reverse();
+  }
+  return projects;
+});
+const { currentLocale } = useLocale();
 </script>

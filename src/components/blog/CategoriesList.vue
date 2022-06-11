@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import useCategories from "@/composables/blog/useCategories";
-
+import { TagComponent } from "vue-vite-components";
 const { fetchCategories, categories } = useCategories();
 if (!categories.value.length) {
   fetchCategories();

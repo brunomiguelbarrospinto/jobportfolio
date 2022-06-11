@@ -30,22 +30,17 @@
   </a>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { PropType } from "vue";
 import useLocale from "@/composables/useLocale";
 import StudyModel from "@/models/StudyModel";
-export default defineComponent({
-  props: {
-    study: {
-      type: Object as PropType<StudyModel>,
-      required: true,
-    },
-  },
-  setup() {
-    const { currentLocale } = useLocale();
-    return {
-      currentLocale,
-    };
+import { CardComponent } from "vue-vite-components";
+
+const props = defineProps({
+  study: {
+    type: Object as PropType<StudyModel>,
+    required: true,
   },
 });
+const { currentLocale } = useLocale();
 </script>
