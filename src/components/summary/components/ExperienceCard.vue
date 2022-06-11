@@ -2,11 +2,9 @@
   <a :href="experience.url" target="_blank" class="mb-5 block">
     <CardComponent>
       <template v-if="experience.logo" #image>
-        <img
-          class="h-10 w-10 border-2 border-white"
-          alt=""
-          :src="experience.logo"
-        />
+        <div class="h-10 w-10">
+          <img class="border-2 border-white" alt="" :src="experience.logo" />
+        </div>
       </template>
       <template #title>
         {{ experience.position[currentLocale] }}
