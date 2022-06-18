@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 import ErrorMessage from "./ErrorMessage.vue";
 
-const props = defineProps({
+defineProps({
   id: {
     type: String,
     required: true,

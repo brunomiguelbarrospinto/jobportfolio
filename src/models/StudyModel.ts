@@ -1,10 +1,8 @@
 import StudyInterface from "@/definitions/entities/StudyInterface";
-import {
-  differenceBetweenTwoDates,
-  now,
-  getShortMonthName,
-  getYear,
-} from "@/utils/dayjs";
+import useDayjs from "@/composables/useDayjs";
+
+const { differenceBetweenTwoDates, now, getShortMonthName, getYear } =
+  useDayjs();
 class LanguageClass {
   id?: string;
   title: string;

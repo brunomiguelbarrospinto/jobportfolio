@@ -17,7 +17,9 @@
           </div>
         </div>
       </template>
-      <template #right-section><LocaleDropdown /> </template>
+      <template #right-section>
+        <LocaleDropdown />
+      </template>
     </Navbar>
     <div class="container mx-auto max-w-4xl px-3">
       <Banner :user="user" />
@@ -71,7 +73,7 @@ import Projects from "./components/Projects.vue";
 import ContactMe from "./components/ContactMe.vue";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 
-const props = defineProps({
+defineProps({
   user: {
     type: Object as PropType<UserInterface>,
     required: true,

@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import Badge from "@/components/common/Badge.vue";
 import { IconComponent, CardComponent } from "vue-vite-components";
-const props = defineProps({
+defineProps({
   module: {
     type: Object,
     required: true,

@@ -37,7 +37,7 @@ import ExperienceModel from "@/models/ExperienceModel";
 import useLocale from "@/composables/useLocale";
 import { CardComponent } from "vue-vite-components";
 
-const props = defineProps({
+defineProps({
   experience: {
     type: Object as PropType<ExperienceModel>,
     required: true,

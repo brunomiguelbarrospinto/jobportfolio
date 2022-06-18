@@ -20,7 +20,7 @@
 import Modal from "@/components/common/modal/Modal.vue";
 import { ButtonComponent } from "vue-vite-components";
 
-const props = defineProps({
+defineProps({
   isOpen: {
     type: Boolean,
   },

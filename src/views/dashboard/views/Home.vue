@@ -11,10 +11,6 @@
 </template>
 <script lang="ts" setup>
 import ModuleCard from "@/components/dashboard/home/ModuleCard.vue";
-import { useUser } from "@/composables/useUser";
-
 import { useModules } from "@/composables/useModules";
-
-const { user } = useUser();
 const { modules } = useModules();
 </script>

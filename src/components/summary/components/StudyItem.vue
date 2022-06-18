@@ -36,7 +36,7 @@ import useLocale from "@/composables/useLocale";
 import StudyModel from "@/models/StudyModel";
 import { CardComponent } from "vue-vite-components";
 
-const props = defineProps({
+defineProps({
   study: {
     type: Object as PropType<StudyModel>,
     required: true,

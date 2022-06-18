@@ -15,8 +15,7 @@
 
 <script lang="ts" setup>
 import Label from "./Label.vue";
-
-const props = defineProps({
+defineProps({
   id: {
     type: String,
   },

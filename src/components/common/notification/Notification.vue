@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { IconComponent } from "vue-vite-components";
-const props = defineProps({
+defineProps({
   type: {
     type: String,
     default: "info",

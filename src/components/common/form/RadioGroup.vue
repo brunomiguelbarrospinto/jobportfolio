@@ -19,7 +19,7 @@
 import Label from "./Label.vue";
 import Radio from "./Radio.vue";
 
-const props = defineProps({
+defineProps({
   radioGroup: {
     type: Object,
     required: true,

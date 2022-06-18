@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
-import { getStorage } from "firebase/storage";
+//import { getStorage } from "firebase/storage";
 
 //, connectDatabaseEmulator
 import {
@@ -36,7 +36,7 @@ const database = getDatabase(firebaseApp);
 //   connectDatabaseEmulator(database, "localhost", 9000);
 // }
 
-const storage = getStorage(firebaseApp);
+//const storage = getStorage(firebaseApp);
 
 export const useFirebase = (): {
   database: any;

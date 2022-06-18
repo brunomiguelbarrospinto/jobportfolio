@@ -1,4 +1,5 @@
-import { ref } from "vue";
+import useLocale from "./useLocale";
+import { ref, watch, Ref } from "vue";
 import dayjs, { Dayjs } from "dayjs";
 import duration from "dayjs/plugin/duration";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -6,12 +7,21 @@ import es from "dayjs/locale/es";
 import en from "dayjs/locale/en";
 import localeData from "dayjs/plugin/localeData";
 
+const { currentLocale } = useLocale();
+
+watch(
+  () => currentLocale.value,
+  (newLocale) => {
+    setDayjsLocale(newLocale);
+  }
+);
+
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.extend(localeData);
 
-const shortMonthNames: any = ref();
-const monthNames: any = ref();
+const shortMonthNames: Ref<string[]> = ref([]);
+const monthNames: Ref<string[]> = ref([]);
 
 export function now(): Dayjs {
   return dayjs();
@@ -40,7 +50,6 @@ export function getYear(date: string): number {
 }
 
 export function setDayjsLocale(locale: string) {
-  console.log(locale);
   if (locale === "es") {
     dayjs.locale(es);
   }
@@ -51,7 +60,7 @@ export function setDayjsLocale(locale: string) {
   monthNames.value = dayjs.months();
 }
 
-export default (locale: string) => {
+export default (locale: string = currentLocale.value) => {
   setDayjsLocale(locale);
 
   return {

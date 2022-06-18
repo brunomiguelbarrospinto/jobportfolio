@@ -9,11 +9,10 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   id: {
     type: String,
   },
-
   modelValue: {
     type: Boolean,
     default: false,
