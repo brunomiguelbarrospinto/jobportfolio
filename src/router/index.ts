@@ -22,6 +22,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
   },
+  {
+    path: "/test",
+    name: "test",
+    component: () => import(/* webpackChunkName: "test" */ "@/views/Test.vue"),
+    meta: {
+      isPublic: true,
+    },
+  },
   ...DashboardRoutes,
   ...ProfileRoutes,
   ...BlogRoutes,
