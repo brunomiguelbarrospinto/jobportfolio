@@ -133,6 +133,7 @@ const props = defineProps({
   },
   modelValue: {
     type: [String, Number, Boolean],
+    required: false,
   },
 });
 

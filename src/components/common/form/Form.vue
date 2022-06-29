@@ -118,9 +118,3 @@ const buttonText = computed(() => {
   return "Save";
 });
 </script>
-
-<style>
-.button--primary {
-  background-color: rgb(33, 90, 181) !important;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="grid grid-cols-3 gap-5 pb-5">
+    <div class="grid grid-cols-2 gap-5 pb-5 md:grid-cols-3">
       <ModuleCard
         :key="module.text"
         v-for="module in modules"
