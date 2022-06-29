@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar class="sticky">
+    <NavbarComponent isSticky>
       <template #left-section>
         <div class="flex items-center">
           <div class="h-8 w-8 rounded-full bg-gray-500">
@@ -20,7 +20,7 @@
       <template #right-section>
         <LocaleDropdown />
       </template>
-    </Navbar>
+    </NavbarComponent>
     <div class="container mx-auto max-w-4xl px-3">
       <Banner :user="user" />
 
@@ -63,7 +63,7 @@
 <script lang="ts" setup>
 import { PropType } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
-import Navbar from "@/components/navbar/Navbar.vue";
+import { NavbarComponent } from "vue-vite-components";
 import Banner from "@/components/Banner.vue";
 import Languages from "./components/Languages.vue";
 import Studies from "./components/Studies.vue";

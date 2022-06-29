@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar class="sticky">
+    <NavbarComponent isSticky>
       <template #left-section>
         <div class="relative">
           <Logo />
@@ -21,12 +21,12 @@
           {{ link.text }}
         </router-link>
       </template>
-    </Navbar>
+    </NavbarComponent>
     <router-view />
   </div>
 </template>
 <script setup lang="ts">
-import Navbar from "@/components/navbar/Navbar.vue";
+import { NavbarComponent } from "vue-vite-components";
 import Logo from "@/components/common/Logo.vue";
 
 const links = [
