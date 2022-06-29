@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white py-3 md:py-12">
+  <div class="py-3 md:py-12">
     <div class="container mx-auto max-w-screen-xl">
       <div class="grid gap-12 md:grid-cols-7">
         <!-- <div class="col-span-2">

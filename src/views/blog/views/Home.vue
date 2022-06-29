@@ -18,7 +18,7 @@
             Categorias
           </div>
           <div
-            class="w-full rounded-md bg-white p-4 shadow transition-shadow hover:shadow-lg"
+            class="w-full rounded-md p-4 shadow transition-shadow hover:shadow-lg"
           >
             <CategoriesList />
           </div>

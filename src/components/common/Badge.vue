@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 const typeClasses = {
-  default: "bg-white",
+  default: "",
   info: "bg-blue-500 text-white",
   success: "bg-green-500 text-white",
   warning: "bg-yellow-500 text-white",

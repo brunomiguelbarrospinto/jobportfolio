@@ -14,7 +14,6 @@
       :isLoading="isLoading"
       type="submit"
       :text="$t(buttonText)"
-      color="primary"
       size="sm"
     />
   </form>

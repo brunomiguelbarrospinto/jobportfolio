@@ -12,7 +12,7 @@
     <TransitionComponent>
       <div
         v-if="open"
-        class="absolute right-0 z-10 mt-2 w-48 origin-top-right overflow-hidden rounded-sm bg-white shadow-md ring-1 ring-black ring-opacity-5"
+        class="absolute right-0 z-10 mt-2 w-48 origin-top-right overflow-hidden rounded-sm shadow-md ring-1 ring-black ring-opacity-5"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="activator"

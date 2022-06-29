@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto max-w-screen-xl">
     <div class="grid grid-cols-2 gap-5" v-if="post">
-      <div class="bg-white p-5">
+      <div class="p-5">
         <h1 class="mb-1 text-3xl font-extrabold leading-normal text-gray-800">
           {{ post.title }}
         </h1>
@@ -11,7 +11,7 @@
         <img :src="post.mainImage" class="w-full object-cover" />
         <SanityBlocks :blocks="post.body" :serializers="serializers" />
       </div>
-      <div class="bg-white p-5">
+      <div class="p-5">
         <h1 class="mb-1 text-3xl font-extrabold leading-normal text-gray-800">
           {{ post.title }}
         </h1>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white py-20">
+  <div class="py-20">
     <div class="container mx-auto max-w-screen-xl">
       <div class="grid grid-cols-2 gap-20">
         <div class="grid place-content-center">
