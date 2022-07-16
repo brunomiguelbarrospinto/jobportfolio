@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar class="sticky">
+    <NavbarComponent isSticky>
       <template #left-section>
         <router-link :to="{ name: 'dashboard-home' }">
           <Logo />
@@ -24,8 +24,9 @@
         <ThemeSwitcher />
         <LocaleDropdown />
       </template>
-    </Navbar>
+    </NavbarComponent>
     <Banner :user="user" class="mb-10" />
+
     <div class="container mx-auto max-w-4xl px-3">
       <div class="grid grid-cols-3 gap-12">
         <div class="col-span-3 md:col-span-2">
@@ -236,7 +237,7 @@
 <script lang="ts" setup>
 import { PropType } from "vue";
 import { UserInterface } from "@/definitions/entities/UserInterface";
-import Navbar from "@/components/navbar/Navbar.vue";
+import { NavbarComponent } from "vue-vite-components";
 import Banner from "@/components/Banner.vue";
 import Languages from "./components/Languages.vue";
 import Studies from "./components/Studies.vue";
