@@ -1,5 +1,5 @@
 <template>
-  <span class="rounded-sm px-1 text-xs" :class="typeClasses[props.type]"
+  <span class="rounded-sm px-1 py-0.5 text-xs" :class="typeClasses[props.type]"
     ><slot
   /></span>
 </template>

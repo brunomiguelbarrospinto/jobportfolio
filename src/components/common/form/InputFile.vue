@@ -18,12 +18,14 @@ defineProps({
   },
 });
 
+const emit = defineEmits(["update:modelValue"]);
+
 function input(event: Event) {
   let file = (event?.target as HTMLInputElement)?.files?.[0];
   if (file) {
     var reader = new FileReader();
     reader.onload = () => {
-      this.$emit("update:modelValue", reader.result);
+      emit("update:modelValue", reader.result);
     };
     reader.readAsDataURL(file);
   }

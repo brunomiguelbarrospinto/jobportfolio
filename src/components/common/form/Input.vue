@@ -1,6 +1,6 @@
 <template>
   <input
-    class="mb-5 block h-8 w-full rounded-sm border border-gray-200 px-2 py-2 text-xs transition-colors focus:border-blue-500 focus:outline-none"
+    class="c-input"
     :id="id"
     :name="name || id"
     v-bind="$attrs"
@@ -36,3 +36,9 @@ defineProps({
   },
 });
 </script>
+
+<style>
+.c-input {
+  @apply mb-5 block w-full rounded-sm border border-gray-300  p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500;
+}
+</style>

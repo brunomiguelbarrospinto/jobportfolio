@@ -2,7 +2,10 @@
   <div>
     <Navbar class="sticky">
       <template #left-section>
-        <div class="flex items-center">
+        <router-link :to="{ name: 'dashboard-home' }">
+          <Logo />
+        </router-link>
+        <!--<div class="flex items-center">
           <div class="h-8 w-8 rounded-full bg-gray-500">
             <img
               v-if="user.aboutMe"
@@ -15,16 +18,15 @@
           <div class="ml-3">
             {{ user.aboutMe?.name }} {{ user.aboutMe?.lastNames }}
           </div>
-        </div>
+        </div> -->
       </template>
       <template #right-section>
         <ThemeSwitcher />
         <LocaleDropdown />
       </template>
     </Navbar>
+    <Banner :user="user" class="mb-10" />
     <div class="container mx-auto max-w-4xl px-3">
-      <Banner :user="user" />
-
       <div class="grid grid-cols-3 gap-12">
         <div class="col-span-3 md:col-span-2">
           <component
@@ -244,6 +246,7 @@ import Projects from "./components/Projects.vue";
 import ContactMe from "./components/ContactMe.vue";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 import ThemeSwitcher from "@/components/common/ThemeSwitcher.vue";
+import Logo from "@/components/common/Logo.vue";
 
 defineProps({
   user: {
