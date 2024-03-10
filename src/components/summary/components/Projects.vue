@@ -40,10 +40,12 @@ const props = defineProps({
 const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
 const projects = computed(() => {
-  const projects = convertObjectsCollectionsToArrayCollections(
-    props.user.projects as ProjectInterface[]
-  );
-  if (projects.every((e) => !e.order)) {
+  const projects = props?.user?.projects
+    ? convertObjectsCollectionsToArrayCollections(
+        props.user.projects as ProjectInterface[]
+      )
+    : null;
+  if (projects && projects.every((e) => !e.order)) {
     projects.reverse();
   }
   return projects;

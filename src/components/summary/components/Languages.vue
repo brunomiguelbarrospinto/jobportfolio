@@ -55,9 +55,13 @@ const { currentLocale } = useLocale();
 const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
 const languages = computed(() => {
-  const languages = convertObjectsCollectionsToArrayCollections(
-    props.user.languages as LanguageModel[]
-  ).map((l) => new LanguageModel(l));
-  return languages.every((e) => !e.order) ? languages.reverse() : languages;
+  const languages = props.user.languages
+    ? convertObjectsCollectionsToArrayCollections(
+        props.user.languages as LanguageModel[]
+      ).map((l) => new LanguageModel(l))
+    : null;
+  return languages && languages.every((e) => !e.order)
+    ? languages.reverse()
+    : languages;
 });
 </script>

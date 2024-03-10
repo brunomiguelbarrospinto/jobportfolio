@@ -1,28 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { initializeApp } from "firebase/app";
-//import { getAnalytics } from "firebase/analytics";
-import { getDatabase } from "firebase/database";
-//import { getStorage } from "firebase/storage";
-
 //, connectDatabaseEmulator
 import {
-  getAuth,
-  signInWithPopup as _signInWithPopup,
   GoogleAuthProvider,
+  signInWithPopup as _signInWithPopup,
   signOut as _signOut,
+  getAuth,
 } from "firebase/auth";
-import { ref, Ref } from "vue";
+import { Ref, ref } from "vue";
+
+//import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { initializeApp } from "firebase/app";
+
+//import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB342x-1-ffWlo27BYuW6cX0VlYclcJe6M",
-  authDomain: "jobportfolio-8a4e8.firebaseapp.com",
+  apiKey: "AIzaSyB7UnkM2ISYQzV9QPzu-7ZrK4oILcS0Ynw",
+  authDomain: "jobportfolio-7ef63.firebaseapp.com",
+  projectId: "jobportfolio-7ef63",
+  storageBucket: "jobportfolio-7ef63.appspot.com",
+  messagingSenderId: "871726158143",
+  appId: "1:871726158143:web:28573289c119657795c38a",
+  measurementId: "G-GXDTC16GMK",
   databaseURL:
-    "https://jobportfolio-8a4e8-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "jobportfolio-8a4e8",
-  storageBucket: "jobportfolio-8a4e8.appspot.com",
-  messagingSenderId: "628215896834",
-  appId: "1:628215896834:web:ea574ea60c6f27cb87c01b",
-  measurementId: "G-4K527RNGKT",
+    "https://jobportfolio-7ef63-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 const currentAuthUser: Ref<any | null> = ref(null);

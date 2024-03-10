@@ -1,9 +1,10 @@
-import { useFirebase } from "@/composables/useFirebase";
-import LanguageInterface from "@/definitions/entities/LanguageInterface";
-import { useUser } from "@/composables/useUser";
-import { Ref, ref, computed } from "vue";
-import { ref as refDB, set, push, remove } from "firebase/database";
+import { Ref, computed, ref } from "vue";
+import { push, ref as refDB, remove, set } from "firebase/database";
+
 import LanguageClass from "@/models/LanguageModel";
+import LanguageInterface from "@/definitions/entities/LanguageInterface";
+import { useFirebase } from "@/composables/useFirebase";
+import { useUser } from "@/composables/useUser";
 
 const {
   currentAuthUser,
@@ -26,11 +27,13 @@ const useLanguages = (): {
   updateOrderLanguages: (courses: LanguageInterface[]) => Promise<void>;
 } => {
   const languages = computed((): LanguageInterface[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.languages)
-      .map((l) => new LanguageClass(l))
-      ?.sort((a: LanguageInterface, b: LanguageInterface) =>
-        a.order > b.order ? 1 : -1
-      )
+    user.value?.languages
+      ? convertObjectsCollectionsToArrayCollections(user.value?.languages)
+          .map((l) => new LanguageClass(l))
+          ?.sort((a: LanguageInterface, b: LanguageInterface) =>
+            a.order > b.order ? 1 : -1
+          )
+      : null
   );
 
   function getLanguageById(id: string): LanguageInterface {

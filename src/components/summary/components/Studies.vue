@@ -29,10 +29,12 @@ const props = defineProps({
 const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 
 const studies = computed(() => {
-  const studies = convertObjectsCollectionsToArrayCollections(
-    props.user.studies as StudyInterface[]
-  ).map((s) => new StudyClass(s));
-  if (studies.every((e) => !e.order)) {
+  const studies = props?.user?.studies
+    ? convertObjectsCollectionsToArrayCollections(
+        props.user.studies as StudyInterface[]
+      ).map((s) => new StudyClass(s))
+    : null;
+  if (studies && studies.every((e) => !e.order)) {
     studies.reverse();
   }
   return studies;

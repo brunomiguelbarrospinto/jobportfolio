@@ -26,10 +26,12 @@ const props = defineProps({
 });
 const { convertObjectsCollectionsToArrayCollections } = useFirebase();
 const experiences = computed(() => {
-  const experiences = convertObjectsCollectionsToArrayCollections(
-    props.user.experiences as ExperienceInterface[]
-  ).map((e) => new ExperienceModel(e));
-  if (experiences.every((e) => !e.order)) {
+  const experiences = props?.user?.experiences
+    ? convertObjectsCollectionsToArrayCollections(
+        props.user.experiences as ExperienceInterface[]
+      ).map((e) => new ExperienceModel(e))
+    : null;
+  if (experiences && experiences.every((e) => !e.order)) {
     experiences.reverse();
   }
   return experiences;

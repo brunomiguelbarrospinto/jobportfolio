@@ -1,10 +1,10 @@
-import { useFirebase } from "@/composables/useFirebase";
+import { Ref, computed, ref } from "vue";
+import { push, ref as refDB, remove, set } from "firebase/database";
 
-import StudyInterface from "@/definitions/entities/StudyInterface";
-import { useUser } from "@/composables/useUser";
-import { Ref, ref, computed } from "vue";
-import { ref as refDB, set, push, remove } from "firebase/database";
 import StudyClass from "@/models/StudyModel";
+import StudyInterface from "@/definitions/entities/StudyInterface";
+import { useFirebase } from "@/composables/useFirebase";
+import { useUser } from "@/composables/useUser";
 
 const {
   currentAuthUser,
@@ -27,9 +27,11 @@ export const useStudies = (): {
   updateOrderStudies: (studies: StudyInterface[]) => Promise<void>;
 } => {
   const studies = computed((): StudyClass[] | undefined =>
-    convertObjectsCollectionsToArrayCollections(user.value?.studies)
-      .map((s) => new StudyClass(s))
-      ?.sort((a: StudyClass, b: StudyClass) => (a.order > b.order ? 1 : -1))
+    user.value?.studies
+      ? convertObjectsCollectionsToArrayCollections(user.value?.studies)
+          .map((s) => new StudyClass(s))
+          ?.sort((a: StudyClass, b: StudyClass) => (a.order > b.order ? 1 : -1))
+      : null
   );
 
   function getStudyById(id: string): StudyInterface {

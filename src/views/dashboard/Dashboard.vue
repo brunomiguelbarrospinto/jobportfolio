@@ -38,14 +38,14 @@ import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 import Logo from "@/components/common/Logo.vue";
 
 const { currentAuthUser } = useFirebase();
-const { getUserById, user /*setBaseUser*/ } = useUser();
+const { getUserById, user, setBaseUser } = useUser();
 onMounted(async () => {
   if (currentAuthUser?.value) {
     await getUserById(currentAuthUser.value.uid);
-    // if (!user.value) {
-    //   await setBaseUser(currentAuthUser.value);
-    //   await getUserById(currentAuthUser.value.uid);
-    // }
+    if (!user.value) {
+      await setBaseUser(currentAuthUser.value);
+    }
+    await getUserById(currentAuthUser.value.uid);
   }
 });
 </script>
