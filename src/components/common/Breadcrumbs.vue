@@ -30,6 +30,7 @@ import { IconComponent } from "vue-vite-components";
 interface Breadcrumb {
   path: string;
   to: string;
+  text?: string;
 }
 const route = useRoute();
 
@@ -56,6 +57,6 @@ const crumbs = computed(() => {
 
 <style lang="scss" scoped>
 .breadcrumb {
-  @apply my-5 text-base text-sm font-normal;
+  @apply my-5 text-base font-normal;
 }
 </style>

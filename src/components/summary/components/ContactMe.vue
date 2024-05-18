@@ -8,7 +8,7 @@
           <IconComponent name="PhoneIcon" class="mr-3" />
           <div>
             <span class="text-md">{{ $t("Telephone") }}</span> <br />
-            <span class="text-sm text-gray-500">{{ user.aboutMe?.phone }}</span>
+            <span class="text-sm">{{ user.aboutMe?.phone }}</span>
           </div>
         </div>
 
@@ -16,7 +16,7 @@
           <IconComponent name="MailIcon" class="mr-3" />
           <div>
             <span class="text-md">Email</span> <br />
-            <span class="text-sm text-gray-500">{{ user.email }}</span>
+            <span class="text-sm">{{ user.email }}</span>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
           <IconComponent name="LocationMarkerIcon" class="mr-3" />
           <div>
             <span class="text-md">{{ $t("Address") }}</span> <br />
-            <span class="text-sm text-gray-500">{{
+            <span class="text-sm">{{
               user.aboutMe?.address?.[currentLocale]
             }}</span>
           </div>

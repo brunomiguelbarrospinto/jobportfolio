@@ -1,24 +1,34 @@
 <template>
-  <div class="bg-white py-3 md:py-12">
-    <div class="container mx-auto max-w-screen-xl">
+  <div class="relative overflow-hidden text-white drop-shadow-lg">
+    <img class="absolute h-full w-full" alt="" :src="banner?.backgroundImage" />
+    <div class="absolute h-full w-full bg-black/10 backdrop-blur-sm" alt="" />
+
+    <div class="container relative mx-auto max-w-4xl px-3 py-3 md:py-28">
       <div class="grid gap-12 md:grid-cols-7">
-        <!-- <div class="col-span-2">
+        <div class="col-span-2">
           <img
             v-if="banner?.showPhoto && aboutMe?.photo"
             class="w-full rounded-full border-4"
             alt=""
             :src="aboutMe.photo"
           />
-        </div> -->
+        </div>
         <div class="col-span-5 grid place-content-center">
-          <h1 class="mb-1 text-2xl font-bold leading-normal md:text-5xl">
+          <h1
+            class="mb-1 text-2xl font-semibold leading-normal drop-shadow-md md:text-5xl"
+          >
             {{ banner?.title?.[currentLocale] }}
           </h1>
-          <h2 class="mb-3 text-xl font-semibold leading-normal md:text-3xl">
+          <h2
+            class="mb-3 text-xl font-medium leading-normal drop-shadow-md md:text-3xl"
+          >
             {{ banner?.subTitle?.[currentLocale] }}
           </h2>
-          <h3 cllass="text-md :nd:text-lg" class="mb-8">
-            <div v-html="aboutMe?.biography?.[currentLocale]" />
+          <h3>
+            <div
+              class="drop-shadow-md"
+              v-html="aboutMe?.biography?.[currentLocale]"
+            />
           </h3>
         </div>
       </div>

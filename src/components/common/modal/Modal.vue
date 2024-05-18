@@ -15,9 +15,9 @@
           aria-hidden="true"
         ></div>
         <div
-          class="transform overflow-hidden rounded-sm bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+          class="transform overflow-hidden rounded-sm text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
         >
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
               <div
                 v-if="type"

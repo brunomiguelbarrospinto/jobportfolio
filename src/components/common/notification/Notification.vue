@@ -1,5 +1,5 @@
 <template>
-  <div class="w-auto rounded-lg border border-gray-200 bg-white p-4 shadow-lg">
+  <div class="w-auto rounded-lg border border-gray-200 p-4 shadow-lg">
     <div class="flex items-center justify-between">
       <div class="flex items-center">
         <div class="mr-3 w-7">

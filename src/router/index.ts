@@ -53,6 +53,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isPublic = to.matched.some((record) => record.meta.isPublic);
+
   if (requiresAuth && !currentAuthUser.value) next("/login");
   else if (!requiresAuth && currentAuthUser.value && !isPublic)
     next("/dashboard");

@@ -27,9 +27,7 @@
             ]
           }}
         </div>
-        <span class="text-xs text-gray-500">
-          {{ language.description[currentLocale] }}</span
-        >
+        <span class="text-xs"> {{ language.description[currentLocale] }}</span>
       </div>
     </div>
   </div>

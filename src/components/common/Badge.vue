@@ -1,5 +1,5 @@
 <template>
-  <span class="rounded-sm px-1 text-xs" :class="typeClasses[props.type]"
+  <span class="rounded-sm px-1 py-0.5 text-xs" :class="typeClasses[props.type]"
     ><slot
   /></span>
 </template>
@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 const typeClasses = {
-  default: "bg-white",
+  default: "",
   info: "bg-blue-500 text-white",
   success: "bg-green-500 text-white",
   warning: "bg-yellow-500 text-white",

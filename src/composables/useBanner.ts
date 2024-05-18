@@ -15,6 +15,7 @@ export const useBanner = (): {
     const { currentAuthUser, database } = useFirebase();
     isFinished.value = false;
     isLoading.value = true;
+    console.log(data);
     set(
       refDB(database, "users/" + currentAuthUser.value.uid + "/banner"),
       data

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-full rounded-md bg-white p-4 shadow transition-shadow hover:shadow-lg"
+    class="flex w-full rounded-md p-4 shadow transition-shadow hover:shadow-lg"
   >
     <div class="mr-4 aspect-square w-56">
       <img :src="props.post?.mainImage" class="h-full w-full object-cover" />
